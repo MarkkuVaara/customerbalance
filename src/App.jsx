@@ -9,7 +9,7 @@ import Balanceservice from './services/Balances';
 const App = () => {
 
   const [balance, setBalance] = useState([]);
-  
+
   useEffect(() => {
     console.log('Fetching..');
     Balanceservice
@@ -27,11 +27,8 @@ const App = () => {
       <Banner />
       <div className="main">
         <div className="balances">
-          {balance.map(balanceunit => 
-            <Balancetable key={balanceunit.id} balanceunit={balanceunit}/>
-          )}
+          <Balancetable balance={balance}/>
         </div>
-        <button>Fetch your balance</button>
       </div>
     </div>
 

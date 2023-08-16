@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'https://jsonplaceholder.typicode.com/users/1/posts';
+const baseUrl = 'https://jsonplaceholder.typicode.com/users/3/posts';
 
 const getAll = () => {
     return axios.get(baseUrl);
