@@ -49,3 +49,41 @@ p {
     margin-left: 10%;
     margin-right: 10%;
 }
+
+
+/* Buttons */
+
+button {
+    color: black;
+    background-color: #CABFA6;
+    font-family: Ubuntu sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-width: 0px;
+}
+
+button:hover {
+    color: black;
+    background-color: rgb(104, 126, 104);
+    font-family: Ubuntu sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-width: 0px;
+}
+
+button:focus {
+    color: black;
+    background-color: rgb(104, 126, 104);
+    font-family: Ubuntu sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-width: 0px;
+}
