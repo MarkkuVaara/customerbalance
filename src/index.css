@@ -87,3 +87,23 @@ button:focus {
     padding-right: 20px;
     border-width: 0px;
 }
+
+
+/* Others */
+
+.balances {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.balance {
+    display: flex;
+    justify-content: left;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-color: darkgray;
+}
+
+.balance > p {
+    padding-right: 20px;
+}

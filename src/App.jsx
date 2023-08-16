@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import Title from './components/Title';
 import Banner from './components/Banner';
+import Balancetable from './components/Balancetable';
 import Balanceservice from './services/Balances';
 
 const App = () => {
@@ -25,9 +26,11 @@ const App = () => {
       <Title />
       <Banner />
       <div className="main">
-        {balance.map(balanceunit => 
-          <p key={balanceunit.id}>Hello {balanceunit.id}, your balance is {balanceunit.title}.</p>
-        )}
+        <div className="balances">
+          {balance.map(balanceunit => 
+            <Balancetable key={balanceunit.id} balanceunit={balanceunit}/>
+          )}
+        </div>
         <button>Fetch your balance</button>
       </div>
     </div>
