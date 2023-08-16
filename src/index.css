@@ -104,6 +104,7 @@ button:focus {
     border-color: darkgray;
 }
 
-.balance > p {
-    padding-right: 20px;
+.balance > p,
+.balance > b {
+    padding-right: 30px;
 }

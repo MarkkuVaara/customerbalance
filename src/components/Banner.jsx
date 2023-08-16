@@ -3,7 +3,7 @@ const Banner = () => {
 
     return (
         <div className="banner">
-            <h3>Balance options</h3>
+            <h3>Transactions: month / date / amount (euros) / description</h3>
         </div>
     )
 
