@@ -108,3 +108,19 @@ button:focus {
 .balance > b {
     padding-right: 30px;
 }
+
+.balancemonth {
+    width: 10%;
+}
+
+.balancedate {
+    width: 10%;
+}
+
+.balancetransaction {
+    width: 10%;
+}
+
+.balancedescription {
+    width: 70%;
+}
