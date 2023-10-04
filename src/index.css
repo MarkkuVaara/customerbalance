@@ -41,6 +41,11 @@ p {
     border-style: solid;
 }
 
+.banner > Link {
+    color: black;
+    background-color: blue;
+}
+
 .main {
     text-align: justify;
     height: 1000px;
@@ -86,10 +91,6 @@ button:focus {
     padding-left: 20px;
     padding-right: 20px;
     border-width: 0px;
-}
-
-.banner > button {
-    background-color: gainsboro;
 }
 
 
