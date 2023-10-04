@@ -3,7 +3,10 @@ const Banner = () => {
 
     return (
         <div className="banner">
-            <h3>Transactions: month / date / amount (euros) / description</h3>
+            <button>Account transactions</button>
+            <button>Accounts</button>
+            <button>Loans</button>
+            <button>Personal info</button>
         </div>
     )
 
