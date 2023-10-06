@@ -42,8 +42,7 @@ p {
 }
 
 .banner > Link {
-    color: black;
-    background-color: blue;
+    text-decoration: none;
 }
 
 .main {
