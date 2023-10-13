@@ -3,7 +3,7 @@ const Loans = () => {
 
     return (
         <div>
-            <h3>Loans</h3>
+            <h3>Lainat</h3>
         </div>
     )
 

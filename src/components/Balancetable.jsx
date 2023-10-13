@@ -36,9 +36,9 @@ const Balancetable = (props) => {
             </div>
         )}
         <br></br>
-        <button onClick={() => countBalance()}>Calculate cumulative balance</button>
+        <button onClick={() => countBalance()}>Laske tilin saldo</button>
         <div>
-            <h2>{cumulBalance} euros</h2>
+            <h2>{cumulBalance} euroa</h2>
         </div>
         <br></br>
         </>

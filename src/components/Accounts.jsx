@@ -3,7 +3,7 @@ const Accounts = () => {
 
     return (
         <div>
-            <h3>Accounts</h3>
+            <h3>Tilit</h3>
         </div>
     )
 

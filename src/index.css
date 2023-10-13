@@ -66,7 +66,7 @@ p {
 
 button {
     color: black;
-    background-color: #CABFA6;
+    background-color: gainsboro;
     font-family: Ubuntu sans-serif;
     font-size: 18px;
     padding: 10px;
@@ -77,7 +77,7 @@ button {
 
 button:hover {
     color: black;
-    background-color: rgb(104, 126, 104);
+    background-color: lightblue;
     font-family: Ubuntu sans-serif;
     font-size: 18px;
     font-weight: bold;
@@ -89,7 +89,7 @@ button:hover {
 
 button:focus {
     color: black;
-    background-color: rgb(104, 126, 104);
+    background-color: lightblue;
     font-family: Ubuntu sans-serif;
     font-size: 18px;
     font-weight: bold;
@@ -100,7 +100,7 @@ button:focus {
 }
 
 
-/* Others */
+/* Balancetable */
 
 .balances {
     padding-left: 10%;

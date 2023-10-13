@@ -16,7 +16,7 @@ import Balanceservice from './services/Balances';
 const App = () => {
 
   const [balance, setBalance] = useState([]);
-  const [account, setAccount] = useState("Debit");
+  const [account, setAccount] = useState("debit");
 
   useEffect(() => {
     console.log('Fetching..');
@@ -34,16 +34,16 @@ const App = () => {
       <Title />
       <Router>
         <div className="banner">
-          <Link to="/"><h3>Front page</h3></Link>
-          <Link to="/account"><h3>Current account transactions</h3></Link>
-          <Link to="/accounts"><h3>Accounts</h3></Link>
-          <Link to="/loans"><h3>Loans</h3></Link>
-          <Link to="/personalinfo"><h3>Personal info</h3></Link>
+          <Link to="/"><h3>Etusivu</h3></Link>
+          <Link to="/account"><h3>Tilin {account} tapahtumat</h3></Link>
+          <Link to="/accounts"><h3>Tilit</h3></Link>
+          <Link to="/loans"><h3>Lainat</h3></Link>
+          <Link to="/personalinfo"><h3>Henkilötiedot</h3></Link>
         </div>
         <div className="main">
           <Routes>
             <Route path="/" element={<div className="balances">
-              <h3>FRONT PAGE</h3>
+              <h3>ETUSIVU</h3>
             </div>} />
             <Route path="/account" element={<div className="balances">
               <h3>{account}</h3>
@@ -51,8 +51,8 @@ const App = () => {
             </div>} />
             <Route path="/accounts" element={<div className="balances">
               <Accounts />
-              <button onClick={() => setAccount("Debit")}>Debit</button>
-              <button onClick={() => setAccount("Credit")}>Credit</button>
+              <button onClick={() => setAccount("debit")}>Debit</button>
+              <button onClick={() => setAccount("credit")}>Credit</button>
             </div>} />
             <Route path="/loans" element={<div className="balances">
               <Loans />
