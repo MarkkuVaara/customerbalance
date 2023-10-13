@@ -16,7 +16,7 @@ import Balanceservice from './services/Balances';
 const App = () => {
 
   const [balance, setBalance] = useState([]);
-  const [account, setAccount] = useState("debit");
+  const [account, setAccount] = useState("debit 95000120837");
 
   useEffect(() => {
     console.log('Fetching..');
@@ -35,7 +35,7 @@ const App = () => {
       <Router>
         <div className="banner">
           <Link to="/"><h3>Etusivu</h3></Link>
-          <Link to="/account"><h3>Tilin {account} tapahtumat</h3></Link>
+          <Link to="/account"><h3>{account}</h3></Link>
           <Link to="/accounts"><h3>Tilit</h3></Link>
           <Link to="/loans"><h3>Lainat</h3></Link>
           <Link to="/personalinfo"><h3>Henkilötiedot</h3></Link>
@@ -51,8 +51,8 @@ const App = () => {
             </div>} />
             <Route path="/accounts" element={<div className="balances">
               <Accounts />
-              <button onClick={() => setAccount("debit")}>Debit</button>
-              <button onClick={() => setAccount("credit")}>Credit</button>
+              <button onClick={() => setAccount("debit 95000120837")}>debit 95000120837</button>
+              <button onClick={() => setAccount("credit 95000110010")}>credit 95000110010</button>
             </div>} />
             <Route path="/loans" element={<div className="balances">
               <Loans />

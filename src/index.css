@@ -141,3 +141,10 @@ button:focus {
 .balancedescription {
     width: 70%;
 }
+
+
+/* Personal information */
+
+.info > div {
+    padding-top: 15px;
+}
