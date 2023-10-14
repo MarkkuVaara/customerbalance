@@ -16,7 +16,7 @@ import Balanceservice from './services/Balances';
 const App = () => {
 
   const [balance, setBalance] = useState([]);
-  const [account, setAccount] = useState("debit 95000120837");
+  const [account, setAccount] = useState("KÄYTTÖTILI 95000120837");
 
   useEffect(() => {
     console.log('Fetching..');
@@ -34,16 +34,27 @@ const App = () => {
       <Title />
       <Router>
         <div className="banner">
-          <Link to="/"><h3>Etusivu</h3></Link>
-          <Link to="/account"><h3>{account}</h3></Link>
-          <Link to="/accounts"><h3>Tilit</h3></Link>
-          <Link to="/loans"><h3>Lainat</h3></Link>
-          <Link to="/personalinfo"><h3>Henkilötiedot</h3></Link>
+          <div className="link">
+            <Link to="/" style={{ textDecoration: 'none' }}><h3>Etusivu</h3></Link>
+          </div>
+          <div className="link">
+            <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account}</h3></Link>
+          </div>
+          <div className="link">
+            <Link to="/accounts" style={{ textDecoration: 'none' }}><h3>Tilit</h3></Link>
+          </div>
+          <div className="link">
+            <Link to="/loans" style={{ textDecoration: 'none' }}><h3>Lainat</h3></Link>
+          </div>
+          <div className="link">
+            <Link to="/personalinfo" style={{ textDecoration: 'none' }}><h3>Henkilötiedot</h3></Link>
+          </div>
         </div>
         <div className="main">
           <Routes>
             <Route path="/" element={<div className="balances">
-              <h3>ETUSIVU</h3>
+              <h3>Päivittäiset raha-asiat</h3>
+              <b></b>
             </div>} />
             <Route path="/account" element={<div className="balances">
               <h3>{account}</h3>
@@ -51,8 +62,9 @@ const App = () => {
             </div>} />
             <Route path="/accounts" element={<div className="balances">
               <Accounts />
-              <button onClick={() => setAccount("debit 95000120837")}>debit 95000120837</button>
-              <button onClick={() => setAccount("credit 95000110010")}>credit 95000110010</button>
+              <button onClick={() => setAccount("KÄYTTÖTILI 95000120837")}>KÄYTTÖTILI 95000120837</button>
+              <br />
+              <button onClick={() => setAccount("LAINATILI 95000110010")}>LAINATILI 95000110010</button>
             </div>} />
             <Route path="/loans" element={<div className="balances">
               <Loans />

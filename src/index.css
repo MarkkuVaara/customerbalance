@@ -41,15 +41,14 @@ p {
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
-    background-color: gainsboro;
     background-image: url("./images/banner.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% 100%;;
+    background-size: 100% 100%;
 }
 
-.banner > Link {
-    text-decoration: none;
+.link {
+
 }
 
 .main {
