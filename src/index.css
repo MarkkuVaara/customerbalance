@@ -144,6 +144,21 @@ button:focus {
 
 /* Personal information */
 
-.info > div {
+.subinfo {
+    display: flex;
+    justify-content: left;
     padding-top: 15px;
+}
+
+.subinfo > img {
+    height: 90px;
+    width: 90px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: lightgray;
+}
+
+.subinfo > div {
+    padding-top: 10px;
+    padding-left: 20px;
 }
