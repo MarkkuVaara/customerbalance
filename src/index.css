@@ -99,6 +99,19 @@ button:focus {
 }
 
 
+/* Front page */
+
+.frontpage > h3 {
+    text-align: justify;
+}
+
+.frontpage > img {
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkslategray;
+}
+
+
 /* Balancetable */
 
 .balances {

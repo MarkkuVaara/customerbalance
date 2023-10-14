@@ -12,6 +12,7 @@ import Loans from './components/Loans';
 import Personalinfo from './components/Personalinfo';
 
 import Balanceservice from './services/Balances';
+import Frontpage from './components/Frontpage';
 
 const App = () => {
 
@@ -53,8 +54,7 @@ const App = () => {
         <div className="main">
           <Routes>
             <Route path="/" element={<div className="balances">
-              <h3>Päivittäiset raha-asiat</h3>
-              <b></b>
+              <Frontpage />
             </div>} />
             <Route path="/account" element={<div className="balances">
               <h3>{account}</h3>
