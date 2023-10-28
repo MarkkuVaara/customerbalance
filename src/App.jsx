@@ -18,6 +18,7 @@ const App = () => {
 
   const [balance, setBalance] = useState([]);
   const [account, setAccount] = useState("KÄYTTÖTILI 95000120837");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     console.log('Fetching..');
@@ -29,10 +30,25 @@ const App = () => {
       });
   }, []);
 
+  const logout = () => {
+    const confirmation = window.confirm("Haluatko kirjautua ulos?");
+    if (confirmation) {
+        alert("Kirjautuu ulos...");
+        setUser(null);
+    }
+  };
+
+  const login = () => {
+    setTimeout(() => {
+      alert("Kirjautuu sisään..");
+    }, 1000);
+    setUser("Markku");
+  };
+
   return (
 
     <div className="mainapp">
-      <Title />
+      <Title user={user} logout={logout} login={login}/>
       <Router>
         <div className="banner">
           <div className="link">
