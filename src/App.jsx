@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import Title from './components/Title';
+import Popup from './components/Popup';
 import Balancetable from './components/Balancetable';
 import Accounts from './components/Accounts';
 import Loans from './components/Loans';
@@ -18,7 +19,9 @@ const App = () => {
 
   const [balance, setBalance] = useState([]);
   const [account, setAccount] = useState("KÄYTTÖTILI 95000120837");
+
   const [user, setUser] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     console.log('Fetching..');
@@ -33,15 +36,19 @@ const App = () => {
   const logout = () => {
     const confirmation = window.confirm("Haluatko kirjautua ulos?");
     if (confirmation) {
-        alert("Kirjautuu ulos...");
+        setMessage("Kirjautuu ulos...");
+        setTimeout(() => {
+          setMessage(null);
+        }, 2000);
         setUser(null);
     }
   };
 
   const login = () => {
+    setMessage("Kirjautuu sisään..");
     setTimeout(() => {
-      alert("Kirjautuu sisään..");
-    }, 1000);
+      setMessage(null);
+    }, 2000);
     setUser("Markku");
   };
 
@@ -49,6 +56,13 @@ const App = () => {
 
     <div className="mainapp">
       <Title user={user} logout={logout} login={login}/>
+      {message &&
+        <Popup content={
+          <>
+            <h3>{message}</h3><p>Liplap..</p>
+          </>
+        } handleClose={() => setMessage(null)}></Popup>
+      }
       <Router>
         <div className="banner">
           <div className="link">
