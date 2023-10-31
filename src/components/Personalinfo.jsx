@@ -5,7 +5,7 @@ import Phone from '../images/phone.jpg';
 import Bank from '../images/bank.jpg';
 import Info from '../images/info.jpg';
 
-const Personalinfo = () => {
+const Personalinfo = (props) => {
 
     return (
         <div className="info">
@@ -41,9 +41,7 @@ const Personalinfo = () => {
             <div className="subinfo">
                 <img src={Info}></img>
                 <div>
-                    <b>Asiakastiedot</b>
-                    <br/>
-                    <button>Muokkaa</button>
+                    <button onClick={props.editInfo}>Muokkaa asiakastietoja</button>
                 </div>
             </div>
         </div>

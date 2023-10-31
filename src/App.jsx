@@ -52,6 +52,20 @@ const App = () => {
     setUser("Markku Vaara");
   };
 
+  const editInfo = () => {
+    setMessage("Muokkaa tietoja..");
+    setTimeout(() => {
+      setMessage(null);
+    }, 3000);
+  };
+
+  const takeLoan = () => {
+    setMessage("Otan lainaa..");
+    setTimeout(() => {
+      setMessage(null);
+    }, 3000);
+  };
+
   return (
 
     <div className="mainapp">
@@ -97,10 +111,10 @@ const App = () => {
               <button onClick={() => setAccount("LAINATILI 95000110010")}>LAINATILI 95000110010</button>
             </div>} />
             <Route path="/loans" element={<div className="balances">
-              <Loans />
+              <Loans takeLoan={takeLoan}/>
             </div>} />
             <Route path="/personalinfo" element={<div className="balances">
-              <Personalinfo />
+              <Personalinfo editInfo={editInfo} />
             </div>} />
           </Routes>
         </div>
