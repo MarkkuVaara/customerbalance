@@ -209,11 +209,13 @@ button:focus {
     max-width: 250px;
     margin: 0 auto;
     height: auto;
-    max-height: 80vh;
+    max-height: 60vh;
     margin-top: calc(95vh - 85vh - 10px);
     background-image: url("./images/banner.jpg");
     border-radius: 4px;
-    padding: 60px;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border: 1px solid gray;
     overflow: auto;
     font-family: 16px Ubuntu sans-serif;
@@ -223,9 +225,9 @@ button:focus {
     content: 'X';
     cursor: pointer;
     position: absolute;
-    right: calc(17% - 30px);
-    top: calc(100vh - 90vh - 33px);
-    background: #ededed;
+    right: calc(37% - 30px);
+    top: calc(30%);
+    opacity: 100%;
     width: 35px;
     height: 35px;
     border-radius: 10%;

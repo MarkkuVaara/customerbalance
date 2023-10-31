@@ -49,7 +49,7 @@ const App = () => {
     setTimeout(() => {
       setMessage(null);
     }, 2000);
-    setUser("Markku");
+    setUser("Markku Vaara");
   };
 
   return (
@@ -59,9 +59,9 @@ const App = () => {
       {message &&
         <Popup content={
           <>
-            <h3>{message}</h3><p>Liplap..</p>
+            <h3>{message}</h3>
           </>
-        } handleClose={() => setMessage(null)}></Popup>
+        }></Popup>
       }
       <Router>
         <div className="banner">
