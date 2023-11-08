@@ -160,12 +160,36 @@ button:focus {
 
 /* Loans */
 
-.loans > button {
-    height: 100px;
+.loans > * > button {
+    height: 200px;
+    width: 200px;
     margin: 10px;
     border-style: solid;
     border-width: 3px;
     border-color: gray;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: x-large;
+}
+
+.loans > .houseloan > button {
+    background-image: url("./images/house.jpg");
+}
+
+.loans > .carloan > button {
+    background-image: url("./images/car.jpg");
+}
+
+.loans > .loan > button {
+    background-image: url("./images/loan.jpg");
+}
+
+.loans > .visaloan > button {
+    background-image: url("./images/visa.jpg");
+}
+
+.loans > .moneyloan > button {
+    background-image: url("./images/coins.jpg");
 }
 
 
@@ -211,7 +235,7 @@ button:focus {
     height: auto;
     max-height: 60vh;
     margin-top: calc(95vh - 85vh - 10px);
-    background-image: url("./images/banner.jpg");
+    background-color: lightblue;
     border-radius: 4px;
     padding: 50px;
     padding-top: 20px;
