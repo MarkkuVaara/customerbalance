@@ -3,13 +3,21 @@
 
 h1 {
     color: black;
-    font-size: 48px;
+    font-size: 54px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 h2, h3, h4, b, p {
     color: black;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+p {
+    font-size: 18px;
 }
 
 
@@ -170,6 +178,7 @@ button:focus {
     background-repeat: no-repeat;
     background-size: cover;
     font-size: x-large;
+    text-shadow: 2px 2px white;
 }
 
 .loans > .houseloan > button {
@@ -178,6 +187,10 @@ button:focus {
 
 .loans > .carloan > button {
     background-image: url("./images/car.jpg");
+}
+
+.loans > .studentloan > button {
+    background-image: url("./images/student.jpg");
 }
 
 .loans > .loan > button {
