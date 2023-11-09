@@ -12,7 +12,7 @@ const Title = (props) => {
             }
             {props.user &&
                 <div>
-                    <h3>Asiakas: {props.user}</h3>
+                    <h3>{props.user}</h3>
                     <button onClick={() => props.logout()}>Kirjaudu ulos</button>
                 </div>
             }

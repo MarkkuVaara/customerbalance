@@ -41,7 +41,7 @@ const Personalinfo = (props) => {
             <div className="subinfo">
                 <img src={Info}></img>
                 <div>
-                    <button onClick={props.editInfo}>Muokkaa asiakastietoja</button>
+                    <button onClick={props.editInfo}>Muokkaa tietojasi</button>
                 </div>
             </div>
         </div>

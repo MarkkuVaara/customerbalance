@@ -36,7 +36,7 @@ const App = () => {
   const logout = () => {
     const confirmation = window.confirm("Haluatko kirjautua ulos?");
     if (confirmation) {
-        setMessage("Kirjautuu ulos...");
+        setMessage("Kirjaudun ulos...");
         setTimeout(() => {
           setMessage(null);
         }, 2000);
@@ -45,7 +45,7 @@ const App = () => {
   };
 
   const login = () => {
-    setMessage("Kirjautuu sisään..");
+    setMessage("Kirjaudun sisään..");
     setTimeout(() => {
       setMessage(null);
     }, 2000);
@@ -53,7 +53,7 @@ const App = () => {
   };
 
   const editInfo = () => {
-    setMessage("Muokkaa tietoja..");
+    setMessage("Muokkaan tietoja..");
     setTimeout(() => {
       setMessage(null);
     }, 3000);
