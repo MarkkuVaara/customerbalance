@@ -22,6 +22,7 @@ const App = () => {
 
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState(null);
+  const [submessage, setSubmessage] = useState(null);
 
   useEffect(() => {
     console.log('Fetching..');
@@ -37,8 +38,10 @@ const App = () => {
     const confirmation = window.confirm("Haluatko kirjautua ulos?");
     if (confirmation) {
         setMessage("Kirjaudun ulos...");
+        setSubmessage("Muista sulkea selain uloskirjautumisen jälkeen.")
         setTimeout(() => {
           setMessage(null);
+          setSubmessage(null);
         }, 2000);
         setUser(null);
     }
@@ -59,10 +62,13 @@ const App = () => {
     }, 3000);
   };
 
-  const takeLoan = () => {
-    setMessage("Otan lainaa..");
+  const takeLoan = (event) => {
+    const loantype = event.target.innerText;
+    setMessage(loantype);
+    setSubmessage("Otan lainaa..");
     setTimeout(() => {
       setMessage(null);
+      setSubmessage(null);
     }, 3000);
   };
 
@@ -74,6 +80,7 @@ const App = () => {
         <Popup content={
           <>
             <h3>{message}</h3>
+            <p>{submessage}</p>
           </>
         }></Popup>
       }
@@ -111,7 +118,7 @@ const App = () => {
               <button onClick={() => setAccount("LAINATILI 95000110010")}>LAINATILI 95000110010</button>
             </div>} />
             <Route path="/loans" element={<div className="balances">
-              <Loans takeLoan={takeLoan}/>
+              <Loans takeLoan={() => takeLoan}/>
             </div>} />
             <Route path="/personalinfo" element={<div className="balances">
               <Personalinfo editInfo={editInfo} />

@@ -1,5 +1,5 @@
 
-import House from '../images/house.jpg';
+import Shouse from '../images/shouse.jpg';
 import Email from '../images/email.jpg';
 import Phone from '../images/phone.jpg';
 import Bank from '../images/bank.jpg';
@@ -11,7 +11,7 @@ const Personalinfo = (props) => {
         <div className="info">
             <h3>MARKKU TAPIO VAARA</h3>
             <div className="subinfo">
-                <img src={House}></img>
+                <img src={Shouse}></img>
                 <div>
                     <b>Osoite</b>
                     <p>Kullerovuorentie 9 R 52 90900 Fingerpori</p>

@@ -8,32 +8,32 @@ const Loans = (props) => {
             <p>Kun tarvitset lainaa, löydät sopivan vaihtoehdon meiltä.</p>
             <p>Voit hakea lainaa asunnon tai kesämökin hankintaan, auton tai veneen ostoon, remontointiin tai vaikka opintojen rahoittamiseen.</p>
             <span className="houseloan">
-                <button onClick={props.takeLoan}>
+                <button onClick={props.takeLoan("asuntolaina")}>
                     Asuntolaina
                 </button>
             </span>
             <span className="carloan">
-                <button onClick={props.takeLoan}>
+                <button onClick={props.takeLoan("autolaina")}>
                     Autolaina
                 </button>
             </span>
             <span className="studentloan">
-                <button onClick={props.takeLoan}>
+                <button onClick={props.takeLoan("opintolaina")}>
                     Opintolaina
                 </button>
             </span>
             <span className="loan">
-                <button onClick={props.takeLoan}>
+                <button onClick={props.takeLoan("kulutusluotto")}>
                     Kulutusluotto
                 </button>
             </span>
             <span className="visaloan">
-                <button onClick={props.takeLoan}>
+                <button onClick={props.takeLoan("visaluotto")}>
                     VISA
                 </button>
             </span>
             <span className="moneyloan">
-                <button onClick={props.takeLoan}>
+                <button onClick={props.takeLoan("muu luotto")}>
                     Muu laina
                 </button>
             </span>
