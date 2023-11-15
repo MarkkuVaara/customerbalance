@@ -89,40 +89,47 @@ const App = () => {
           <div className="link">
             <Link to="/" style={{ textDecoration: 'none' }}><h3>Etusivu</h3></Link>
           </div>
-          <div className="link">
-            <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account}</h3></Link>
-          </div>
-          <div className="link">
-            <Link to="/accounts" style={{ textDecoration: 'none' }}><h3>Tilit</h3></Link>
-          </div>
-          <div className="link">
-            <Link to="/loans" style={{ textDecoration: 'none' }}><h3>Lainat</h3></Link>
-          </div>
-          <div className="link">
-            <Link to="/personalinfo" style={{ textDecoration: 'none' }}><h3>Henkilötiedot</h3></Link>
-          </div>
+          {user &&
+            <>
+            <div className="link">
+              <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account}</h3></Link>
+            </div>
+            <div className="link">
+              <Link to="/accounts" style={{ textDecoration: 'none' }}><h3>Tilit</h3></Link>
+            </div>
+            <div className="link">
+              <Link to="/loans" style={{ textDecoration: 'none' }}><h3>Lainat</h3></Link>
+            </div>
+            <div className="link">
+              <Link to="/personalinfo" style={{ textDecoration: 'none' }}><h3>Henkilötiedot</h3></Link>
+            </div>
+            </>
+          }
         </div>
         <div className="main">
           <Routes>
             <Route path="/" element={<div className="balances">
               <Frontpage />
             </div>} />
-            <Route path="/account" element={<div className="balances">
-              <h3>{account}</h3>
-              <Balancetable balance={balance}/>
-            </div>} />
-            <Route path="/accounts" element={<div className="balances">
-              <Accounts />
-              <button onClick={() => setAccount("KÄYTTÖTILI 95000120837")}>KÄYTTÖTILI 95000120837</button>
-              <br />
-              <button onClick={() => setAccount("LAINATILI 95000110010")}>LAINATILI 95000110010</button>
-            </div>} />
-            <Route path="/loans" element={<div className="balances">
-              <Loans takeLoan={() => takeLoan}/>
-            </div>} />
-            <Route path="/personalinfo" element={<div className="balances">
-              <Personalinfo editInfo={editInfo} />
-            </div>} />
+            {user &&
+              <>
+              <Route path="/account" element={<div className="balances">
+                <Balancetable balance={balance} account={account}/>
+              </div>} />
+              <Route path="/accounts" element={<div className="balances">
+                <Accounts />
+                <button onClick={() => setAccount("KÄYTTÖTILI 95000120837")}>KÄYTTÖTILI 95000120837</button>
+                <br />
+                <button onClick={() => setAccount("LAINATILI 95000110010")}>LAINATILI 95000110010</button>
+              </div>} />
+              <Route path="/loans" element={<div className="balances">
+                <Loans takeLoan={() => takeLoan}/>
+              </div>} />
+              <Route path="/personalinfo" element={<div className="balances">
+                <Personalinfo editInfo={editInfo} />
+              </div>} />
+              </>
+            }
           </Routes>
         </div>
       </Router>

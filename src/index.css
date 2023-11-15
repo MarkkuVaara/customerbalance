@@ -16,6 +16,10 @@ h3 {
     font-size: 22px;
 }
 
+h4 {
+    font-size: 20px;
+}
+
 p {
     font-size: 18px;
 }
@@ -30,6 +34,9 @@ p {
     }
     h3 {
         font-size: 18px;
+    }
+    h4 {
+        font-size: 16px;
     }
     p {
         font-size: 14px;
@@ -154,6 +161,22 @@ button:focus {
 
 /* Balancetable */
 
+.accounttitle {
+    padding-top: 5px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.accountbalance {
+    background-color: lightblue;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-width: 3px;
+    border-color: darkgray;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
 .balances {
     padding-left: 10%;
     padding-right: 10%;
@@ -168,6 +191,7 @@ button:focus {
 .balance {
     display: flex;
     justify-content: left;
+    padding-left: 10px;
     border-bottom-style: solid;
     border-bottom-width: 3px;
     border-color: darkgray;
