@@ -6,34 +6,60 @@ import App from './App';
 
 const account = [
     {
-        id: 1,
+        id: 109,
         date: "15.11.2023",
-        transactionname: "Telia",
+        transactiontype: "unknown",
+        transactioner: "Punttipojat",
+        transaction: -160
+    },
+    {
+        id: 110,
+        date: "16.11.2023",
+        transactiontype: "shop",
+        transactioner: "K-market",
         transaction: -22
     },
     {
-        id: 2,
+        id: 111,
         date: "15.11.2023",
-        transactionname: "Citymarket",
+        transactiontype: "loan",
+        transactioner: "Osuuspankki opintolaina",
+        transaction: -100
+    },
+    {
+        id: 112,
+        date: "15.11.2023",
+        transactiontype: "phone",
+        transactioner: "Telia",
+        transaction: -22
+    },
+    {
+        id: 113,
+        date: "15.11.2023",
+        transactiontype: "shop",
+        transactioner: "Citymarket",
         transaction: -104
     },
     {
-        id: 3,
+        id: 114,
         date: "15.11.2023",
-        transactionname: "Citymarket",
+        transactiontype: "shop",
+        transactioner: "Citymarket",
         transaction: -3.90
     },
     {
-        id: 4,
-        date: "15.11.2023",
-        transactionname: "S-market",
+        id: 115,
+        date: "13.11.2023",
+        transactiontype: "shop",
+        transactioner: "S-market",
         transaction: -42.95
     },
     {
-        id: 5,
-        date: "14.11.2023",
-        transactionname: "KELA",
-        transaction: 595
+        id: 116,
+        date: "10.11.2023",
+        transactiontype: "gov",
+        transactioner: "KELA",
+        transaction: 1100
     }
 ]
 

@@ -168,7 +168,7 @@ button:focus {
 }
 
 .accountbalance {
-    background-color: lightgray;
+    background-color: white;
     border-top-style: solid;
     border-bottom-style: solid;
     border-width: 3px;
@@ -202,20 +202,25 @@ button:focus {
     padding-right: 30px;
 }
 
-.balancemonth {
-    width: 10%;
-}
-
 .balancedate {
-    width: 10%;
-}
-
-.balancetransaction {
-    width: 10%;
+    width: 20%;
 }
 
 .balancedescription {
-    width: 70%;
+    width: 20%;
+}
+
+.balancedescription > img {
+    height: 40px;
+    width: 40px;
+}
+
+.balanceactioner {
+    width: 45%;
+}
+
+.balancetransaction {
+    width: 15%;
 }
 
 

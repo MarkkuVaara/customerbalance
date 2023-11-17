@@ -1,9 +1,15 @@
 
 import { useState } from 'react';
 
+import Phone from '../images/phone.jpg';
+import Shop from '../images/shop.jpg';
+import Gov from '../images/gov.jpg';
+import Payment from '../images/payment.jpg';
+import Unknown from '../images/unknown.jpg';
+
 const Balancetable = (props) => {
 
-    const [cumulBalance, setCumulbalance] = useState(0);
+    const [cumulBalance, setCumulbalance] = useState(5000);
     const balance = props.balance;
 
     return (
@@ -19,7 +25,22 @@ const Balancetable = (props) => {
             {balance.map(balanceunit => 
                 <div className="balance" key={balanceunit.id}>
                     <p className="balancedate">{balanceunit.date}</p>
-                    <p className="balancedescription">{balanceunit.transactionname}</p>
+                    {balanceunit.transactiontype === "shop" &&
+                        <p className="balancedescription"><img src={Shop} alt={Shop}></img></p>
+                    }
+                    {balanceunit.transactiontype === "phone" &&
+                        <p className="balancedescription"><img src={Phone} alt={Shop}></img></p>
+                    }
+                    {balanceunit.transactiontype === "gov" &&
+                        <p className="balancedescription"><img src={Gov} alt={Shop}></img></p>
+                    }
+                    {balanceunit.transactiontype === "loan" &&
+                        <p className="balancedescription"><img src={Payment} alt={Shop}></img></p>
+                    }
+                    {balanceunit.transactiontype === "unknown" &&
+                        <p className="balancedescription"><img src={Unknown} alt={Shop}></img></p>
+                    }
+                    <p className="balanceactioner">{balanceunit.transactioner}</p>
                     <p className="balancetransaction"><b>{balanceunit.transaction} e</b></p>
                 </div>
             )}
