@@ -15,16 +15,16 @@ import Personalinfo from './components/Personalinfo';
 import Balanceservice from './services/Balances';
 import Frontpage from './components/Frontpage';
 
-const App = () => {
+const App = (props) => {
 
-  const [balance, setBalance] = useState([]);
+  const [balance, setBalance] = useState(props.account);
   const [account, setAccount] = useState("KÄYTTÖTILI 95000120837");
 
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState(null);
   const [submessage, setSubmessage] = useState(null);
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log('Fetching..');
     Balanceservice
       .getAll()
@@ -32,7 +32,7 @@ const App = () => {
         console.log('Balance fetched..');
         setBalance(response.data);
       });
-  }, []);
+  }, []); */
 
   const logout = () => {
     const confirmation = window.confirm("Haluatko kirjautua ulos?");
