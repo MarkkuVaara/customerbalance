@@ -92,10 +92,10 @@ const App = (props) => {
           {user &&
             <>
             <div className="link">
-              <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account}</h3></Link>
+              <Link to="/accounts" style={{ textDecoration: 'none' }}><h3>Tilit</h3></Link>
             </div>
             <div className="link">
-              <Link to="/accounts" style={{ textDecoration: 'none' }}><h3>Tilit</h3></Link>
+              <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account}</h3></Link>
             </div>
             <div className="link">
               <Link to="/loans" style={{ textDecoration: 'none' }}><h3>Lainat</h3></Link>
@@ -117,10 +117,14 @@ const App = (props) => {
                 <Balancetable balance={balance} account={account}/>
               </div>} />
               <Route path="/accounts" element={<div className="balances">
+                <h3>Tilit</h3>
+                <span className="accounts">
+                  <button onClick={() => setAccount("KÄYTTÖTILI 95000120837")}>KÄYTTÖTILI 95000120837</button>
+                </span>
+                <span className="accounts">
+                  <button onClick={() => setAccount("LAINATILI 95000110010")}>LAINATILI 95000110010</button>
+                </span>
                 <Accounts />
-                <button onClick={() => setAccount("KÄYTTÖTILI 95000120837")}>KÄYTTÖTILI 95000120837</button>
-                <br />
-                <button onClick={() => setAccount("LAINATILI 95000110010")}>LAINATILI 95000110010</button>
               </div>} />
               <Route path="/loans" element={<div className="balances">
                 <Loans takeLoan={() => takeLoan}/>

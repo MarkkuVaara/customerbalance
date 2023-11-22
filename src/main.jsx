@@ -6,29 +6,36 @@ import App from './App';
 
 const account = [
     {
+        id: 108,
+        date: "19.11.2023",
+        transactiontype: "shop",
+        transactioner: "K-Citymarket",
+        transaction: -22
+    },
+    {
         id: 109,
-        date: "15.11.2023",
+        date: "18.11.2023",
         transactiontype: "unknown",
         transactioner: "Punttipojat",
         transaction: -160
     },
     {
         id: 110,
-        date: "16.11.2023",
+        date: "18.11.2023",
         transactiontype: "shop",
         transactioner: "K-market",
         transaction: -22
     },
     {
         id: 111,
-        date: "15.11.2023",
+        date: "17.11.2023",
         transactiontype: "loan",
-        transactioner: "Osuuspankki opintolaina",
+        transactioner: "Monetarum opintolaina",
         transaction: -100
     },
     {
         id: 112,
-        date: "15.11.2023",
+        date: "17.11.2023",
         transactiontype: "phone",
         transactioner: "Telia",
         transaction: -22
@@ -37,14 +44,14 @@ const account = [
         id: 113,
         date: "15.11.2023",
         transactiontype: "shop",
-        transactioner: "Citymarket",
+        transactioner: "K-Citymarket",
         transaction: -104
     },
     {
         id: 114,
         date: "15.11.2023",
         transactiontype: "shop",
-        transactioner: "Citymarket",
+        transactioner: "K-Citymarket",
         transaction: -3.90
     },
     {
