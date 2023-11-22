@@ -9,39 +9,40 @@ import Unknown from '../images/unknown.jpg';
 
 const Balancetable = (props) => {
 
-    const [cumulBalance, setCumulbalance] = useState(5000);
     const balance = props.balance;
+    const account = props.account;
+    const accounttransactions = balance.filter(transaction => transaction.accountid === account.id);
 
     return (
         <>
         <div className="accounttitle">
-            <h3>{props.account}</h3>
+            <h3>{account.name}</h3>
         </div>
         <div className="accountbalance">
-            <h4>Tilin saldo: {cumulBalance} euroa</h4>
+            <h4>Tilin saldo: {account.id} euroa</h4>
         </div>
         <div className="accountbalance">
             <h4>Tapahtumat:</h4>
-            {balance.map(balanceunit => 
-                <div className="balance" key={balanceunit.id}>
-                    <p className="balancedate">{balanceunit.date}</p>
-                    {balanceunit.transactiontype === "shop" &&
+            {accounttransactions.map(transaction => 
+                <div className="balance" key={transaction.id}>
+                    <p className="balancedate">{transaction.date}</p>
+                    {transaction.transactiontype === "shop" &&
                         <p className="balancedescription"><img src={Shop} alt={Shop}></img></p>
                     }
-                    {balanceunit.transactiontype === "phone" &&
+                    {transaction.transactiontype === "phone" &&
                         <p className="balancedescription"><img src={Phone} alt={Shop}></img></p>
                     }
-                    {balanceunit.transactiontype === "gov" &&
+                    {transaction.transactiontype === "gov" &&
                         <p className="balancedescription"><img src={Gov} alt={Shop}></img></p>
                     }
-                    {balanceunit.transactiontype === "loan" &&
+                    {transaction.transactiontype === "loan" &&
                         <p className="balancedescription"><img src={Payment} alt={Shop}></img></p>
                     }
-                    {balanceunit.transactiontype === "unknown" &&
+                    {transaction.transactiontype === "unknown" &&
                         <p className="balancedescription"><img src={Unknown} alt={Shop}></img></p>
                     }
-                    <p className="balanceactioner">{balanceunit.transactioner}</p>
-                    <p className="balancetransaction"><b>{balanceunit.transaction} e</b></p>
+                    <p className="balanceactioner">{transaction.transactioner}</p>
+                    <p className="balancetransaction"><b>{transaction.transaction} e</b></p>
                 </div>
             )}
         </div>

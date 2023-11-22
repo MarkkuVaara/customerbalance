@@ -17,8 +17,9 @@ import Frontpage from './components/Frontpage';
 
 const App = (props) => {
 
-  const [balance, setBalance] = useState(props.account);
-  const [account, setAccount] = useState("KÄYTTÖTILI 95000120837");
+  const [balance, setBalance] = useState(props.transactions);
+  const [accounts, setAccounts] = useState(props.accounts);
+  const [account, setAccount] = useState(accounts[0]);
 
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState(null);
@@ -95,7 +96,7 @@ const App = (props) => {
               <Link to="/accounts" style={{ textDecoration: 'none' }}><h3>Tilit</h3></Link>
             </div>
             <div className="link">
-              <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account}</h3></Link>
+              <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account.name}</h3></Link>
             </div>
             <div className="link">
               <Link to="/loans" style={{ textDecoration: 'none' }}><h3>Lainat</h3></Link>
@@ -118,12 +119,11 @@ const App = (props) => {
               </div>} />
               <Route path="/accounts" element={<div className="balances">
                 <h3>Tilit</h3>
-                <span className="accounts">
-                  <button onClick={() => setAccount("KÄYTTÖTILI 95000120837")}>KÄYTTÖTILI 95000120837</button>
-                </span>
-                <span className="accounts">
-                  <button onClick={() => setAccount("LAINATILI 95000110010")}>LAINATILI 95000110010</button>
-                </span>
+                {accounts.map(account =>
+                  <span className="accounts" key={account.id}>
+                    <button onClick={() => setAccount(account)}>{account.name}</button>
+                  </span>
+                )}
                 <Accounts />
               </div>} />
               <Route path="/loans" element={<div className="balances">
