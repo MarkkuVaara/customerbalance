@@ -11,15 +11,18 @@ import Balancetable from './components/Balancetable';
 import Accounts from './components/Accounts';
 import Loans from './components/Loans';
 import Personalinfo from './components/Personalinfo';
+import Frontpage from './components/Frontpage';
+
+import Loaning from './components/Loaning';
 
 import Balanceservice from './services/Balances';
-import Frontpage from './components/Frontpage';
 
 const App = (props) => {
 
   const [balance, setBalance] = useState(props.transactions);
   const [accounts, setAccounts] = useState(props.accounts);
   const [account, setAccount] = useState(accounts[0]);
+  const [users, setUsers] = useState(props.users);
 
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState(null);
@@ -57,16 +60,18 @@ const App = (props) => {
   };
 
   const editInfo = () => {
-    setMessage("Muokkaan tietoja..");
+    setMessage("Markku Vaara");
+    setSubmessage("Muokkaan tietojasi...");
     setTimeout(() => {
       setMessage(null);
+      setSubmessage(null);
     }, 3000);
   };
 
   const takeLoan = (event) => {
     const loantype = event.target.innerText;
     setMessage(loantype);
-    setSubmessage("Otan lainaa..");
+    setSubmessage(<Loaning loantype={loantype}/>);
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
@@ -81,7 +86,7 @@ const App = (props) => {
         <Popup content={
           <>
             <h3>{message}</h3>
-            <p>{submessage}</p>
+            <div>{submessage}</div>
           </>
         }></Popup>
       }

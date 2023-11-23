@@ -4,21 +4,51 @@ import './index.css';
 
 import App from './App';
 
+const users = [
+    {
+        id: 10,
+        firstname: "Markku",
+        middlename: "Tapio",
+        lastname: "Vaara",
+        usernumber: 155010,
+        password: "cdk51dhh"
+    },
+    {
+        id: 11,
+        firstname: "Seppo",
+        middlename: "Johannes",
+        lastname: "Virolainen",
+        usernumber: 155011,
+        password: "Seppo2016"
+    },
+    {
+        id: 10,
+        firstname: "Elli",
+        middlename: "Elina",
+        lastname: "Jelkänen",
+        usernumber: 155012,
+        password: "Elli1989"
+    }
+]
+
 const accounts = [
     {
         id: 50,
         creationdate: "5.11.2023",
-        name: "KÄYTTÖTILI 1009004555"
+        name: "KÄYTTÖTILI 1009004555",
+        userid: 10
     },
     {
         id: 51,
         creationdate: "5.11.2023",
-        name: "SÄÄSTÖTILI 1009004577"
+        name: "SÄÄSTÖTILI 1009004577",
+        userid: 10
     },
     {
         id: 52,
         creationdate: "5.11.2023",
-        name: "LAINATILI 1008001110"
+        name: "LAINATILI 1008001110",
+        userid: 10
     }
 ]
 
@@ -114,4 +144,4 @@ const transactions = [
 ]
 
 ReactDOM.createRoot(document.getElementById('root'))
-    .render(<App accounts={accounts} transactions={transactions} />);
+    .render(<App users={users} accounts={accounts} transactions={transactions} />);
