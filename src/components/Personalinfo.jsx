@@ -7,35 +7,37 @@ import Info from '../images/info.jpg';
 
 const Personalinfo = (props) => {
 
+    const user = props.user;
+
     return (
         <div className="info">
-            <h3>MARKKU TAPIO VAARA</h3>
+            <h3>{user.firstname} {user.middlename} {user.lastname}</h3>
             <div className="subinfo">
                 <img src={Shouse}></img>
                 <div>
                     <b>Osoite</b>
-                    <p>Kullerovuorentie 9 R 52 90900 Fingerpori</p>
+                    <p>{user.address} {user.postnumber} {user.city}</p>
                 </div>
             </div>
             <div className="subinfo">
                 <img src={Email}></img>
                 <div>
                     <b>Sähköpostiosoite</b>
-                    <p>markku.vaara@customer.com</p>
+                    <p>{user.email}</p>
                 </div>
             </div>
             <div className="subinfo">
                 <img src={Phone}></img>
                 <div>
                     <b>Puhelinnumero</b>
-                    <p>0500 111 222</p>
+                    <p>{user.phone}</p>
                 </div>
             </div>
             <div className="subinfo">
                 <img src={Bank}></img>
                 <div>
                     <b>Asiakkuus</b>
-                    <p>Fingerporin Monetarum</p>
+                    <p>{user.homebank}</p>
                 </div>
             </div>
             <div className="subinfo">

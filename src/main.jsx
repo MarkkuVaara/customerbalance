@@ -11,7 +11,13 @@ const users = [
         middlename: "Tapio",
         lastname: "Vaara",
         usernumber: 155010,
-        password: "cdk51dhh"
+        password: "cdk51dhh",
+        address: "Kullerovuorentie 22 B 9",
+        postnumber: "80000",
+        city: "Fingerpori",
+        email: "markku.vaara@customer.com",
+        phone: "0500 111 222",
+        homebank: "Fingerporin Monetarum"
     },
     {
         id: 11,
@@ -19,15 +25,27 @@ const users = [
         middlename: "Johannes",
         lastname: "Virolainen",
         usernumber: 155011,
-        password: "Seppo2016"
+        password: "Seppo2016",
+        address: "Virolaisentie 50 A 1",
+        postnumber: "50000",
+        city: "Kissakaupunki",
+        email: "seppo.virolainen@tuhmuus.fi",
+        phone: "050 987 654",
+        homebank: "Kissakaupungin Monetarum"
     },
     {
-        id: 10,
+        id: 12,
         firstname: "Elli",
         middlename: "Elina",
         lastname: "Jelkänen",
         usernumber: 155012,
-        password: "Elli1989"
+        password: "Elli1989",
+        address: "Kullerovuorenkatu 22 B 9",
+        postnumber: "80000",
+        city: "Fingerpori",
+        email: "elli.jelkanen@hotmail.com",
+        phone: "040 111 555",
+        homebank: "Enon Monetarum"
     }
 ]
 

@@ -42,7 +42,7 @@ const App = (props) => {
     const confirmation = window.confirm("Haluatko kirjautua ulos?");
     if (confirmation) {
         setMessage("Kirjaudun ulos...");
-        setSubmessage("Muista sulkea selain uloskirjautumisen jälkeen.")
+        setSubmessage(<p>Muista sulkea selain uloskirjautumisen jälkeen.</p>)
         setTimeout(() => {
           setMessage(null);
           setSubmessage(null);
@@ -56,12 +56,12 @@ const App = (props) => {
     setTimeout(() => {
       setMessage(null);
     }, 2000);
-    setUser("Markku Vaara");
+    setUser(users[0]);
   };
 
   const editInfo = () => {
-    setMessage("Markku Vaara");
-    setSubmessage("Muokkaan tietojasi...");
+    setMessage(<h3>{user.firstname} {user.middlename} {user.lastname}</h3>);
+    setSubmessage(<p>Muokkaan tietojasi...</p>);
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
@@ -75,7 +75,7 @@ const App = (props) => {
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
-    }, 3000);
+    }, 5000);
   };
 
   return (
@@ -135,7 +135,7 @@ const App = (props) => {
                 <Loans takeLoan={() => takeLoan}/>
               </div>} />
               <Route path="/personalinfo" element={<div className="balances">
-                <Personalinfo editInfo={editInfo} />
+                <Personalinfo user={user} editInfo={editInfo} />
               </div>} />
               </>
             }
