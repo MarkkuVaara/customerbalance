@@ -14,6 +14,7 @@ import Personalinfo from './components/Personalinfo';
 import Frontpage from './components/Frontpage';
 
 import Loaning from './components/Loaning';
+import Infoform from './components/Infoform';
 
 import Balanceservice from './services/Balances';
 
@@ -61,7 +62,12 @@ const App = (props) => {
 
   const editInfo = () => {
     setMessage(<h3>{user.firstname} {user.middlename} {user.lastname}</h3>);
-    setSubmessage(<p>Muokkaan tietojasi...</p>);
+    setSubmessage(<Infoform user={user} editInformation={editInformation} />);
+  };
+
+  const editInformation = () => {
+    setMessage("Muutettu.");
+    setSubmessage(null);
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);

@@ -357,3 +357,16 @@ button:focus {
     padding: .3em;
     flex: 1;
 }
+
+
+/* Infoform */
+
+.infoform > form {
+    border: gray 2px;
+    border-style: solid;
+    padding: 5px;
+}
+
+.infoform > form > label {
+    padding-left: 5px;
+}
