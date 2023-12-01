@@ -44,6 +44,7 @@ const Personalinfo = (props) => {
                 <img src={Info}></img>
                 <div>
                     <button onClick={props.editInfo}>Muokkaa tietojasi</button>
+                    <button onClick={props.editPassword}>Vaihda salasana</button>
                 </div>
             </div>
         </div>

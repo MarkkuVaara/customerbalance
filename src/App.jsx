@@ -62,12 +62,39 @@ const App = (props) => {
 
   const editInfo = () => {
     setMessage(<h3>{user.firstname} {user.middlename} {user.lastname}</h3>);
-    setSubmessage(<Infoform user={user} editInformation={editInformation} />);
+    setSubmessage(<Infoform user={user} editInformation={editInformation} cancelForm={cancelForm} />);
   };
 
-  const editInformation = () => {
+  const editInformation = (event) => {
+    event.preventDefault();
+
     setMessage("Muutettu");
-    setSubmessage(<h3>käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>);
+    setSubmessage(<><h3>seuraavat käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>
+        <p>Osoite: {event.target.address.value}</p>
+        <p>Sähköposti: {event.target.email.value}</p>
+        <p>Puhelinnumero: {event.target.phone.value}</p></>);
+
+    setTimeout(() => {
+      setMessage(null);
+      setSubmessage(null);
+    }, 5000);
+
+  };
+
+  const cancelForm = () => {
+    setMessage("Poistutaan muuttamatta käyttäjän tietoja.");
+    setSubmessage();
+
+    setTimeout(() => {
+      setMessage(null);
+      setSubmessage(null);
+    }, 3000);
+  };
+
+  const editPassword = () => {
+    setMessage("Muutetaan käyttäjän salasana");
+    setSubmessage("Anna uusi salasana:");
+
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
@@ -141,7 +168,7 @@ const App = (props) => {
                 <Loans takeLoan={() => takeLoan}/>
               </div>} />
               <Route path="/personalinfo" element={<div className="balances">
-                <Personalinfo user={user} editInfo={editInfo} />
+                <Personalinfo user={user} editInfo={editInfo} editPassword={editPassword} />
               </div>} />
               </>
             }
