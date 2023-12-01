@@ -318,7 +318,7 @@ button:focus {
 .box {
     position: relative;
     width: 70%;
-    max-width: 250px;
+    max-width: 500px;
     margin: 0 auto;
     height: auto;
     max-height: 60vh;
@@ -362,11 +362,33 @@ button:focus {
 /* Infoform */
 
 .infoform > form {
-    border: gray 2px;
-    border-style: solid;
-    padding: 5px;
+    display: flex;
+    background-color: lightskyblue;
+    padding: 10px;
 }
 
-.infoform > form > label {
-    padding-left: 5px;
+.infoform > form > .formfield {
+    flex: 1;
+    display: grid;
+    grid-template-columns: [labels] 0.5fr [controls] 1fr;
+    grid-auto-flow: row;
+}
+
+.infoform > form > .formfield > label {
+    grid-column: labels;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.infoform > form > .formfield > input {
+    grid-column: controls;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.infoform > form > .formfield > button {
+    grid-column: controls;
+    margin: 15px;
+    border: gray 1px solid;
 }

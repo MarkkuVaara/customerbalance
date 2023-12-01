@@ -66,8 +66,8 @@ const App = (props) => {
   };
 
   const editInformation = () => {
-    setMessage("Muutettu.");
-    setSubmessage(null);
+    setMessage("Muutettu");
+    setSubmessage(<h3>käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>);
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
