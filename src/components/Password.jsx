@@ -8,11 +8,11 @@ const Password = (props) => {
             <form onSubmit={props.changePassword} key={user.id}>
                 <div className="formfield">
                     <label>Vanha salasana:</label>
-                    <input></input>
+                    <input name="password"></input>
                     <label>Uusi salasana:</label>
-                    <input></input>
+                    <input name="newpassword"></input>
                     <label>Toista uusi salasana:</label>
-                    <input></input>
+                    <input name="newpassword2"></input>
                     <button type="submit">Vaihda</button>
                 </div>
             </form>

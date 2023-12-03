@@ -61,7 +61,7 @@ const App = (props) => {
     setTimeout(() => {
       setMessage(null);
     }, 2000);
-    setUser(users[0]);
+    setUser(users[1]);
   };
 
 
@@ -90,7 +90,7 @@ const App = (props) => {
 
   const cancelForm = () => {
     setMessage("Poistutaan muuttamatta käyttäjän tietoja.");
-    setSubmessage();
+    setSubmessage(null);
 
     setTimeout(() => {
       setMessage(null);
@@ -110,7 +110,26 @@ const App = (props) => {
   const changePassword = (event) => {
     event.preventDefault();
 
-    console.log(event.target);
+    const pword = event.target.password.value;
+    const npword = event.target.newpassword.value;
+    const npword2 = event.target.newpassword2.value;
+
+    if (pword != user.password) {
+      setMessage("Vanha salasana ei täsmää");
+      setSubmessage(<p>Salasanaa ei vaihdettu</p>);
+    } else if (npword != npword2) {
+      setMessage("Virhe syötteessä 'uusi salasana'");
+      setSubmessage(<p>Salasanaa ei vaihdettu</p>);
+    } else {
+      setMessage("Salasana vaihdettu");
+      setSubmessage(null);
+      setUser((prevState) => {
+        return ({
+          ...prevState,
+          password: npword
+        })
+      });
+    }
 
     setTimeout(() => {
       setMessage(null);
