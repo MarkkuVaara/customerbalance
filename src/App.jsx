@@ -15,6 +15,7 @@ import Frontpage from './components/Frontpage';
 
 import Loaning from './components/Loaning';
 import Infoform from './components/Infoform';
+import Password from './components/Password';
 
 import Balanceservice from './services/Balances';
 
@@ -39,6 +40,9 @@ const App = (props) => {
       });
   }, []); */
 
+
+  /* Logging in and out */
+
   const logout = () => {
     const confirmation = window.confirm("Haluatko kirjautua ulos?");
     if (confirmation) {
@@ -59,6 +63,9 @@ const App = (props) => {
     }, 2000);
     setUser(users[0]);
   };
+
+
+  /* Editing personal information */
 
   const editInfo = () => {
     setMessage(<h3>{user.firstname} {user.middlename} {user.lastname}</h3>);
@@ -91,15 +98,29 @@ const App = (props) => {
     }, 3000);
   };
 
+
+  /* Changing password */
+
   const editPassword = () => {
-    setMessage("Muutetaan käyttäjän salasana");
-    setSubmessage("Anna uusi salasana:");
+    setMessage(<h3>Muutetaan käyttäjän {user.firstname} {user.middlename} {user.lastname} salasana</h3>);
+    setSubmessage(<Password user={user} changePassword={changePassword} />);
+
+  };
+
+  const changePassword = (event) => {
+    event.preventDefault();
+
+    console.log(event.target);
 
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
     }, 3000);
+
   };
+
+
+  /* Taking loan */
 
   const takeLoan = (event) => {
     const loantype = event.target.innerText;
