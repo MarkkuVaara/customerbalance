@@ -75,11 +75,34 @@ const App = (props) => {
   const editInformation = (event) => {
     event.preventDefault();
 
+    const newFirstname = event.target.firstname.value;
+    const newMiddlename = event.target.middlename.value;
+    const newLastname = event.target.lastname.value;
+    const newAddress = event.target.address.value;
+    const newPostnumber = event.target.postnumber.value;
+    const newCity = event.target.city.value;
+    const newEmail = event.target.email.value;
+    const newPhone = event.target.phone.value;
+
     setMessage("Muutettu");
     setSubmessage(<><h3>seuraavat käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>
-        <p>Osoite: {event.target.address.value}</p>
-        <p>Sähköposti: {event.target.email.value}</p>
-        <p>Puhelinnumero: {event.target.phone.value}</p></>);
+        {newFirstname && <p>Etunimi: {newFirstname}</p>}
+        {newMiddlename && <p>Toinen nimi: {newMiddlename}</p>}
+        {newLastname && <p>Sukunimi: {newLastname}</p>}
+        {newAddress && <p>Osoite: {newAddress}</p>}
+        {newPostnumber && <p>Postinumero: {newPostnumber}</p>}
+        {newCity && <p>Postitoimipaikka: {newCity}</p>}
+        {newEmail && <p>Sähköposti: {newEmail}</p>}
+        {newPhone && <p>Puhelinnumero: {newPhone}</p>}</>);
+
+    if (newFirstname) {user.firstname = newFirstname;}
+    if (newMiddlename) {user.middlename = newMiddlename;}
+    if (newLastname) {user.lastname = newLastname;}
+    if (newAddress) {user.address = newAddress;}
+    if (newPostnumber) {user.postnumber = newPostnumber;}
+    if (newCity) {user.city = newCity;}
+    if (newEmail) {user.email = newEmail;}
+    if (newPhone) {user.phone = newPhone;}
 
     setTimeout(() => {
       setMessage(null);
