@@ -89,7 +89,7 @@ const App = (props) => {
   };
 
   const cancelForm = () => {
-    setMessage("Poistutaan muuttamatta käyttäjän tietoja.");
+    setMessage("Poistutaan ilman muutoksia.");
     setSubmessage(null);
 
     setTimeout(() => {
@@ -104,7 +104,6 @@ const App = (props) => {
   const editPassword = () => {
     setMessage(<h3>Muutetaan käyttäjän {user.firstname} {user.middlename} {user.lastname} salasana</h3>);
     setSubmessage(<Password user={user} changePassword={changePassword} />);
-
   };
 
   const changePassword = (event) => {
@@ -139,17 +138,37 @@ const App = (props) => {
   };
 
 
-  /* Taking loan */
+  /* Taking a loan */
 
   const takeLoan = (event) => {
     const loantype = event.target.innerText;
+
     setMessage(loantype);
-    setSubmessage(<Loaning loantype={loantype}/>);
+    setSubmessage(<Loaning loantype={loantype} loansubmit={loansubmit} cancelForm={cancelForm}/>);
+
+  };
+
+  const loansubmit = (event) => {
+    event.preventDefault();
+
+    const loan = event.target.loan.value;
+    const guarantee = event.target.insurance.value;
+    const signature = event.target.signature.value;
+
+    if (!loan || !guarantee || !signature) {
+      setMessage("Antamasi tiedot ovat puutteellisia.");
+      setSubmessage(<p>Yritä uudelleen.</p>);
+    } else {
+      setMessage("Lainahakemus lähetetty.");
+      setSubmessage(<p>Otamme sinuun yhteyttä, kun lainasi on hyväksytty.</p>);
+    };
+
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
-    }, 5000);
-  };
+    }, 3000);
+  }
+
 
   return (
 

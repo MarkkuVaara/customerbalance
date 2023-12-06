@@ -2,53 +2,70 @@
 const Loaning = (props) => {
 
     const loantype = props.loantype;
+    let loan;
+
+    if (loantype === "Asuntolaina") {
+        loan = 200000;
+    } else if (loantype === "Autolaina") {
+        loan = 100000;
+    } else if (loantype === "Opintolaina") {
+        loan = 20000;
+    } else if (loantype === "Kulutusluotto") {
+        loan = 5000;
+    } else if (loantype === "VISA") {
+        loan = 2000;
+    } else { loan = 100; }
 
     return (
         <div>
             {loantype === "Asuntolaina" &&
                 <>
                     <b>Otat siis asuntolainaa!</b>
-                    <p>Tässä sinulle 100 000 euroa.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Leo duis ut diam quam nulla. Commodo ullamcorper a lacus vestibulum sed. 
-                        Tristique nulla aliquet enim tortor at auctor urna nunc id. </p>
-                    <p> Nisl suscipit adipiscing bibendum est. Sed blandit libero volutpat 
-                        sed cras ornare arcu dui vivamus. Vitae suscipit tellus mauris a diam 
-                        maecenas sed. Placerat duis ultricies lacus sed turpis tincidunt id aliquet. 
-                        Sagittis vitae et leo duis. Tempus quam pellentesque nec nam aliquam sem et.</p>
+                    <p>Voit hakea lainaa maksimissaan 200 000 euroa.</p>
                 </>
             }
             {loantype === "Autolaina" &&
                 <>
                     <b>Otat siis autolainaa!</b>
-                    <p>Tässä sinulle 50 000 euroa.</p>
+                    <p>Voit hakea lainaa maksimissaan 100 000 euroa.</p>
                 </>
             }
             {loantype === "Opintolaina" &&
                 <>
                     <b>Otat siis opintolainaa!</b>
-                    <p>Tässä sinulle 10 000 euroa.</p>
+                    <p>Voit hakea lainaa maksimissaan 20 000 euroa.</p>
                 </>
             }
             {loantype === "Kulutusluotto" &&
                 <>
                     <b>Haet siis kulutusluottoa!</b>
-                    <p>Tässä sinulle 2 000 euroa.</p>
+                    <p>Voit hakea lainaa maksimissaan 5 000 euroa.</p>
                 </>
             }
             {loantype === "VISA" &&
                 <>
                     <b>Haet siis Visa-korttia!</b>
-                    <p>Tässä sinulle 1 000 euroa.</p>
+                    <p>Voit hakea lainaa maksimissaan 2 000 euroa.</p>
                 </>
             }
             {loantype === "Muu laina" &&
                 <>
                     <b>Otat siis muuta lainaa!</b>
-                    <p>Tässä sinulle 5 euroa.</p>
+                    <p>Voit hakea lainaa maksimissaan 100 euroa.</p>
                 </>
             }
+            <form onSubmit={props.loansubmit}>
+                <div className="formfield">
+                    <label>Lainamäärä</label>
+                    <input name="loan" defaultValue={loan}></input>
+                    <label>Vakuus</label>
+                    <input name="insurance"></input>
+                    <label>Allekirjoitus</label>
+                    <input name="signature"></input>
+                    <button type="submit">Lähetä hakemus</button>
+                    <button type="button" onClick={props.cancelForm}>Peruuta</button>
+                </div>
+            </form>
         </div>
     )
 }
