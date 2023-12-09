@@ -29,6 +29,7 @@ const App = (props) => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState(null);
   const [submessage, setSubmessage] = useState(null);
+  const [circles, setCircles] = useState(true);
 
   /* useEffect(() => {
     console.log('Fetching..');
@@ -68,6 +69,7 @@ const App = (props) => {
   /* Editing personal information */
 
   const editInfo = () => {
+    setCircles(null);
     setMessage(<h3>{user.firstname} {user.middlename} {user.lastname}</h3>);
     setSubmessage(<Infoform user={user} editInformation={editInformation} cancelForm={cancelForm} />);
   };
@@ -84,6 +86,7 @@ const App = (props) => {
     const newEmail = event.target.email.value;
     const newPhone = event.target.phone.value;
 
+    setCircles(true);
     setMessage("Muutettu");
     setSubmessage(<><h3>seuraavat käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>
         {newFirstname && <p>Etunimi: {newFirstname}</p>}
@@ -112,6 +115,7 @@ const App = (props) => {
   };
 
   const cancelForm = () => {
+    setCircles(true);
     setMessage("Poistutaan ilman muutoksia.");
     setSubmessage(null);
 
@@ -125,6 +129,7 @@ const App = (props) => {
   /* Changing password */
 
   const editPassword = () => {
+    setCircles(null);
     setMessage(<h3>Muutetaan käyttäjän {user.firstname} {user.middlename} {user.lastname} salasana</h3>);
     setSubmessage(<Password user={user} changePassword={changePassword} />);
   };
@@ -135,6 +140,8 @@ const App = (props) => {
     const pword = event.target.password.value;
     const npword = event.target.newpassword.value;
     const npword2 = event.target.newpassword2.value;
+
+    setCircles(true);
 
     if (pword != user.password) {
       setMessage("Vanha salasana ei täsmää");
@@ -166,6 +173,7 @@ const App = (props) => {
   const takeLoan = (event) => {
     const loantype = event.target.innerText;
 
+    setCircles(null);
     setMessage(loantype);
     setSubmessage(<Loaning loantype={loantype} loansubmit={loansubmit} cancelForm={cancelForm}/>);
 
@@ -178,8 +186,13 @@ const App = (props) => {
     const guarantee = event.target.insurance.value;
     const signature = event.target.signature.value;
 
+    setCircles(true);
+
     if (!loan || !guarantee || !signature) {
       setMessage("Antamasi tiedot ovat puutteellisia.");
+      setSubmessage(<p>Yritä uudelleen.</p>);
+    } else if (loan > 200000) {
+      setMessage("Lainamäärä on liian suuri.");
       setSubmessage(<p>Yritä uudelleen.</p>);
     } else {
       setMessage("Lainahakemus lähetetty.");
@@ -203,7 +216,7 @@ const App = (props) => {
             <h3>{message}</h3>
             <div>{submessage}</div>
           </>
-        }></Popup>
+        } circles={circles}></Popup>
       }
       <Router>
         <div className="banner">

@@ -7,7 +7,7 @@ const Popup = (props) => {
       <div className="popup-box">
         <div className="box">
           <div className="close-icon" onClick={props.handleClose}>
-            <Circles height={50} stroke="#ff4500" strokeOpacity={.5} speed={1.25} />
+            {props.circles && <Circles height={50} stroke="#ff4500" strokeOpacity={.5} speed={1.25} />}
           </div>
           {props.content}
         </div>
