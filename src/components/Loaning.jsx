@@ -2,19 +2,19 @@
 const Loaning = (props) => {
 
     const loantype = props.loantype;
-    let loan;
+    let maxloan;
 
     if (loantype === "Asuntolaina") {
-        loan = 200000;
+        maxloan = 200000;
     } else if (loantype === "Autolaina") {
-        loan = 100000;
+        maxloan = 100000;
     } else if (loantype === "Opintolaina") {
-        loan = 20000;
+        maxloan = 20000;
     } else if (loantype === "Kulutusluotto") {
-        loan = 5000;
+        maxloan = 5000;
     } else if (loantype === "VISA") {
-        loan = 2000;
-    } else { loan = 100; }
+        maxloan = 2000;
+    } else { maxloan = 100; }
 
     return (
         <div>
@@ -57,9 +57,15 @@ const Loaning = (props) => {
             <form onSubmit={props.loansubmit}>
                 <div className="formfield">
                     <label>Lainamäärä</label>
-                    <input name="loan" defaultValue={loan}></input>
+                    <input name="loan" defaultValue={maxloan}></input>
                     <label>Vakuus</label>
-                    <input name="insurance"></input>
+                    <select name="insurance">
+                        <option>Valtio</option>
+                        <option>Kunta</option>
+                        <option>Kiinteistö</option>
+                        <option>Oma sielu</option>
+                        <option>Muu</option>
+                    </select>
                     <label>Allekirjoitus</label>
                     <input name="signature"></input>
                     <button type="submit">Lähetä hakemus</button>

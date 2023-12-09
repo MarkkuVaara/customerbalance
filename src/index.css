@@ -263,6 +263,10 @@ button:focus {
     background-image: url("./images/coins.jpg");
 }
 
+.signature {
+    font-family: fantasy;
+}
+
 
 /* Personal information */
 
@@ -388,13 +392,14 @@ button:focus {
     font-size: 18px;
 }
 
-.formfield > input {
+.formfield > input,
+.formfield > select {
     grid-column: controls;
     padding: 5px;
     margin-bottom: 5px;
     font-size: 16px;
 }
- 
+
 .formfield > button {
     grid-column: controls;
     margin: 15px;

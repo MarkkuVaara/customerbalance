@@ -186,17 +186,28 @@ const App = (props) => {
     const guarantee = event.target.insurance.value;
     const signature = event.target.signature.value;
 
+    let denied = null;
+    if (loan > 200000) {
+      denied = true;
+    }
+
     setCircles(true);
 
     if (!loan || !guarantee || !signature) {
-      setMessage("Antamasi tiedot ovat puutteellisia.");
+      setMessage("Antamissasi tiedoissa on puutteita.");
       setSubmessage(<p>Yritä uudelleen.</p>);
-    } else if (loan > 200000) {
-      setMessage("Lainamäärä on liian suuri.");
+    } else if (denied) {
+      setMessage("Hakemasi lainamäärä on liian suuri.");
       setSubmessage(<p>Yritä uudelleen.</p>);
     } else {
       setMessage("Lainahakemus lähetetty.");
-      setSubmessage(<p>Otamme sinuun yhteyttä, kun lainasi on hyväksytty.</p>);
+      setSubmessage(<>
+        <p>Hakemuksesi tiedot:</p>
+        <p>Lainamäärä: {loan} euroa</p>
+        <p>Vakuutesi: {guarantee}</p>
+        <p>Allekirjoituksesi: <b className="signature">{signature}</b></p>
+        <p>Otamme sinuun yhteyttä, kun lainahakemuksesi on hyväksytty.</p>
+      </>);
     };
 
     setTimeout(() => {
