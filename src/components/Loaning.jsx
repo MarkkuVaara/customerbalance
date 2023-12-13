@@ -56,16 +56,22 @@ const Loaning = (props) => {
             }
             <form onSubmit={props.loansubmit}>
                 <div className="formfield">
-                    <label>Lainamäärä</label>
+                    <label>Hakemasi lainamäärä</label>
                     <input name="loan" defaultValue={maxloan}></input>
                     <label>Vakuus</label>
-                    <select name="insurance">
-                        <option>Valtio</option>
-                        <option>Kunta</option>
-                        <option>Kiinteistö</option>
-                        <option>Oma sielu</option>
-                        <option>Muu</option>
-                    </select>
+                    {(loantype === "Kulutusluotto" || loantype === "VISA" || loantype === "Muu laina") &&
+                        <input name="guarantee" defaultValue={"Ei vakuutta"} disabled></input>
+                    }
+                    {(loantype === "Asuntolaina" || loantype === "Autolaina" || loantype === "Opintolaina") &&
+                        <select name="guarantee">
+                            <option>Valtio</option>
+                            <option>Kunta</option>
+                            <option>Kiinteistö</option>
+                            <option>Oma sielu</option>
+                        </select>
+                    }
+                    <label>Kuukausitulosi</label>
+                    <input name="income"></input>
                     <label>Allekirjoitus</label>
                     <input name="signature"></input>
                     <button type="submit">Lähetä hakemus</button>

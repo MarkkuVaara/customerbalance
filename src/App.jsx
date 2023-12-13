@@ -183,7 +183,7 @@ const App = (props) => {
     event.preventDefault();
 
     const loan = event.target.loan.value;
-    const guarantee = event.target.insurance.value;
+    const guarantee = event.target.guarantee.value;
     const signature = event.target.signature.value;
 
     let denied = null;
