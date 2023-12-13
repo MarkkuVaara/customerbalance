@@ -23,7 +23,7 @@ const App = (props) => {
 
   const [balance, setBalance] = useState(props.transactions);
   const [accounts, setAccounts] = useState(props.accounts);
-  const [account, setAccount] = useState(accounts[0]);
+  const [account, setAccount] = useState(null);
   const [users, setUsers] = useState(props.users);
 
   const [user, setUser] = useState(null);
@@ -239,9 +239,11 @@ const App = (props) => {
             <div className="link">
               <Link to="/accounts" style={{ textDecoration: 'none' }}><h3>Tilit</h3></Link>
             </div>
-            <div className="link">
-              <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account.name}</h3></Link>
-            </div>
+            {account &&
+              <div className="link">
+                <Link to="/account" style={{ textDecoration: 'none' }}><h3>{account.name}</h3></Link>
+              </div>
+            }
             <div className="link">
               <Link to="/loans" style={{ textDecoration: 'none' }}><h3>Lainat</h3></Link>
             </div>
@@ -264,9 +266,10 @@ const App = (props) => {
               <Route path="/accounts" element={<div className="balances">
                 <h3>Tilit</h3>
                 {accounts.map(account =>
-                  <span className="accounts" key={account.id}>
-                    <button onClick={() => setAccount(account)}>{account.name}</button>
-                  </span>
+                    account.userid === user.id &&
+                    <span className="accounts" key={account.id}>
+                      <button onClick={() => setAccount(account)}>{account.name}</button>
+                    </span>
                 )}
                 <Accounts />
               </div>} />

@@ -67,6 +67,18 @@ const accounts = [
         creationdate: "5.11.2023",
         name: "LAINATILI 1008001110",
         userid: 10
+    },
+    {
+        id: 53,
+        creationdate: "5.11.2023",
+        name: "KÄYTTÖTILI 1008005210",
+        userid: 11
+    },
+    {
+        id: 54,
+        creationdate: "5.11.2023",
+        name: "KÄYTTÖTILI 1008004599",
+        userid: 12
     }
 ]
 
@@ -158,6 +170,46 @@ const transactions = [
         transactioner: "Markku Vaara",
         transaction: 500,
         accountid: 51
+    },
+    {
+        id: 120,
+        date: "30.11.2023",
+        transactiontype: "shop",
+        transactioner: "Musti ja Mirri",
+        transaction: 39,
+        accountid: 53
+    },
+    {
+        id: 121,
+        date: "30.11.2023",
+        transactiontype: "shop",
+        transactioner: "Prisma",
+        transaction: 12.95,
+        accountid: 53
+    },
+    {
+        id: 122,
+        date: "8.12.2023",
+        transactiontype: "unknown",
+        transactioner: "Elli Jelkänen",
+        transaction: 100,
+        accountid: 53
+    },
+    {
+        id: 123,
+        date: "1.12.2023",
+        transactiontype: "gov",
+        transactioner: "Ympäristölaboratorio",
+        transaction: 1900,
+        accountid: 54
+    },
+    {
+        id: 124,
+        date: "10.12.2023",
+        transactiontype: "shop",
+        transactioner: "Lidl",
+        transaction: 79,
+        accountid: 54
     }
 ]
 
