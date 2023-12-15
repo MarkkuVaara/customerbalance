@@ -176,7 +176,7 @@ const transactions = [
         date: "30.11.2023",
         transactiontype: "shop",
         transactioner: "Musti ja Mirri",
-        transaction: 39,
+        transaction: -39,
         accountid: 53
     },
     {
@@ -184,7 +184,7 @@ const transactions = [
         date: "30.11.2023",
         transactiontype: "shop",
         transactioner: "Prisma",
-        transaction: 12.95,
+        transaction: -12.95,
         accountid: 53
     },
     {
@@ -205,10 +205,18 @@ const transactions = [
     },
     {
         id: 124,
-        date: "10.12.2023",
+        date: "5.12.2023",
         transactiontype: "shop",
         transactioner: "Lidl",
-        transaction: 79,
+        transaction: -79,
+        accountid: 54
+    },
+    {
+        id: 125,
+        date: "8.12.2023",
+        transactiontype: "unknown",
+        transactioner: "Seppo Virolainen",
+        transaction: -100,
         accountid: 54
     }
 ]

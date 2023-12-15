@@ -14,6 +14,7 @@ import Personalinfo from './components/Personalinfo';
 import Frontpage from './components/Frontpage';
 
 import Loaning from './components/Loaning';
+import Loansubmitting from './components/Loansubmitting';
 import Infoform from './components/Infoform';
 import Password from './components/Password';
 
@@ -54,6 +55,7 @@ const App = (props) => {
           setSubmessage(null);
         }, 2000);
         setUser(null);
+        setAccount(null);
     }
   };
 
@@ -191,8 +193,6 @@ const App = (props) => {
       denied = true;
     }
 
-    setCircles(true);
-
     if (!loan || !guarantee || !signature) {
       setMessage("Antamissasi tiedoissa on puutteita.");
       setSubmessage(<p>Yritä uudelleen.</p>);
@@ -200,20 +200,30 @@ const App = (props) => {
       setMessage("Hakemasi lainamäärä on liian suuri.");
       setSubmessage(<p>Yritä uudelleen.</p>);
     } else {
-      setMessage("Lainahakemus lähetetty.");
+      setMessage("Lainahakemuksesi tiedot:");
       setSubmessage(<>
-        <p>Hakemuksesi tiedot:</p>
+        <p>Tarkista ovatko kaikki tiedot oikein.</p>
         <p>Lainamäärä: {loan} euroa</p>
         <p>Vakuutesi: {guarantee}</p>
         <p>Allekirjoituksesi: <b className="signature">{signature}</b></p>
-        <p>Otamme sinuun yhteyttä, kun lainahakemuksesi on hyväksytty.</p>
+        <Loansubmitting loansubmitsubmit={loansubmitsubmit} cancelForm={cancelForm}/>
       </>);
-    };
+    }
+
+  }
+
+  const loansubmitsubmit = () => {
+
+    setCircles(true);
+
+    setMessage("Kiitos hakemuksestasi!");
+    setSubmessage(<p>Otamme sinuun yhteyttä, kun lainahakemuksesi on hyväksytty.</p>);
 
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
     }, 3000);
+
   }
 
 
