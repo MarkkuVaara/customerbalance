@@ -31,6 +31,7 @@ const App = (props) => {
   const [message, setMessage] = useState(null);
   const [submessage, setSubmessage] = useState(null);
   const [circles, setCircles] = useState(true);
+  const [loanapplication, setLoanapplication] = useState(null);
 
   /* useEffect(() => {
     console.log('Fetching..');
@@ -184,8 +185,10 @@ const App = (props) => {
   const loansubmit = (event) => {
     event.preventDefault();
 
+    const loantype = event.target.loantype.value;
     const loan = event.target.loan.value;
     const guarantee = event.target.guarantee.value;
+    const income = event.target.income.value;
     const signature = event.target.signature.value;
 
     let denied = null;
@@ -193,21 +196,46 @@ const App = (props) => {
       denied = true;
     }
 
-    if (!loan || !guarantee || !signature) {
+    if (!loan || !guarantee || !signature || !income) {
+
+      setCircles(true);
       setMessage("Antamissasi tiedoissa on puutteita.");
       setSubmessage(<p>Yritä uudelleen.</p>);
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
     } else if (denied) {
+
+      setCircles(true);
       setMessage("Hakemasi lainamäärä on liian suuri.");
       setSubmessage(<p>Yritä uudelleen.</p>);
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
     } else {
+
       setMessage("Lainahakemuksesi tiedot:");
       setSubmessage(<>
-        <p>Tarkista ovatko kaikki tiedot oikein.</p>
-        <p>Lainamäärä: {loan} euroa</p>
-        <p>Vakuutesi: {guarantee}</p>
-        <p>Allekirjoituksesi: <b className="signature">{signature}</b></p>
+        <p>Tarkista ovatko kaikki tiedot hakemuksessasi oikein.</p>
+        <div className="formfield">
+          <label>Lainamuoto:</label>
+          <input defaultValue={loantype} disabled></input>
+          <label>Lainamäärä:</label>
+          <input defaultValue={loan} disabled></input>
+          <label>Vakuutesi:</label>
+          <input defaultValue={guarantee} disabled></input>
+          <label>Kuukausitulosi:</label>
+          <input defaultValue={income} disabled></input>
+          <label>Allekirjoituksesi:</label>
+          <input defaultValue={signature} disabled></input>
+        </div>
         <Loansubmitting loansubmitsubmit={loansubmitsubmit} cancelForm={cancelForm}/>
       </>);
+
     }
 
   }
@@ -215,6 +243,7 @@ const App = (props) => {
   const loansubmitsubmit = () => {
 
     setCircles(true);
+    setLoanapplication("1008009990");
 
     setMessage("Kiitos hakemuksestasi!");
     setSubmessage(<p>Otamme sinuun yhteyttä, kun lainahakemuksesi on hyväksytty.</p>);
@@ -264,6 +293,11 @@ const App = (props) => {
           }
         </div>
         <div className="main">
+          {loanapplication &&
+            <div className="balances">
+              <p>Lainahakemuksesi {loanapplication} odottaa käsittelyä..</p>
+            </div>
+          }
           <Routes>
             <Route path="/" element={<div className="balances">
               <Frontpage />

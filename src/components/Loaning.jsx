@@ -20,42 +20,38 @@ const Loaning = (props) => {
         <div>
             {loantype === "Asuntolaina" &&
                 <>
-                    <b>Otat siis asuntolainaa!</b>
-                    <p>Voit hakea lainaa maksimissaan 200 000 euroa.</p>
+                    <p>Voit hakea asuntolainaa maksimissaan 200 000 euroa.</p>
                 </>
             }
             {loantype === "Autolaina" &&
                 <>
-                    <b>Otat siis autolainaa!</b>
-                    <p>Voit hakea lainaa maksimissaan 100 000 euroa.</p>
+                    <p>Voit hakea autolainaa maksimissaan 100 000 euroa.</p>
                 </>
             }
             {loantype === "Opintolaina" &&
                 <>
-                    <b>Otat siis opintolainaa!</b>
-                    <p>Voit hakea lainaa maksimissaan 20 000 euroa.</p>
+                    <p>Voit hakea opintolainaa maksimissaan 20 000 euroa.</p>
                 </>
             }
             {loantype === "Kulutusluotto" &&
                 <>
-                    <b>Haet siis kulutusluottoa!</b>
-                    <p>Voit hakea lainaa maksimissaan 5 000 euroa.</p>
+                    <p>Voit hakea kulutusluottoa maksimissaan 5 000 euroa.</p>
                 </>
             }
             {loantype === "VISA" &&
                 <>
-                    <b>Haet siis Visa-korttia!</b>
-                    <p>Voit hakea lainaa maksimissaan 2 000 euroa.</p>
+                    <p>Voit hakea VISA-luottoa maksimissaan 2 000 euroa.</p>
                 </>
             }
             {loantype === "Muu laina" &&
                 <>
-                    <b>Otat siis muuta lainaa!</b>
-                    <p>Voit hakea lainaa maksimissaan 100 euroa.</p>
+                    <p>Voit hakea muuta lainaa maksimissaan 100 euroa.</p>
                 </>
             }
             <form onSubmit={props.loansubmit}>
                 <div className="formfield">
+                    <label>Hakemasi lainamuoto</label>
+                    <input name="loantype" defaultValue={loantype} disabled></input>
                     <label>Hakemasi lainamäärä</label>
                     <input name="loan" defaultValue={maxloan}></input>
                     <label>Vakuus</label>
