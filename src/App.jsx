@@ -239,7 +239,7 @@ const App = (props) => {
 
     }
 
-  }
+  };
 
   const loansubmitsubmit = () => {
 
@@ -260,6 +260,39 @@ const App = (props) => {
     setTimeout(() => {
       setLoanapplications(null);
     }, 30000);
+
+  };
+
+
+  /* Transaction methods */
+
+  const addTransaction = () => {
+
+    setMessage("Siirretty rahaa tilille");
+
+    setTimeout(() => {
+      setMessage(null);
+    }, 3000);
+
+  }
+
+  const substractTransaction = () => {
+
+    setMessage("Siirretty rahaa tililtä");
+
+    setTimeout(() => {
+      setMessage(null);
+    }, 3000);
+
+  }
+
+  const billPayment = () => {
+
+    setMessage("Maksettu lasku");
+
+    setTimeout(() => {
+      setMessage(null);
+    }, 3000);
 
   }
 
@@ -315,7 +348,8 @@ const App = (props) => {
             {user &&
               <>
               <Route path="/account" element={<div className="balances">
-                <Balancetable balance={balance} account={account}/>
+                <Balancetable balance={balance} account={account} addTransaction={addTransaction}
+                  substractTransaction={substractTransaction} billPayment={billPayment}/>
               </div>} />
               <Route path="/accounts" element={<div className="balances">
                 <h3>Tilit</h3>

@@ -224,6 +224,18 @@ button:focus {
 }
 
 
+/* Transaction handling */
+
+.accountsaldo {
+    display: inline-block;
+    padding-right: 50px;
+}
+
+.accountbalance > button {
+    margin-right: 20px;
+}
+
+
 /* Loans */
 
 .loans > * > button {
