@@ -31,7 +31,8 @@ const App = (props) => {
   const [message, setMessage] = useState(null);
   const [submessage, setSubmessage] = useState(null);
   const [circles, setCircles] = useState(true);
-  const [loanapplication, setLoanapplication] = useState(null);
+  const [currentloantype, setCurrentloantype] = useState(null);
+  const [loanapplications, setLoanapplications] = useState([]);
 
   /* useEffect(() => {
     console.log('Fetching..');
@@ -243,7 +244,10 @@ const App = (props) => {
   const loansubmitsubmit = () => {
 
     setCircles(true);
-    setLoanapplication("1008009990");
+    setLoanapplications(loanapplications.concat({
+      id: 100,
+      loannumber: "1008009990",
+      loantype: "Kulutuslaina"}));
 
     setMessage("Kiitos hakemuksestasi!");
     setSubmessage(<p>Otamme sinuun yhteyttä, kun lainahakemuksesi on hyväksytty.</p>);
@@ -252,6 +256,10 @@ const App = (props) => {
       setMessage(null);
       setSubmessage(null);
     }, 3000);
+
+    setTimeout(() => {
+      setLoanapplications(null);
+    }, 30000);
 
   }
 
@@ -293,10 +301,12 @@ const App = (props) => {
           }
         </div>
         <div className="main">
-          {loanapplication &&
-            <div className="balances">
-              <p>Lainahakemuksesi {loanapplication} odottaa käsittelyä..</p>
-            </div>
+          {loanapplications &&
+            loanapplications.map(loanapplication =>
+              <div className="loanapplication" key={loanapplication.id}>
+                <p>Lainahakemuksesi <b>{loanapplication.loantype} {loanapplication.loannumber}</b> odottaa käsittelyä..</p>
+              </div>
+            )
           }
           <Routes>
             <Route path="/" element={<div className="balances">

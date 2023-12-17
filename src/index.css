@@ -185,7 +185,7 @@ button:focus {
     background-image: url("./images/banner.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% 100%;;
+    background-size: 100% 100%;
 }
 
 .balance {
@@ -265,6 +265,21 @@ button:focus {
 
 .signature {
     font-family: fantasy;
+}
+
+.loanapplication {
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    background-image: url("./images/banner.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
 }
 
 
