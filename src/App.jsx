@@ -13,6 +13,7 @@ import Loans from './components/Loans';
 import Personalinfo from './components/Personalinfo';
 import Frontpage from './components/Frontpage';
 
+import Transaction from './components/Transaction';
 import Loaning from './components/Loaning';
 import Loansubmitting from './components/Loansubmitting';
 import Infoform from './components/Infoform';
@@ -268,20 +269,30 @@ const App = (props) => {
 
   const addTransaction = () => {
 
-    setMessage("Siirretty rahaa tilille");
-
-    setTimeout(() => {
-      setMessage(null);
-    }, 3000);
+    setCircles(null);
+    setMessage("Rahan siirto omalle tilille");
+    setSubmessage(<Transaction user={user} accounts={accounts} useronly={true} transactionsubmit={transactionsubmit} cancelForm={cancelForm} />);
 
   }
 
   const substractTransaction = () => {
+    
+    setCircles(null);
+    setMessage("Rahan siirto ulkopuoliselle tilille");
+    setSubmessage(<Transaction user={user} accounts={accounts} useronly={false} transactionsubmit={transactionsubmit} cancelForm={cancelForm}/>);
 
-    setMessage("Siirretty rahaa tililtä");
+  }
+
+  const transactionsubmit = (event) => {
+    event.preventDefault();
+
+    setCircles(true);
+    setMessage("Siirto suoritettu");
+    setSubmessage(null);
 
     setTimeout(() => {
       setMessage(null);
+      setSubmessage(null);
     }, 3000);
 
   }

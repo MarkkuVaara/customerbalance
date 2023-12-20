@@ -20,8 +20,8 @@ const Balancetable = (props) => {
         </div>
         <div className="accountbalance">
             <h4 className="accountsaldo">Tilin saldo: {account.id} euroa</h4>
-            <button onClick={props.addTransaction}>Siirrä rahaa tilille</button>
-            <button onClick={props.substractTransaction}>Siirrä rahaa tililtä</button>
+            <button onClick={props.addTransaction}>Siirrä rahaa omalle tilille</button>
+            <button onClick={props.substractTransaction}>Siirrä rahaa ulkopuoliselle tilille</button>
             <button onClick={props.billPayment}>Maksa lasku</button>
         </div>
         <div className="accountbalance">
