@@ -2,6 +2,7 @@
 const Transaction = (props) => {
 
     const user = props.user;
+    const account = props.account;
     const accounts = props.accounts;
     const filteredaccounts = accounts.filter(account => account.userid === user.id);
     const useronly = props.useronly;
@@ -13,9 +14,7 @@ const Transaction = (props) => {
                 <div className="formfield">
                     <label>Tililtä</label>
                     <select name="source">
-                        {filteredaccounts.map(account =>
-                            <option key={account.id}>{account.name}</option>
-                        )}
+                        <option key={account.id}>{account.name}</option>
                     </select>
                     <label>Tilille</label>
                     <select name="target">

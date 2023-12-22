@@ -67,7 +67,7 @@ const App = (props) => {
     setTimeout(() => {
       setMessage(null);
     }, 2000);
-    setUser(users[1]);
+    setUser(users[0]);
   };
 
 
@@ -271,7 +271,7 @@ const App = (props) => {
 
     setCircles(null);
     setMessage("Rahan siirto omalle tilille");
-    setSubmessage(<Transaction user={user} accounts={accounts} useronly={true} transactionsubmit={transactionsubmit} cancelForm={cancelForm} />);
+    setSubmessage(<Transaction user={user} account={account} accounts={accounts} useronly={true} transactionsubmit={transactionsubmit} cancelForm={cancelForm} />);
 
   }
 
@@ -279,7 +279,7 @@ const App = (props) => {
     
     setCircles(null);
     setMessage("Rahan siirto ulkopuoliselle tilille");
-    setSubmessage(<Transaction user={user} accounts={accounts} useronly={false} transactionsubmit={transactionsubmit} cancelForm={cancelForm}/>);
+    setSubmessage(<Transaction user={user} account={account} accounts={accounts} useronly={false} transactionsubmit={transactionsubmit} cancelForm={cancelForm}/>);
 
   }
 
@@ -298,6 +298,12 @@ const App = (props) => {
       setMessage("Tietoja puuttuu");
       setSubmessage(<p>Yritä uudelleen.</p>);
     } else {
+
+      accounts.map(account =>
+        account.name === source
+        ? setAccount((prevState) => { return ({...prevState, balance: account.balance - amount}) } )
+        : null
+      )
 
       setMessage("Tilisiirto suoritettu");
       setSubmessage(<>
