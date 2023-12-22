@@ -423,7 +423,8 @@ button:focus {
 }
 
 .formfield > input,
-.formfield > select {
+.formfield > select,
+.formfield > textarea {
     grid-column: controls;
     padding: 5px;
     margin-bottom: 5px;

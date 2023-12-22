@@ -34,6 +34,12 @@ const Transaction = (props) => {
                             </>
                         }
                     </select>
+                    <label>Rahasumma</label>
+                    <input name="amount"></input>
+                    <label>Päiväys</label>
+                    <input name="date"></input>
+                    <label>Viesti</label>
+                    <textarea name="message"></textarea>
                     <button type="submit">Tee tilisiirto</button>
                     <button type="button" onClick={props.cancelForm}>Peruuta toiminto</button>
                 </div>

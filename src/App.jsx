@@ -286,14 +286,42 @@ const App = (props) => {
   const transactionsubmit = (event) => {
     event.preventDefault();
 
+    const source = event.target.source.value;
+    const target = event.target.target.value;
+    const amount = event.target.amount.value;
+    const date = event.target.date.value;
+    const message = event.target.message.value;
+
     setCircles(true);
-    setMessage("Siirto suoritettu");
-    setSubmessage(null);
+
+    if (!amount || !date) {
+      setMessage("Tietoja puuttuu");
+      setSubmessage(<p>Yritä uudelleen.</p>);
+    } else {
+
+      setMessage("Tilisiirto suoritettu");
+      setSubmessage(<>
+        <p>Siirretty tililtä </p>
+        <p>{source}</p>
+        <p>tilille</p>
+        <p>{target}</p>
+        <p>{amount} euroa</p>
+        <p>päivänä</p>
+        <p>{date}</p>
+        {message &&
+          <>
+          <p>Lisätietoja:</p>
+          <p>{message}</p>
+          </>
+        }
+      </>);
+
+    }
 
     setTimeout(() => {
       setMessage(null);
       setSubmessage(null);
-    }, 3000);
+    }, 5000);
 
   }
 
