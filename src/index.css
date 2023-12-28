@@ -233,9 +233,34 @@ button:focus {
 
 .accountbalance > button {
     margin-right: 20px;
+    margin-bottom: 10px;
     border-style: solid;
     border-width: 2px;
     border-color: gray;
+}
+
+.accountbalance > button:hover {
+    font-weight: normal;
+    font-style: italic;
+}
+
+.accountbalance > button:focus {
+    font-weight: normal;
+    font-style: italic;
+}
+
+@media only screen and (max-width: 800px) {
+    .accountsaldo {
+        display: block;
+        justify-content: none;
+    }
+    .accountbalance > button {
+        font-size: 14px;
+    }
+    .balancedescription > img {
+        height: 20px;
+        width: 20px;
+    }
 }
 
 
@@ -363,7 +388,7 @@ button:focus {
     max-width: 500px;
     margin: 0 auto;
     height: auto;
-    max-height: 60vh;
+    max-height: 80vh;
     margin-top: calc(95vh - 85vh - 10px);
     background-color: lightblue;
     border-radius: 4px;
@@ -429,6 +454,10 @@ button:focus {
     padding: 5px;
     margin-bottom: 5px;
     font-size: 16px;
+}
+
+.formfield > textarea {
+    height: 100px;
 }
 
 .formfield > button {

@@ -278,7 +278,7 @@ const App = (props) => {
   const substractTransaction = () => {
     
     setCircles(null);
-    setMessage("Rahan siirto ulkopuoliselle tilille");
+    setMessage("Rahan siirto toiselle tilille");
     setSubmessage(<Transaction user={user} account={account} accounts={accounts} useronly={false} transactionsubmit={transactionsubmit} cancelForm={cancelForm}/>);
 
   }
