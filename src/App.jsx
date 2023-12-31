@@ -18,6 +18,7 @@ import Loaning from './components/Loaning';
 import Loansubmitting from './components/Loansubmitting';
 import Infoform from './components/Infoform';
 import Password from './components/Password';
+import Billpayment from './components/Billpayment';
 
 import Balanceservice from './services/Balances';
 
@@ -307,18 +308,12 @@ const App = (props) => {
 
       setMessage("Tilisiirto suoritettu");
       setSubmessage(<>
-        <p>Siirretty tililtä </p>
-        <p>{source}</p>
-        <p>tilille</p>
-        <p>{target}</p>
-        <p>{amount} euroa</p>
-        <p>päivänä</p>
-        <p>{date}</p>
+        <p><b>Tililtä</b> {source}</p>
+        <p><b>Tilille</b> {target}</p>
+        <p><b>Rahasumma</b> {amount}</p>
+        <p><b>Päivämäärä</b> {date}</p>
         {message &&
-          <>
-          <p>Lisätietoja:</p>
-          <p>{message}</p>
-          </>
+          <p><b>Lisätietoja:</b> {message}</p>
         }
       </>);
 
@@ -331,13 +326,49 @@ const App = (props) => {
 
   }
 
+
+  /* Bill payment */
+
   const billPayment = () => {
 
-    setMessage("Maksettu lasku");
+    setCircles(null);
+    setMessage("Laskun maksu");
+    setSubmessage(<Billpayment account={account} accounts={accounts} 
+      billsubmit={billsubmit} cancelForm={cancelForm} />)
+
+  }
+
+  const billsubmit = (event) => {
+    event.preventDefault();
+
+    const source = event.target.source.value;
+    const amount = event.target.amount.value;
+    const target = event.target.target.value;
+    const reference = event.target.reference.value;
+    const date = event.target.date.value;
+
+    setCircles(true);
+
+    if (!source || !target || !amount || !reference || !date ) {
+      setMessage("Tärkeitä tietoja puuttuu");
+      setSubmessage(<p>Yritä uudelleen.</p>)
+    } else {
+
+      setMessage("Lasku maksettu");
+      setSubmessage(<>
+        <p><b>Tililtä</b> {source}</p>
+        <p><b>Tilille</b> {target}</p>
+        <p><b>Rahasumma</b> {amount}</p>
+        <p><b>Viite</b> {reference}</p>
+        <p><b>Päivämäärä</b> {date}</p>
+      </>);
+
+    }
 
     setTimeout(() => {
       setMessage(null);
-    }, 3000);
+      setSubmessage(null);
+    }, 5000);
 
   }
 
