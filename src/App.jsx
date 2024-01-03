@@ -287,13 +287,28 @@ const App = (props) => {
   const transactionsubmit = (event) => {
     event.preventDefault();
 
+    setCircles(true);
+
     const source = event.target.source.value;
     const target = event.target.target.value;
     const amount = event.target.amount.value;
     const date = event.target.date.value;
     const message = event.target.message.value;
 
-    setCircles(true);
+    if ((account.balance - amount) < 0) {
+      setMessage("Tilin saldo ei riitä");
+      setSubmessage(<p>Yritä uudelleen.</p>);
+
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
+      return;
+
+    }
+
+    const newsaldo = (account.balance - amount).toFixed(2);
 
     if (!amount || !date) {
       setMessage("Tietoja puuttuu");
@@ -302,7 +317,7 @@ const App = (props) => {
 
       accounts.map(account =>
         account.name === source
-        ? setAccount((prevState) => { return ({...prevState, balance: account.balance - amount}) } )
+        ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
         : null
       )
 
@@ -349,10 +364,31 @@ const App = (props) => {
 
     setCircles(true);
 
+    if ((account.balance - amount) < 0) {
+      setMessage("Tilin saldo ei riitä");
+      setSubmessage(<p>Yritä uudelleen.</p>);
+
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
+      return;
+
+    }
+
+    const newsaldo = (account.balance - amount).toFixed(2);
+
     if (!source || !target || !amount || !reference || !date ) {
       setMessage("Tärkeitä tietoja puuttuu");
       setSubmessage(<p>Yritä uudelleen.</p>)
     } else {
+
+      accounts.map(account =>
+        account.name === source
+        ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
+        : null
+      )
 
       setMessage("Lasku maksettu");
       setSubmessage(<>
