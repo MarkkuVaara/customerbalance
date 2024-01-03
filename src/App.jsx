@@ -293,7 +293,7 @@ const App = (props) => {
     const target = event.target.target.value;
     const amount = event.target.amount.value;
     const date = event.target.date.value;
-    const message = event.target.message.value;
+    const messagge = event.target.message.value;
 
     if ((account.balance - amount) < 0) {
       setMessage("Tilin saldo ei riitä");
@@ -321,14 +321,26 @@ const App = (props) => {
         : null
       )
 
+      const newBalance = {
+        id: balance.length + 1000,
+        date: date,
+        transactiontype: "unknown",
+        transactioner: user.firstname + " " + user.lastname,
+        transaction: 0 - amount,
+        accountid: account.id,
+        message: messagge
+      }
+
+      setBalance(balance.concat(newBalance));
+
       setMessage("Tilisiirto suoritettu");
       setSubmessage(<>
         <p><b>Tililtä</b> {source}</p>
         <p><b>Tilille</b> {target}</p>
         <p><b>Rahasumma</b> {amount}</p>
         <p><b>Päivämäärä</b> {date}</p>
-        {message &&
-          <p><b>Lisätietoja:</b> {message}</p>
+        {messagge &&
+          <p><b>Lisätietoja:</b> {messagge}</p>
         }
       </>);
 
@@ -389,6 +401,17 @@ const App = (props) => {
         ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
         : null
       )
+
+      const newBalance = {
+        id: balance.length + 1000,
+        date: date,
+        transactiontype: "loan",
+        transactioner: user.firstname + " " + user.lastname,
+        transaction: 0 - amount,
+        accountid: account.id
+      }
+
+      setBalance(balance.concat(newBalance));
 
       setMessage("Lasku maksettu");
       setSubmessage(<>

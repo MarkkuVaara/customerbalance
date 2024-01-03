@@ -7,16 +7,23 @@ const Transaction = (props) => {
     const filteredaccounts = accounts.filter(account => account.userid === user.id);
     const useronly = props.useronly;
 
+    const currentDate = new Date();
+    const dd = String(currentDate.getDate()).padStart(2, '0');
+    const mm = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const yyyy = currentDate.getFullYear();
+
+    const today = dd + '.' + mm + '.' + yyyy;
+
     return(
         <div>
-            <p>Raha on näkyvissä toisella tilillä tietyn ajan kuluessa.</p>
+            <p>Raha on näkyvissä toisella tilillä heti tai 1-2 pankkipäivässä. (* = pakollinen tieto)</p>
             <form onSubmit={props.transactionsubmit}>
                 <div className="formfield">
-                    <label>Tililtä</label>
+                    <label>*Tililtä</label>
                     <select name="source">
                         <option key={account.id}>{account.name}</option>
                     </select>
-                    <label>Tilille</label>
+                    <label>*Tilille</label>
                     <select name="target">
                         {useronly &&
                             <>
@@ -33,10 +40,10 @@ const Transaction = (props) => {
                             </>
                         }
                     </select>
-                    <label>Rahasumma</label>
+                    <label>*Rahasumma</label>
                     <input name="amount"></input>
-                    <label>Päiväys</label>
-                    <input name="date"></input>
+                    <label>*Päiväys</label>
+                    <input name="date" defaultValue={today}></input>
                     <label>Viesti</label>
                     <textarea name="message"></textarea>
                     <button type="submit">Tee tilisiirto</button>
