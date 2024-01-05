@@ -147,15 +147,31 @@ button:focus {
 
 /* Front page */
 
+.fronttext {
+    display: flex;
+}
+
+.fronttext > * {
+    margin-right: 20px;
+}
+
 .frontpage > h3 {
     text-align: justify;
 }
 
-.frontpage > img {
+.fronttext > img {
+    height: 100%;
     width: 100%;
     border-style: solid;
     border-width: 3px;
     border-color: darkslategray;
+}
+
+@media only screen and (max-width: 1000px) {
+    .fronttext {
+        display: block;
+    }
+
 }
 
 
