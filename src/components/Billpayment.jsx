@@ -6,9 +6,9 @@ const Billpayment = (props) => {
 
     return (
         <div>
-            <p>(* = pakollinen tieto)</p>
+            <p>(* = pakollinen tieto) (** = toinen pakollinen)</p>
             <form onSubmit={props.billsubmit}>
-                <div class="formfield">
+                <div className="formfield">
                     <label>*Tililtä</label>
                     <select name="source">
                         <option key={account.id}>{account.name}</option>
@@ -21,8 +21,10 @@ const Billpayment = (props) => {
                     </select>
                     <label>*Rahasumma</label>
                     <input name="amount"></input>
-                    <label>*Viite</label>
+                    <label>**Viite</label>
                     <input name="reference"></input>
+                    <label>**Viesti</label>
+                    <textarea name="message"></textarea>
                     <label>*Päiväys</label>
                     <input name="date"></input>
                     <button type="submit">Maksa lasku</button>

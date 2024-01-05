@@ -27,7 +27,7 @@ const Balancetable = (props) => {
         <div className="accountbalance">
             <h4>Tapahtumat:</h4>
             {accounttransactions.map(transaction => 
-                <div className="balance" key={transaction.id}>
+                <div className="balance" key={transaction.id} onClick={props.showtransaction(transaction.id)}>
                     <p className="balancedate">{transaction.date}</p>
                     {transaction.transactiontype === "shop" &&
                         <p className="balancedescription"><img src={Shop} alt={Shop}></img></p>

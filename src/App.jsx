@@ -372,6 +372,7 @@ const App = (props) => {
     const amount = event.target.amount.value;
     const target = event.target.target.value;
     const reference = event.target.reference.value;
+    const messagge = event.target.message.value;
     const date = event.target.date.value;
 
     setCircles(true);
@@ -391,7 +392,7 @@ const App = (props) => {
 
     const newsaldo = (account.balance - amount).toFixed(2);
 
-    if (!source || !target || !amount || !reference || !date ) {
+    if (!source || !target || !amount || (!reference && !messagge) || !date ) {
       setMessage("Tärkeitä tietoja puuttuu");
       setSubmessage(<p>Yritä uudelleen.</p>)
     } else {
@@ -408,7 +409,9 @@ const App = (props) => {
         transactiontype: "loan",
         transactioner: user.firstname + " " + user.lastname,
         transaction: 0 - amount,
-        accountid: account.id
+        accountid: account.id,
+        message: messagge,
+        reference: reference
       }
 
       setBalance(balance.concat(newBalance));
@@ -418,7 +421,12 @@ const App = (props) => {
         <p><b>Tililtä</b> {source}</p>
         <p><b>Tilille</b> {target}</p>
         <p><b>Rahasumma</b> {amount}</p>
-        <p><b>Viite</b> {reference}</p>
+        {reference &&
+          <p><b>Viite</b> {reference}</p>
+        }
+        {messagge &&
+          <p><b>Viesti</b> {messagge}</p>
+        }
         <p><b>Päivämäärä</b> {date}</p>
       </>);
 
@@ -428,6 +436,21 @@ const App = (props) => {
       setMessage(null);
       setSubmessage(null);
     }, 5000);
+
+  }
+
+
+  const showtransaction = (event) => {
+
+    const id = String(event.target.value);
+
+    setMessage("Tilitapahtuma");
+    setSubmessage(id);
+
+    setTimeout(() => {
+      setMessage(null);
+      setSubmessage(null);
+    }, 3000);
 
   }
 
@@ -484,7 +507,7 @@ const App = (props) => {
               <>
               <Route path="/account" element={<div className="balances">
                 <Balancetable balance={balance} account={account} addTransaction={addTransaction}
-                  substractTransaction={substractTransaction} billPayment={billPayment}/>
+                  substractTransaction={substractTransaction} billPayment={billPayment} showtransaction={() => showtransaction}/>
               </div>} />
               <Route path="/accounts" element={<div className="balances">
                 <h3>Tilit</h3>
