@@ -440,12 +440,22 @@ const App = (props) => {
   }
 
 
-  const showtransaction = (event) => {
+  const showtransaction = (data) => {
 
-    const id = String(event.target.value);
+    const id = parseInt(data);
 
-    setMessage("Tilitapahtuma");
-    setSubmessage(id);
+    const traction = balance.filter(transaction => transaction.id === id);
+    const transactionn = traction[0];
+
+    setMessage("Tilitapahtuman tiedot");
+    setSubmessage(<>
+        <p>Päiväys: {transactionn.date}</p>
+        <p>Toimija: {transactionn.transactioner}</p>
+        <p>Määrä: {transactionn.transaction}</p>
+        <p>Tyyppi: {transactionn.transactiontype}</p>
+        <p>Viite: {transactionn.reference}</p>
+        <p>Viesti: {transactionn.message}</p>
+      </>);
 
     setTimeout(() => {
       setMessage(null);
@@ -507,7 +517,7 @@ const App = (props) => {
               <>
               <Route path="/account" element={<div className="balances">
                 <Balancetable balance={balance} account={account} addTransaction={addTransaction}
-                  substractTransaction={substractTransaction} billPayment={billPayment} showtransaction={() => showtransaction}/>
+                  substractTransaction={substractTransaction} billPayment={billPayment} showtransaction={showtransaction}/>
               </div>} />
               <Route path="/accounts" element={<div className="balances">
                 <h3>Tilit</h3>

@@ -13,6 +13,13 @@ const Balancetable = (props) => {
     const account = props.account;
     const accounttransactions = balance.filter(transaction => transaction.accountid === account.id);
 
+    const onTrigger = (event) => {
+        props.showtransaction(
+            event.target.id.value
+        );
+        event.preventDefault();
+    }
+
     return (
         <>
         <div className="accounttitle">
@@ -26,9 +33,11 @@ const Balancetable = (props) => {
         </div>
         <div className="accountbalance">
             <h4>Tapahtumat:</h4>
-            {accounttransactions.map(transaction => 
-                <div className="balance" key={transaction.id} onClick={props.showtransaction(transaction.id)}>
-                    <p className="balancedate">{transaction.date}</p>
+            {accounttransactions.map(transaction =>
+                <form key={transaction.id} onSubmit={onTrigger}>
+                <div className="balance">
+                    <input name="id" defaultValue={transaction.id} disabled></input>
+                    <button type="submit" className="balancedate">{transaction.date}</button>
                     {transaction.transactiontype === "shop" &&
                         <p className="balancedescription"><img src={Shop} alt={Shop}></img></p>
                     }
@@ -47,6 +56,7 @@ const Balancetable = (props) => {
                     <p className="balanceactioner">{transaction.transactioner}</p>
                     <p className="balancetransaction"><b>{transaction.transaction}</b></p>
                 </div>
+                </form>
             )}
         </div>
         <br></br>
