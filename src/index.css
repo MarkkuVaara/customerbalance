@@ -208,7 +208,7 @@ button:focus {
 .balance {
     display: flex;
     justify-content: left;
-    padding-left: 10px;
+    padding-left: 5px;
     margin-bottom: 5px;
     border-bottom-style: solid;
     border-bottom-width: 2px;
@@ -218,6 +218,12 @@ button:focus {
 .balance > p,
 .balance > b {
     padding-right: 30px;
+}
+
+.balance > button {
+    background: none;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .balancedate {
@@ -467,11 +473,18 @@ button:focus {
 
 .formfield > input,
 .formfield > select,
-.formfield > textarea {
+.formfield > textarea,
+.formfield > p {
     grid-column: controls;
     padding: 5px;
     margin-bottom: 5px;
     font-size: 16px;
+}
+
+.formfield > p {
+    padding: 0px;
+    margin-top: 5px;
+    font-size: 18px;
 }
 
 .formfield > textarea {

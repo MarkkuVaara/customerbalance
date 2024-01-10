@@ -447,20 +447,31 @@ const App = (props) => {
     const traction = balance.filter(transaction => transaction.id === id);
     const transactionn = traction[0];
 
-    setMessage("Tilitapahtuman tiedot");
-    setSubmessage(<>
-        <p>Päiväys: {transactionn.date}</p>
-        <p>Toimija: {transactionn.transactioner}</p>
-        <p>Määrä: {transactionn.transaction}</p>
-        <p>Tyyppi: {transactionn.transactiontype}</p>
-        <p>Viite: {transactionn.reference}</p>
-        <p>Viesti: {transactionn.message}</p>
-      </>);
+    setCircles(null);
 
-    setTimeout(() => {
-      setMessage(null);
-      setSubmessage(null);
-    }, 3000);
+    setMessage("Tilitapahtuman tiedot");
+    setSubmessage(<div className="formfield">
+        <label>Päiväys:</label> <p>{transactionn.date}</p>
+        <label>Toimija:</label> <p>{transactionn.transactioner}</p>
+        <label>Määrä:</label> <p>{transactionn.transaction}</p>
+        <label>Tyyppi:</label> 
+        {transactionn.transactiontype === "shop" && <p>Kauppa</p>}
+        {transactionn.transactiontype === "loan" && <p>Tilisiirto</p>}
+        {transactionn.transactiontype === "phone" && <p>Puhelin</p>}
+        {transactionn.transactiontype === "gov" && <p>Virasto</p>}
+        {transactionn.transactiontype === "unknown" && <p>Tuntematon</p>}
+        {transactionn.reference && <><label>Viite:</label> <p>{transactionn.reference}</p></>}
+        {transactionn.message && <><label>Viesti:</label> <p>{transactionn.message}</p></>}
+        <button onClick={closeWindow}>Sulje ikkuna</button>
+      </div>);
+
+  }
+
+  const closeWindow = () => {
+
+    setCircles(true);
+    setMessage(null);
+    setSubmessage(null);
 
   }
 
