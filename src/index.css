@@ -235,6 +235,7 @@ button:focus {
 }
 
 .balancedescription > img {
+    padding-left: 15px;
     height: 40px;
     width: 40px;
 }
@@ -284,6 +285,9 @@ button:focus {
     .balancedescription > img {
         height: 20px;
         width: 20px;
+    }
+    .balance > button {
+        font-size: 12px;
     }
 }
 
@@ -458,6 +462,16 @@ button:focus {
     padding: 10px;
 }
 
+.box > div > .formfield {
+    background-color: lightskyblue;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: lightslategray;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
 .formfield {
     flex: 1;
     display: grid;
@@ -499,7 +513,9 @@ button:focus {
 
 @media only screen and (max-width: 800px) {
     .formfield > label,
-    .formfield > input {
+    .formfield > input,
+    .formfield > p,
+    .formfield > button {
         font-size: 14px;
     }
 

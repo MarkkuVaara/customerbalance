@@ -224,6 +224,7 @@ const App = (props) => {
       setMessage("Lainahakemuksesi tiedot:");
       setSubmessage(<>
         <p>Tarkista ovatko kaikki tiedot hakemuksessasi oikein.</p>
+        <div>
         <div className="formfield">
           <label>Lainamuoto:</label>
           <input defaultValue={loantype} disabled></input>
@@ -235,6 +236,7 @@ const App = (props) => {
           <input defaultValue={income} disabled></input>
           <label>Allekirjoituksesi:</label>
           <input defaultValue={signature} disabled></input>
+        </div>
         </div>
         <Loansubmitting loansubmitsubmit={loansubmitsubmit} cancelForm={cancelForm}/>
       </>);
@@ -326,6 +328,7 @@ const App = (props) => {
         date: date,
         transactiontype: "unknown",
         transactioner: user.firstname + " " + user.lastname,
+        target: target,
         transaction: 0 - amount,
         accountid: account.id,
         message: messagge
@@ -408,6 +411,7 @@ const App = (props) => {
         date: date,
         transactiontype: "loan",
         transactioner: user.firstname + " " + user.lastname,
+        target: target,
         transaction: 0 - amount,
         accountid: account.id,
         message: messagge,
@@ -449,10 +453,11 @@ const App = (props) => {
 
     setCircles(null);
 
-    setMessage("Tilitapahtuman tiedot");
+    setMessage("Valitsemasi tilitapahtuman tiedot");
     setSubmessage(<div className="formfield">
         <label>Päiväys:</label> <p>{transactionn.date}</p>
         <label>Toimija:</label> <p>{transactionn.transactioner}</p>
+        {transactionn.target && <><label>Kohdetili:</label> <p>{transactionn.target}</p></>}
         <label>Määrä:</label> <p>{transactionn.transaction}</p>
         <label>Tyyppi:</label> 
         {transactionn.transactiontype === "shop" && <p>Kauppa</p>}

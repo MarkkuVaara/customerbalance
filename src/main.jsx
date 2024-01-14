@@ -149,6 +149,7 @@ const transactions = [
         date: "10.11.2023",
         transactiontype: "gov",
         transactioner: "KELA",
+        target: "KÄYTTÖTILI 1009004555",
         transaction: 1100,
         accountid: 50
     },
