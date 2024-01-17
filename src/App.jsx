@@ -19,6 +19,7 @@ import Loansubmitting from './components/Loansubmitting';
 import Infoform from './components/Infoform';
 import Password from './components/Password';
 import Billpayment from './components/Billpayment';
+import Messagetable from './components/Messagetable';
 
 import Balanceservice from './services/Balances';
 
@@ -35,6 +36,7 @@ const App = (props) => {
   const [circles, setCircles] = useState(true);
   const [currentloantype, setCurrentloantype] = useState(null);
   const [loanapplications, setLoanapplications] = useState([]);
+  const [messages, setMessages] = useState([]);
 
   /* useEffect(() => {
     console.log('Fetching..');
@@ -287,8 +289,16 @@ const App = (props) => {
     }, 3000);
 
     setTimeout(() => {
+
       setLoanapplications([]);
       setAccounts(accounts.concat(newloanaccount));
+      setMessages(messages.concat({
+        id: messages.length + 100,
+        message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty.",
+        date: today,
+        read: false
+      }));
+
     }, 30000);
 
   };
@@ -540,6 +550,9 @@ const App = (props) => {
             <div className="link">
               <Link to="/personalinfo" style={{ textDecoration: 'none' }}><h3>Henkilötiedot</h3></Link>
             </div>
+            <div className="link">
+              <Link to="/messages" style={{ textDecoration: 'none' }}><h3>Viestit</h3></Link>
+            </div>
             </>
           }
         </div>
@@ -576,6 +589,9 @@ const App = (props) => {
               </div>} />
               <Route path="/personalinfo" element={<div className="balances">
                 <Personalinfo user={user} editInfo={editInfo} editPassword={editPassword} />
+              </div>} />
+              <Route path="/messages" element={<div className="balances">
+                <Messagetable messages={messages} />
               </div>} />
               </>
             }
