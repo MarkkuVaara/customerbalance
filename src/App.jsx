@@ -219,6 +219,16 @@ const App = (props) => {
         setSubmessage(null);
       }, 3000);
 
+    } else if (loanapplications.length != 0) {
+
+      setCircles(true);
+      setMessage("Et voi lähettää uutta lainahakemusta ennen kuin edellinen on käsitelty.");
+      setSubmessage(<p>Yritä myöhemmin uudelleen.</p>);
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
     } else {
 
       setMessage("Lainahakemuksesi tiedot:");
@@ -249,9 +259,24 @@ const App = (props) => {
 
     setCircles(true);
     setLoanapplications(loanapplications.concat({
-      id: 100,
+      id: loanapplications.length + 1000,
       loannumber: "1008009990",
       loantype: "Kulutuslaina"}));
+
+    const currentDate = new Date();
+    const dd = String(currentDate.getDate()).padStart(2, '0');
+    const mm = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const yyyy = currentDate.getFullYear();
+  
+    const today = dd + '.' + mm + '.' + yyyy;
+
+    const newloanaccount = {
+      id: accounts.length + 1000,
+      creationdate: today,
+      name: "LAINATILI 1008009990",
+      balance: -2000,
+      userid: user.id
+    };
 
     setMessage("Kiitos hakemuksestasi!");
     setSubmessage(<p>Otamme sinuun yhteyttä, kun lainahakemuksesi on hyväksytty.</p>);
@@ -262,7 +287,8 @@ const App = (props) => {
     }, 3000);
 
     setTimeout(() => {
-      setLoanapplications(null);
+      setLoanapplications([]);
+      setAccounts(accounts.concat(newloanaccount));
     }, 30000);
 
   };
