@@ -21,9 +21,12 @@ const Messagetable = (props) => {
                     <form key={message.id} onSubmit={onTrigger}>
                         <div className="balance">
                             <input name="id" defaultValue={message.id} style={{display: "none"}} disabled></input>
+                            {message.read == false &&
+                                <p>O</p>
+                            }
                             <button type="submit" className="balancedate">{message.date}</button>
-                            <p>{message.title}</p>
-                            <p>{message.message.substring(0, 50)}...</p>
+                            <p className="balancetransaction">{message.title}</p>
+                            <p className="balanceactioner">{message.message.substring(0, 50)}...</p>
                         </div>
                     </form>
                 )}

@@ -227,5 +227,15 @@ const transactions = [
     }
 ]
 
+const messages = [
+    {
+        id: 15,
+        date: "01.01.2024 6:00",
+        read: false,
+        title: "Tervetuloa",
+        message: "Tervetuloa, uusi asiakas. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Et malesuada fames ac turpis egestas integer eget. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Integer feugiat scelerisque varius morbi enim nunc."
+    }
+]
+
 ReactDOM.createRoot(document.getElementById('root'))
-    .render(<App users={users} accounts={accounts} transactions={transactions} />);
+    .render(<App users={users} accounts={accounts} transactions={transactions} messages={messages} />);

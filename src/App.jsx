@@ -36,7 +36,7 @@ const App = (props) => {
   const [circles, setCircles] = useState(true);
   const [currentloantype, setCurrentloantype] = useState(null);
   const [loanapplications, setLoanapplications] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(props.messages);
 
   /* useEffect(() => {
     console.log('Fetching..');
@@ -266,8 +266,8 @@ const App = (props) => {
       loantype: "Kulutuslaina"}));
 
     const currentDate = new Date();
-    const min = String(currentDate.getMinutes());
-    const hh = String(currentDate.getHours());
+    const min = String(currentDate.getMinutes()).padStart(2, '0');
+    const hh = String(currentDate.getHours()).padStart(2, '0');
     const dd = String(currentDate.getDate()).padStart(2, '0');
     const mm = String(currentDate.getMonth() + 1).padStart(2, '0');
     const yyyy = currentDate.getFullYear();
@@ -296,7 +296,7 @@ const App = (props) => {
       setAccounts(accounts.concat(newloanaccount));
       setMessages(messages.concat({
         id: messages.length + 100,
-        title: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty.",
+        title: "Lainahakemus " + newloanaccount.name,
         message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty. Lainasi on käytössä tästä päivästä alkaen. Lainaehdot ovat nähtävillä Monetarumin sivuilla.",
         date: today,
         read: false
@@ -574,7 +574,7 @@ const App = (props) => {
               <Link to="/personalinfo" style={{ textDecoration: 'none' }}><h3>Henkilötiedot</h3></Link>
             </div>
             <div className="link">
-              <Link to="/messages" style={{ textDecoration: 'none' }}><h3>Viestit</h3></Link>
+              <Link to="/messages" style={{ textDecoration: 'none' }}><h3>Viestit ({messages.length})</h3></Link>
             </div>
             </>
           }
