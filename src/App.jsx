@@ -266,11 +266,13 @@ const App = (props) => {
       loantype: "Kulutuslaina"}));
 
     const currentDate = new Date();
+    const min = String(currentDate.getMinutes());
+    const hh = String(currentDate.getHours());
     const dd = String(currentDate.getDate()).padStart(2, '0');
     const mm = String(currentDate.getMonth() + 1).padStart(2, '0');
     const yyyy = currentDate.getFullYear();
   
-    const today = dd + '.' + mm + '.' + yyyy;
+    const today = dd + '.' + mm + '.' + yyyy + ' ' + hh + ':' + min;
 
     const newloanaccount = {
       id: accounts.length + 1000,
@@ -294,7 +296,8 @@ const App = (props) => {
       setAccounts(accounts.concat(newloanaccount));
       setMessages(messages.concat({
         id: messages.length + 100,
-        message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty.",
+        title: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty.",
+        message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty. Lainasi on käytössä tästä päivästä alkaen. Lainaehdot ovat nähtävillä Monetarumin sivuilla.",
         date: today,
         read: false
       }));
@@ -508,6 +511,26 @@ const App = (props) => {
 
   }
 
+
+  const showmessage = (data) => {
+
+    const id = parseInt(data);
+
+    const messagges = messages.filter(message => message.id === id);
+    const onemessage = messagges[0];
+
+    setCircles(null);
+
+    setMessage("Viestin tiedot");
+    setSubmessage(<div className="formfield">
+      <label>Otsikko</label><h3>{onemessage.title}</h3>
+      <label>Päiväys</label><p>{onemessage.date}</p>
+      <label>Viesti</label><p>{onemessage.message}</p>
+      <button onClick={closeWindow}>Sulje ikkuna</button>
+    </div>);
+
+  }
+
   const closeWindow = () => {
 
     setCircles(true);
@@ -591,7 +614,7 @@ const App = (props) => {
                 <Personalinfo user={user} editInfo={editInfo} editPassword={editPassword} />
               </div>} />
               <Route path="/messages" element={<div className="balances">
-                <Messagetable messages={messages} />
+                <Messagetable messages={messages} showmessage={showmessage} />
               </div>} />
               </>
             }
