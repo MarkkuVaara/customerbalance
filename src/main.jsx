@@ -55,6 +55,7 @@ const accounts = [
         creationdate: "5.11.2023",
         name: "KÄYTTÖTILI 1009004555",
         balance: 590.45,
+        limit: null,
         userid: 10
     },
     {
@@ -62,6 +63,7 @@ const accounts = [
         creationdate: "5.11.2023",
         name: "SÄÄSTÖTILI 1009004577",
         balance: 1010,
+        limit: null,
         userid: 10
     },
     {
@@ -69,6 +71,7 @@ const accounts = [
         creationdate: "5.11.2023",
         name: "LAINATILI 1008001110",
         balance: -2915,
+        limit: -3000,
         userid: 10
     },
     {
@@ -76,6 +79,7 @@ const accounts = [
         creationdate: "5.11.2023",
         name: "KÄYTTÖTILI 1008005210",
         balance: 189.5,
+        limit: null,
         userid: 11
     },
     {
@@ -83,6 +87,7 @@ const accounts = [
         creationdate: "5.11.2023",
         name: "KÄYTTÖTILI 1008004599",
         balance: 32019,
+        limit: null,
         userid: 12
     }
 ]

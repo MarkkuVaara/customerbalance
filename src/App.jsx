@@ -250,14 +250,14 @@ const App = (props) => {
           <input defaultValue={signature} disabled></input>
         </div>
         </div>
-        <Loansubmitting loansubmitsubmit={loansubmitsubmit} cancelForm={cancelForm}/>
+        <Loansubmitting loansubmitsubmit={() => loansubmitsubmit(loan)} cancelForm={cancelForm}/>
       </>);
 
     }
 
   };
 
-  const loansubmitsubmit = () => {
+  const loansubmitsubmit = (limit) => {
 
     setCircles(true);
     setLoanapplications(loanapplications.concat({
@@ -278,7 +278,8 @@ const App = (props) => {
       id: accounts.length + 1000,
       creationdate: today,
       name: "LAINATILI 1008009990",
-      balance: -2000,
+      balance: 0,
+      limit: 0 - parseInt(limit),
       userid: user.id
     };
 
@@ -336,9 +337,23 @@ const App = (props) => {
     const date = event.target.date.value;
     const messagge = event.target.message.value;
 
-    if ((account.balance - amount) < 0) {
+    if ((account.balance - amount) < 0 && source.substring(0,5) !== "LAINA" ) {
       setMessage("Tilin saldo ei riitä");
       setSubmessage(<p>Yritä uudelleen.</p>);
+
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
+      return;
+
+    }
+
+    if (account.name.substring(0,5) === "LAINA" && (account.balance - amount) < account.limit) {
+
+      setMessage("Tilisiirto ylittää lainarajasi");
+      setSubmessage(<p>Yritä myöhemmin uudelleen.</p>);
 
       setTimeout(() => {
         setMessage(null);
