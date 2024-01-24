@@ -13,7 +13,7 @@ const Messagetable = (props) => {
     return (
         <div>
             <h3>Viestit</h3>
-            <div className="balances">
+            <div>
                 {messages.length === 0 &&
                     <p>Ei viestejä.</p>
                 }
@@ -22,10 +22,10 @@ const Messagetable = (props) => {
                         <div className="balance">
                             <input name="id" defaultValue={message.id} style={{display: "none"}} disabled></input>
                             {message.read == false &&
-                                <p>O</p>
+                                <p className="unread">Uusi</p>
                             }
                             <button type="submit" className="balancedate">{message.date}</button>
-                            <p className="balancetransaction">{message.title}</p>
+                            <p className="balancemessagetitle">{message.title}</p>
                             <p className="balanceactioner">{message.message.substring(0, 50)}...</p>
                         </div>
                     </form>

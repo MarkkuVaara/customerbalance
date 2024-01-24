@@ -534,6 +534,10 @@ const App = (props) => {
     const messagges = messages.filter(message => message.id === id);
     const onemessage = messagges[0];
 
+    const newmessages = messages.filter(message => message.id !== id);
+    onemessage.read = true;
+    setMessages(newmessages.concat(onemessage));
+
     setCircles(null);
 
     setMessage("Viestin tiedot");

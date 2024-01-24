@@ -248,6 +248,17 @@ button:focus {
     width: 15%;
 }
 
+.balancemessagetitle {
+    width: 30%;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.unread {
+    color: red;
+    font-size: 12px;
+}
+
 
 /* Transaction handling */
 
