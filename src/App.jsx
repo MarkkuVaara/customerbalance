@@ -26,11 +26,9 @@ import Balanceservice from './services/Balances';
 const App = (props) => {
 
   const [balance, setBalance] = useState(props.transactions.sort( function(a, b){
-    let x = a.date;
-    let y = b.date;
-    if (x < y) {return 1;}
-    if (x > y) {return -1;}
-    return 0;
+    let x = new Date(a.date);
+    let y = new Date(b.date);
+    return y-x;
     })
   );
   const [accounts, setAccounts] = useState(props.accounts);
@@ -44,11 +42,9 @@ const App = (props) => {
   const [currentloantype, setCurrentloantype] = useState(null);
   const [loanapplications, setLoanapplications] = useState([]);
   const [messages, setMessages] = useState(props.messages.sort( function(a, b){
-    let x = a.date;
-    let y = b.date;
-    if (x < y) {return 1;}
-    if (x > y) {return -1;}
-    return 0;
+    let x = new Date(a.date);
+    let y = new Date(b.date);
+    return y-x;
     })
   );
 
@@ -280,13 +276,13 @@ const App = (props) => {
       loantype: "Kulutuslaina"}));
 
     const currentDate = new Date();
-    const min = String(currentDate.getMinutes()).padStart(2, '0');
-    const hh = String(currentDate.getHours()).padStart(2, '0');
+    const formatter = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const formattedTime = formatter.format(currentDate);
     const dd = String(currentDate.getDate()).padStart(2, '0');
-    const mm = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const mm = String(currentDate.toLocaleString('en-us', { month: 'short' }));
     const yyyy = currentDate.getFullYear();
   
-    const today = dd + '.' + mm + '.' + yyyy + ' ' + hh + ':' + min;
+    const today = mm + ' ' + dd + ' ' + yyyy + ' ' + formattedTime;
 
     const newloanaccount = {
       id: accounts.length + 1000,
@@ -316,11 +312,9 @@ const App = (props) => {
         date: today,
         read: false
       }).sort( function(a, b){
-        let x = a.date;
-        let y = b.date;
-        if (x < y) {return 1;}
-        if (x > y) {return -1;}
-        return 0;
+        let x = new Date(a.date);
+        let y = new Date(b.date);
+        return y-x;
         })
       );
 
@@ -410,11 +404,9 @@ const App = (props) => {
       }
 
       setBalance(balance.concat(newBalance).sort( function(a, b){
-        let x = a.date;
-        let y = b.date;
-        if (x < y) {return 1;}
-        if (x > y) {return -1;}
-        return 0;
+        let x = new Date(a.date);
+        let y = new Date(b.date);
+        return y-x;
         })
       );
 
@@ -501,11 +493,9 @@ const App = (props) => {
       }
 
       setBalance(balance.concat(newBalance).sort( function(a, b){
-        let x = a.date;
-        let y = b.date;
-        if (x < y) {return 1;}
-        if (x > y) {return -1;}
-        return 0;
+        let x = new Date(a.date);
+        let y = new Date(b.date);
+        return y-x;
         })
       );
 
@@ -572,11 +562,9 @@ const App = (props) => {
     const newmessages = messages.filter(message => message.id !== id);
     onemessage.read = true;
     setMessages(newmessages.concat(onemessage).sort( function(a, b){
-      let x = a.date;
-      let y = b.date;
-      if (x < y) {return 1;}
-      if (x > y) {return -1;}
-      return 0;
+      let x = new Date(a.date);
+      let y = new Date(b.date);
+      return y-x;
       })
     );
 
