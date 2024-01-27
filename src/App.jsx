@@ -25,7 +25,14 @@ import Balanceservice from './services/Balances';
 
 const App = (props) => {
 
-  const [balance, setBalance] = useState(props.transactions);
+  const [balance, setBalance] = useState(props.transactions.sort( function(a, b){
+    let x = a.date;
+    let y = b.date;
+    if (x < y) {return 1;}
+    if (x > y) {return -1;}
+    return 0;
+    })
+  );
   const [accounts, setAccounts] = useState(props.accounts);
   const [account, setAccount] = useState(null);
   const [users, setUsers] = useState(props.users);
@@ -36,7 +43,14 @@ const App = (props) => {
   const [circles, setCircles] = useState(true);
   const [currentloantype, setCurrentloantype] = useState(null);
   const [loanapplications, setLoanapplications] = useState([]);
-  const [messages, setMessages] = useState(props.messages);
+  const [messages, setMessages] = useState(props.messages.sort( function(a, b){
+    let x = a.date;
+    let y = b.date;
+    if (x < y) {return 1;}
+    if (x > y) {return -1;}
+    return 0;
+    })
+  );
 
   /* useEffect(() => {
     console.log('Fetching..');
@@ -301,7 +315,14 @@ const App = (props) => {
         message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty. Lainasi on käytössä tästä päivästä alkaen. Lainaehdot ovat nähtävillä Monetarumin sivuilla.",
         date: today,
         read: false
-      }));
+      }).sort( function(a, b){
+        let x = a.date;
+        let y = b.date;
+        if (x < y) {return 1;}
+        if (x > y) {return -1;}
+        return 0;
+        })
+      );
 
     }, 30000);
 
@@ -388,7 +409,14 @@ const App = (props) => {
         message: messagge
       }
 
-      setBalance(balance.concat(newBalance));
+      setBalance(balance.concat(newBalance).sort( function(a, b){
+        let x = a.date;
+        let y = b.date;
+        if (x < y) {return 1;}
+        if (x > y) {return -1;}
+        return 0;
+        })
+      );
 
       setMessage("Tilisiirto suoritettu");
       setSubmessage(<>
@@ -472,7 +500,14 @@ const App = (props) => {
         reference: reference
       }
 
-      setBalance(balance.concat(newBalance));
+      setBalance(balance.concat(newBalance).sort( function(a, b){
+        let x = a.date;
+        let y = b.date;
+        if (x < y) {return 1;}
+        if (x > y) {return -1;}
+        return 0;
+        })
+      );
 
       setMessage("Lasku maksettu");
       setSubmessage(<>
@@ -536,11 +571,18 @@ const App = (props) => {
 
     const newmessages = messages.filter(message => message.id !== id);
     onemessage.read = true;
-    setMessages(newmessages.concat(onemessage));
+    setMessages(newmessages.concat(onemessage).sort( function(a, b){
+      let x = a.date;
+      let y = b.date;
+      if (x < y) {return 1;}
+      if (x > y) {return -1;}
+      return 0;
+      })
+    );
 
     setCircles(null);
 
-    setMessage("Viestin tiedot");
+    setMessage("Valitsemasi viestin tiedot");
     setSubmessage(<div className="formfield">
       <label>Otsikko</label><h3>{onemessage.title}</h3>
       <label>Päiväys</label><p>{onemessage.date}</p>
