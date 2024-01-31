@@ -351,6 +351,7 @@ const App = (props) => {
     const amount = event.target.amount.value;
     const date = event.target.date.value;
     const messagge = event.target.message.value;
+    let pending = false;
 
     if ((account.balance - amount) < 0 && source.substring(0,5) !== "LAINA" ) {
       setMessage("Tilin saldo ei riitä");
@@ -379,6 +380,28 @@ const App = (props) => {
 
     }
 
+    const date2 = new Date(date);
+    const currentDate = new Date();
+
+    if (date2.getFullYear() < currentDate.getFullYear()
+      || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() < currentDate.getMonth())
+      || (date2.getMonth() == currentDate.getMonth() && date2.getDate() < currentDate.getDate())) {
+      setMessage("Et voi antaa päiväystä, joka on nykyistä ajankohtaa aikaisempi");
+      setSubmessage(<p>Yritä uudelleen.</p>);
+
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
+      return;
+
+    }
+
+    if (date2 > currentDate) {
+      pending = true;
+    }
+
     const newsaldo = (account.balance - amount).toFixed(2);
 
     if (!amount || !date) {
@@ -386,15 +409,18 @@ const App = (props) => {
       setSubmessage(<p>Yritä uudelleen.</p>);
     } else {
 
-      accounts.map(account =>
-        account.name === source
-        ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
-        : null
-      )
+      if (pending !== true) {
+        accounts.map(account =>
+          account.name === source
+          ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
+          : null
+        )
+      }
 
       const newBalance = {
         id: balance.length + 1000,
         date: date,
+        pending: pending,
         transactiontype: "unknown",
         transactioner: user.firstname + " " + user.lastname,
         target: target,
@@ -451,6 +477,7 @@ const App = (props) => {
     const reference = event.target.reference.value;
     const messagge = event.target.message.value;
     const date = event.target.date.value;
+    let pending = false;
 
     setCircles(true);
 
@@ -465,6 +492,28 @@ const App = (props) => {
 
       return;
 
+    }
+
+    const date2 = new Date(date);
+    const currentDate = new Date();
+
+    if (date2.getFullYear() < currentDate.getFullYear()
+      || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() < currentDate.getMonth())
+      || (date2.getMonth() == currentDate.getMonth() && date2.getDate() < currentDate.getDate())) {
+      setMessage("Et voi antaa päiväystä, joka on nykyistä ajankohtaa aikaisempi");
+      setSubmessage(<p>Yritä uudelleen.</p>);
+
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
+      return;
+
+    }
+
+    if (date2 > currentDate) {
+      pending = true;
     }
 
     const newsaldo = (account.balance - amount).toFixed(2);
@@ -483,6 +532,7 @@ const App = (props) => {
       const newBalance = {
         id: balance.length + 1000,
         date: date,
+        pending: pending,
         transactiontype: "loan",
         transactioner: user.firstname + " " + user.lastname,
         target: target,

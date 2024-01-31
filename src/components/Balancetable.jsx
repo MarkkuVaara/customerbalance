@@ -36,6 +36,7 @@ const Balancetable = (props) => {
             {accounttransactions.map(transaction =>
                 <form key={transaction.id} onSubmit={onTrigger}>
                 <div className="balance">
+                    {transaction.pending && <b>Odottaa</b>}
                     <input name="id" defaultValue={transaction.id} style={{display: "none"}} disabled></input>
                     <button type="submit" className="balancedate">{transaction.date}</button>
                     {transaction.transactiontype === "shop" &&
