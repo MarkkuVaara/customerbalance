@@ -1,18 +1,18 @@
 
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 const Transaction = (props) => {
+
+    const [startDate, setStartDate] = useState(new Date());
 
     const user = props.user;
     const account = props.account;
     const accounts = props.accounts;
     const filteredaccounts = accounts.filter(account => account.userid === user.id);
     const useronly = props.useronly;
-
-    const currentDate = new Date();
-    const dd = String(currentDate.getDate()).padStart(2, '0');
-    const mm = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const yyyy = currentDate.getFullYear();
-
-    const today = dd + '.' + mm + '.' + yyyy;
 
     return(
         <div>
@@ -43,7 +43,7 @@ const Transaction = (props) => {
                     <label>*Rahasumma</label>
                     <input name="amount"></input>
                     <label>*Päiväys</label>
-                    <input name="date" defaultValue={today}></input>
+                    <DatePicker name="date" selected={startDate} onChange={(date) => setStartDate(date)} />
                     <label>Viesti</label>
                     <textarea name="message"></textarea>
                     <button type="submit">Tee tilisiirto</button>

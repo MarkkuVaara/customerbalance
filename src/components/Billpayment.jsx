@@ -1,5 +1,12 @@
 
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 const Billpayment = (props) => {
+
+    const [startDate, setStartDate] = useState(new Date());
 
     const account = props.account;
     const accounts = props.accounts;
@@ -26,7 +33,7 @@ const Billpayment = (props) => {
                     <label>**Viesti</label>
                     <textarea name="message"></textarea>
                     <label>*Päiväys</label>
-                    <input name="date"></input>
+                    <DatePicker name="date" selected={startDate} onChange={(date) => setStartDate(date)} />
                     <button type="submit">Maksa lasku</button>
                     <button type="button" onClick={props.cancelForm}>Peruuta lasku</button>
                 </div>
