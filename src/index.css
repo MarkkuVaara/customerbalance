@@ -535,5 +535,9 @@ button:focus {
     .formfield > button {
         font-size: 14px;
     }
+    .main {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
 
 }

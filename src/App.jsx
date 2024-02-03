@@ -279,10 +279,10 @@ const App = (props) => {
     const formatter = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     const formattedTime = formatter.format(currentDate);
     const dd = String(currentDate.getDate()).padStart(2, '0');
-    const mm = String(currentDate.toLocaleString('en-us', { month: 'short' }));
+    const mm = String(currentDate.getMonth()).padStart(2, '0');
     const yyyy = currentDate.getFullYear();
   
-    const today = mm + ' ' + dd + ' ' + yyyy + ' ' + formattedTime;
+    const today = mm + '/' + dd + '/' + yyyy + ' ' + formattedTime;
 
     const newloanaccount = {
       id: accounts.length + 1000,
@@ -352,6 +352,7 @@ const App = (props) => {
     const date = event.target.date.value;
     const messagge = event.target.message.value;
     let pending = false;
+    let datetime;
 
     if ((account.balance - amount) < 0 && source.substring(0,5) !== "LAINA" ) {
       setMessage("Tilin saldo ei riitä");
@@ -410,16 +411,25 @@ const App = (props) => {
     } else {
 
       if (pending !== true) {
+
         accounts.map(account =>
           account.name === source
           ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
           : null
         )
+
+        const currDate = new Date();
+        const formatter = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const formattedTime = formatter.format(currDate);
+        datetime = date + " " + formattedTime;
+
+      } else {
+        datetime = date + " 06:00:00 AM";
       }
 
       const newBalance = {
         id: balance.length + 1000,
-        date: date,
+        date: datetime,
         pending: pending,
         transactiontype: "unknown",
         transactioner: user.firstname + " " + user.lastname,
@@ -478,6 +488,7 @@ const App = (props) => {
     const messagge = event.target.message.value;
     const date = event.target.date.value;
     let pending = false;
+    let datetime;
 
     setCircles(true);
 
@@ -523,15 +534,26 @@ const App = (props) => {
       setSubmessage(<p>Yritä uudelleen.</p>)
     } else {
 
-      accounts.map(account =>
-        account.name === source
-        ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
-        : null
-      )
+      if (pending !== true) {
+
+        accounts.map(account =>
+          account.name === source
+          ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
+          : null
+        )
+
+        const currDate = new Date();
+        const formatter = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const formattedTime = formatter.format(currDate);
+        datetime = date + " " + formattedTime;
+
+      } else {
+        datetime = date + " 06:00:00 AM";
+      }
 
       const newBalance = {
         id: balance.length + 1000,
-        date: date,
+        date: datetime,
         pending: pending,
         transactiontype: "loan",
         transactioner: user.firstname + " " + user.lastname,

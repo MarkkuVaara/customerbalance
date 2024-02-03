@@ -52,7 +52,7 @@ const users = [
 const accounts = [
     {
         id: 50,
-        creationdate: "Nov 5 2023 12:00:00 AM",
+        creationdate: "11/05/2023",
         name: "KÄYTTÖTILI 1009004555",
         balance: 590.45,
         limit: null,
@@ -60,7 +60,7 @@ const accounts = [
     },
     {
         id: 51,
-        creationdate: "Nov 5 2023 12:00:00 AM",
+        creationdate: "11/05/2023",
         name: "SÄÄSTÖTILI 1009004577",
         balance: 1010,
         limit: null,
@@ -68,7 +68,7 @@ const accounts = [
     },
     {
         id: 52,
-        creationdate: "Nov 5 2023 12:00:00 AM",
+        creationdate: "11/05/2023",
         name: "LAINATILI 1008001110",
         balance: -2915,
         limit: -3000,
@@ -76,7 +76,7 @@ const accounts = [
     },
     {
         id: 53,
-        creationdate: "Nov 5 2023 12:00:00 AM",
+        creationdate: "11/05/2023",
         name: "KÄYTTÖTILI 1008005210",
         balance: 189.5,
         limit: null,
@@ -84,7 +84,7 @@ const accounts = [
     },
     {
         id: 54,
-        creationdate: "Nov 5 2023 12:00:00 AM",
+        creationdate: "11/05/2023",
         name: "KÄYTTÖTILI 1008004599",
         balance: 32019,
         limit: null,
@@ -95,7 +95,7 @@ const accounts = [
 const transactions = [
     {
         id: 108,
-        date: "Nov 19 2023 7:01:00 PM",
+        date: "11/19/2023",
         transactiontype: "shop",
         transactioner: "K-Citymarket",
         transaction: -22,
@@ -103,7 +103,7 @@ const transactions = [
     },
     {
         id: 109,
-        date: "Nov 18 2023 6:00:00 PM",
+        date: "11/18/2023",
         transactiontype: "unknown",
         transactioner: "Punttipojat",
         transaction: -160,
@@ -111,7 +111,7 @@ const transactions = [
     },
     {
         id: 111,
-        date: "Nov 17 2023 11:23:00 AM",
+        date: "11/17/2023",
         transactiontype: "loan",
         transactioner: "Monetarum opintolaina",
         transaction: -100,
@@ -119,7 +119,7 @@ const transactions = [
     },
     {
         id: 112,
-        date: "Nov 17 2023 12:03:00 PM",
+        date: "11/17/2023",
         transactiontype: "phone",
         transactioner: "Telia",
         transaction: -22,
@@ -127,7 +127,7 @@ const transactions = [
     },
     {
         id: 113,
-        date: "Nov 15 2023 12:57:00 PM",
+        date: "11/15/2023",
         transactiontype: "shop",
         transactioner: "K-Citymarket",
         transaction: -104,
@@ -135,7 +135,7 @@ const transactions = [
     },
     {
         id: 114,
-        date: "Nov 15 2023 1:49:00 PM",
+        date: "11/15/2023",
         transactiontype: "shop",
         transactioner: "K-Citymarket",
         transaction: -3.90,
@@ -143,7 +143,7 @@ const transactions = [
     },
     {
         id: 115,
-        date: "Nov 13 2023 4:01:00 PM",
+        date: "11/13/2023",
         transactiontype: "shop",
         transactioner: "S-market",
         transaction: -42.95,
@@ -151,7 +151,7 @@ const transactions = [
     },
     {
         id: 116,
-        date: "Nov 10 2023 6:23:00 AM",
+        date: "11/10/2023",
         transactiontype: "gov",
         transactioner: "KELA",
         target: "KÄYTTÖTILI 1009004555",
@@ -160,7 +160,7 @@ const transactions = [
     },
     {
         id: 117,
-        date: "Nov 17 2023 8:00:00 AM",
+        date: "11/17/2023",
         transactiontype: "loan",
         transactioner: "Markku Vaara",
         transaction: 100,
@@ -168,7 +168,7 @@ const transactions = [
     },
     {
         id: 118,
-        date: "Oct 17 2023 8:00:00 AM",
+        date: "10/17/2023",
         transactiontype: "loan",
         transactioner: "Markku Vaara",
         transaction: 100,
@@ -176,7 +176,7 @@ const transactions = [
     },
     {
         id: 119,
-        date: "Oct 30 2023 10:04:00 AM",
+        date: "10/30/2023",
         transactiontype: "unknown",
         transactioner: "Markku Vaara",
         transaction: 500,
@@ -184,7 +184,7 @@ const transactions = [
     },
     {
         id: 120,
-        date: "Nov 30 2023 7:43 PM",
+        date: "11/30/2023",
         transactiontype: "shop",
         transactioner: "Musti ja Mirri",
         transaction: -39,
@@ -192,7 +192,7 @@ const transactions = [
     },
     {
         id: 121,
-        date: "Nov 30 2023 6:32 PM",
+        date: "11/30/2023",
         transactiontype: "shop",
         transactioner: "Prisma",
         transaction: -12.95,
@@ -200,7 +200,7 @@ const transactions = [
     },
     {
         id: 122,
-        date: "Dec 8 2023 11:02:00 AM",
+        date: "12/08/2023",
         transactiontype: "unknown",
         transactioner: "Elli Jelkänen",
         transaction: 100,
@@ -208,7 +208,7 @@ const transactions = [
     },
     {
         id: 123,
-        date: "Dec 1 2023 7:35:00 AM",
+        date: "12/01/2023",
         transactiontype: "gov",
         transactioner: "Ympäristölaboratorio",
         transaction: 1900,
@@ -216,7 +216,7 @@ const transactions = [
     },
     {
         id: 124,
-        date: "Dec 5 2023 6:01:00 PM",
+        date: "12/05/2023",
         transactiontype: "shop",
         transactioner: "Lidl",
         transaction: -79,
@@ -224,7 +224,7 @@ const transactions = [
     },
     {
         id: 125,
-        date: "Dec 8 2023 5:35:00 AM",
+        date: "12/08/2023",
         transactiontype: "unknown",
         transactioner: "Seppo Virolainen",
         transaction: -100,
@@ -235,7 +235,7 @@ const transactions = [
 const messages = [
     {
         id: 15,
-        date: "Jan 1 2024 6:00:00 AM",
+        date: "01/01/2024",
         read: false,
         title: "Tervetuloa",
         message: "Tervetuloa, uusi asiakas. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Et malesuada fames ac turpis egestas integer eget. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Integer feugiat scelerisque varius morbi enim nunc."
