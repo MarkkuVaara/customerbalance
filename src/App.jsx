@@ -22,6 +22,7 @@ import Billpayment from './components/Billpayment';
 import Messagetable from './components/Messagetable';
 
 import Balanceservice from './services/Balances';
+import ChatComponent from './components/ChatComponent';
 
 const App = (props) => {
 
@@ -740,6 +741,7 @@ const App = (props) => {
               </>
             }
           </Routes>
+          <ChatComponent />
         </div>
       </Router>
     </div>
