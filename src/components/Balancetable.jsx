@@ -38,7 +38,7 @@ const Balancetable = (props) => {
                 <div className="balance">
                     {transaction.pending && <b>Odottaa</b>}
                     <input name="id" defaultValue={transaction.id} style={{display: "none"}} disabled></input>
-                    <button type="submit" className="balancedate">{transaction.date}</button>
+                    <button type="submit" className="balancedate">{transaction.date.substring(0, 10)}</button>
                     {transaction.transactiontype === "shop" &&
                         <p className="balancedescription"><img src={Shop} alt={Shop}></img></p>
                     }

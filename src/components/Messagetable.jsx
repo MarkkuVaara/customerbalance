@@ -24,7 +24,7 @@ const Messagetable = (props) => {
                             {message.read == false &&
                                 <p className="unread">Uusi</p>
                             }
-                            <button type="submit" className="balancedate">{message.date}</button>
+                            <button type="submit" className="balancedate">{message.date.substring(0, 10)}</button>
                             <p className="balancemessagetitle">{message.title}</p>
                             <p className="balanceactioner">{message.message.substring(0, 50)}...</p>
                         </div>

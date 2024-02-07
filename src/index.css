@@ -469,12 +469,12 @@ button:focus {
 
 .infoform > form {
     display: flex;
-    background-color: lightskyblue;
+    background-color: lightgray;
     padding: 10px;
 }
 
 .box > div > .formfield {
-    background-color: lightskyblue;
+    background-color: lightgray;
     border-right: 1px;
     border-bottom: 1px;
     border-style: solid;
@@ -523,7 +523,8 @@ button:focus {
 }
 
 .formfield > button {
-    grid-column: controls;
+    display: flex;
+    width: 90%;
     margin: 15px;
     border: gray 1px solid;
 }
