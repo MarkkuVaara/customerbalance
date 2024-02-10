@@ -12,6 +12,9 @@ const ChatComponent = () => {
   };
 
   const handleSendMessage = async () => {
+
+    const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
+
     const response = await axios.post(
         'https://api.openai.com/v1/completions', {
         model: 'text-davinci-003',
@@ -19,7 +22,7 @@ const ChatComponent = () => {
         max_tokens: 50
      }, {
         headers: {
-          'Authorization': 'Bearer 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',
+          'Authorization': API_KEY,
         },
       }
     );
@@ -27,6 +30,7 @@ const ChatComponent = () => {
     const message = response.data.choices[0].text;
     setChatHistory([...chatHistory, { user: userInput, bot: message }]);
     setUserInput('');
+
   };
 
   return (
