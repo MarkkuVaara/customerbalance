@@ -542,3 +542,26 @@ button:focus {
     }
 
 }
+
+
+/* Chat component */
+
+.chatcomponent {
+    margin-left: 10px;
+    width: 60%;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 8px;
+    background-color: cornsilk;
+}
+
+.chatbox {
+    background-color: white;
+    padding: 5px;
+}
+
+@media only screen and (max-width: 800px) {
+    .chatcomponent {
+        width: 90%;
+    }
+}

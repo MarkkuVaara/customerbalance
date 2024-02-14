@@ -37,18 +37,19 @@ const ChatComponent = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="chatcomponent">
+      <div className="chatbox">
+        <p>Hello, I am Kalevi, your bankbot. How may I help you?</p>
         {chatHistory.map((message, index) => (
           <div key={index}>
-            <strong>User:</strong> {message.user}
+            <strong>You:</strong> {message.user}
             <br />
-            <strong>Bot:</strong> {message.bot}
+            <strong>Kalevi:</strong> {message.bot}
           </div>
         ))}
       </div>
       <input type="text" value={userInput} onChange={handleInputChange} />
-      <button onClick={handleSendMessage}>Lähetä</button>
+      <button onClick={handleSendMessage}>Send</button>
     </div>
   );
 };
