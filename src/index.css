@@ -551,20 +551,23 @@ button:focus {
     top: 0;
     right: -100%;
     width: 300px;
-    height: 100%;
+    height: max-content;
+    max-height: 95%;
     background-color: white;
+    border-radius: 8px;
     transition: right 0.3s ease-out;
     z-index: 999;
+    overflow-y: auto;
   }
-  
+
   .chatboxcont.open {
     right: 0;
   }
-  
+
   .chatbox-content {
-    padding: 20px;
+    padding: 10px;
   }
-  
+
   .close-btn {
     position: absolute;
     top: 10px;
@@ -572,8 +575,8 @@ button:focus {
   }
 
 .chatcomponent {
-    margin-left: 10px;
-    width: 90%;
+    margin: 3px;
+    margin-top: 25px;
     padding: 10px;
     border: 2px solid gray;
     border-radius: 8px;
@@ -581,12 +584,21 @@ button:focus {
 }
 
 .chatcomponent > button {
-    margin-left: 10px;
+    margin-top: 10px;
     font-size: 14px;
 }
 
 .chatcomponent > input {
+    margin-top: 10px;
     width: 75%;
+}
+
+.chatboxbutton,
+.chatboxbutton:hover {
+    position: fixed;
+    top: 50;
+    right: 0;
+    border: 2px solid gray;
 }
 
 @media only screen and (max-width: 800px) {

@@ -712,7 +712,7 @@ const App = (props) => {
         </div>
         <div className="main">
           {!isChatBoxOpen &&
-            <button onClick={toggleChatBox}>Kalevi pankkibotti</button>
+            <button className="chatboxbutton" onClick={toggleChatBox}>Kalevi pankkibotti</button>
           }
           <ChatBox isOpen={isChatBoxOpen} onClose={toggleChatBox}>
             <ChatComponent />
