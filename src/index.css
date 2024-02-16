@@ -546,18 +546,47 @@ button:focus {
 
 /* Chat component */
 
+.chatboxcont {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    transition: right 0.3s ease-out;
+    z-index: 999;
+  }
+  
+  .chatboxcont.open {
+    right: 0;
+  }
+  
+  .chatbox-content {
+    padding: 20px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
 .chatcomponent {
     margin-left: 10px;
-    width: 60%;
+    width: 90%;
     padding: 10px;
     border: 2px solid gray;
     border-radius: 8px;
     background-color: cornsilk;
 }
 
-.chatbox {
-    background-color: white;
-    padding: 5px;
+.chatcomponent > button {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.chatcomponent > input {
+    width: 75%;
 }
 
 @media only screen and (max-width: 800px) {

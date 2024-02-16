@@ -23,6 +23,7 @@ import Messagetable from './components/Messagetable';
 
 import Balanceservice from './services/Balances';
 import ChatComponent from './components/ChatComponent';
+import ChatBox from './components/ChatBox';
 
 const App = (props) => {
 
@@ -48,6 +49,8 @@ const App = (props) => {
     return y-x;
     })
   );
+  const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
+
 
   /* useEffect(() => {
     console.log('Fetching..');
@@ -661,6 +664,12 @@ const App = (props) => {
 
   }
 
+  const toggleChatBox = () => {
+
+    setIsChatBoxOpen(!isChatBoxOpen);
+
+  };
+
 
   return (
 
@@ -702,6 +711,12 @@ const App = (props) => {
           }
         </div>
         <div className="main">
+          {!isChatBoxOpen &&
+            <button onClick={toggleChatBox}>Kalevi pankkibotti</button>
+          }
+          <ChatBox isOpen={isChatBoxOpen} onClose={toggleChatBox}>
+            <ChatComponent />
+          </ChatBox>
           {loanapplications &&
             loanapplications.map(loanapplication =>
               <div className="loanapplication" key={loanapplication.id}>
@@ -741,7 +756,6 @@ const App = (props) => {
               </>
             }
           </Routes>
-          <ChatComponent />
         </div>
       </Router>
     </div>
