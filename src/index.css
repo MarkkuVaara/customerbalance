@@ -578,9 +578,14 @@ button:focus {
     margin: 3px;
     margin-top: 25px;
     padding: 10px;
-    border: 2px solid gray;
+    border: 1px solid gray;
     border-radius: 8px;
-    background-color: cornsilk;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.chat {
+    text-align: left;
 }
 
 .chatcomponent > button {
@@ -588,9 +593,12 @@ button:focus {
     font-size: 14px;
 }
 
-.chatcomponent > input {
+.chatcomponent > textarea {
     margin-top: 10px;
-    width: 75%;
+    width: 90%;
+    max-width: 100%;
+    min-width: 75%;
+    max-height: 50px;
 }
 
 .chatboxbutton,

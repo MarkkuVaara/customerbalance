@@ -39,17 +39,17 @@ const ChatComponent = () => {
   return (
     <div className="chatcomponent">
       <div className="chatbox">
-        <p>Hello, I am Kalevi, your bankbot. How may I help you?</p>
+        <p>Hello, I am <strong>Kalevi</strong>, your bankbot. How may I help you?</p>
         {chatHistory.map((message, index) => (
-          <div key={index}>
+          <div className="chat" key={index}>
             <strong>You:</strong> {message.user}
             <br />
             <strong>Kalevi:</strong> {message.bot}
           </div>
         ))}
       </div>
-      <input type="text" value={userInput} onChange={handleInputChange} />
-      <button onClick={handleSendMessage}>Send</button>
+      <textarea type="text" value={userInput} onChange={handleInputChange} />
+      <button onClick={handleSendMessage}>Send a question</button>
     </div>
   );
 };
