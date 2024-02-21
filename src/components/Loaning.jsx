@@ -70,8 +70,8 @@ const Loaning = (props) => {
                     <input name="income"></input>
                     <label>Allekirjoitus</label>
                     <input name="signature"></input>
-                    <button type="submit">Tiedot on syötetty</button>
                     <button type="button" onClick={props.cancelForm}>Hylkää hakemus</button>
+                    <button type="submit"><strong>Tiedot on syötetty</strong></button>
                 </div>
             </form>
         </div>

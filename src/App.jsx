@@ -20,6 +20,7 @@ import Infoform from './components/Infoform';
 import Password from './components/Password';
 import Billpayment from './components/Billpayment';
 import Messagetable from './components/Messagetable';
+import Login from './components/Login';
 
 import Balanceservice from './services/Balances';
 import ChatComponent from './components/ChatComponent';
@@ -80,12 +81,27 @@ const App = (props) => {
   };
 
   const login = () => {
-    setMessage("Kirjaudun sisään..");
+
+    setCircles(false);
+    setMessage("Kirjaudu sisään");
+    setSubmessage(<Login loggingin={loggingin} closeWindow={closeWindow} />);
+
+  };
+
+  const loggingin = () => {
+
+    setCircles(true);
+    setMessage("Kirjautuminen suoritettu");
+    setSubmessage(null);
+
     setTimeout(() => {
       setMessage(null);
+      setSubmessage(null);
     }, 2000);
+
     setUser(users[0]);
-  };
+
+  }
 
 
   /* Editing personal information */

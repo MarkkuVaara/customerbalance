@@ -34,8 +34,8 @@ const Billpayment = (props) => {
                     <textarea name="message"></textarea>
                     <label>*Päiväys</label>
                     <DatePicker name="date" selected={startDate} onChange={(date) => setStartDate(date)} />
-                    <button type="submit">Maksa lasku</button>
                     <button type="button" onClick={props.cancelForm}>Peruuta lasku</button>
+                    <button type="submit"><strong>Maksa lasku</strong></button>
                 </div>
             </form>
         </div>

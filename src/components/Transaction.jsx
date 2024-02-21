@@ -46,8 +46,8 @@ const Transaction = (props) => {
                     <DatePicker name="date" selected={startDate} onChange={(date) => setStartDate(date)} />
                     <label>Viesti</label>
                     <textarea name="message"></textarea>
-                    <button type="submit">Tee tilisiirto</button>
                     <button type="button" onClick={props.cancelForm}>Peruuta toiminto</button>
+                    <button type="submit"><strong>Tee tilisiirto</strong></button>
                 </div>
             </form>
         </div>
