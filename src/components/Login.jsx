@@ -1,16 +1,17 @@
 
 const Login = (props) => {
 
-
     return (
-        <div className="formfield">
-            <label>Käyttäjätunnus:</label>
-            <input></input>
-            <label>Salasana:</label>
-            <input></input>
-            <button onClick={props.closeWindow}>Peruuta</button>
-            <button onClick={props.loggingin}>Kirjaudu</button>
-        </div>
+        <form onSubmit={props.loggingin} >
+            <div className="formfield">
+                <label>Käyttäjätunnus:</label>
+                <input name="user"></input>
+                <label>Salasana:</label>
+                <input name="password"></input>
+                <button type="button" onClick={props.closeWindow}>Peruuta</button>
+                <button type="submit">Kirjaudu</button>
+            </div>
+        </form>
     )
 
 }

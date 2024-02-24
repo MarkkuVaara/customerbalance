@@ -83,15 +83,22 @@ const App = (props) => {
   const login = () => {
 
     setCircles(false);
-    setMessage("Kirjaudu sisään");
+    setMessage("Kirjaudu sisään verkkopankkiin:");
     setSubmessage(<Login loggingin={loggingin} closeWindow={closeWindow} />);
 
   };
 
-  const loggingin = () => {
+  const loggingin = (event) => {
+    event.preventDefault();
+
+    const enteredusername = event.target.user.value;
+    const enteredpassword = event.target.password.value;
+
+    console.log(enteredusername);
+    console.log(enteredpassword);
 
     setCircles(true);
-    setMessage("Kirjautuminen suoritettu");
+    setMessage("Kirjautuminen suoritettu!");
     setSubmessage(null);
 
     setTimeout(() => {
