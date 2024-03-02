@@ -633,19 +633,19 @@ const App = (props) => {
 
     setMessage("Valitsemasi tilitapahtuman tiedot");
     setSubmessage(<div className="formfield">
-        <label>Päiväys:</label> <p>{transactionn.date}</p>
-        <label>Toimija:</label> <p>{transactionn.transactioner}</p>
-        {transactionn.target && <><label>Kohdetili:</label> <p>{transactionn.target}</p></>}
-        <label>Määrä:</label> <p>{transactionn.transaction}</p>
-        <label>Tyyppi:</label> 
+        <label>Päiväys</label> <p>{transactionn.date}</p>
+        <label>Toimija</label> <p>{transactionn.transactioner}</p>
+        {transactionn.target && <><label>Kohdetili</label> <p>{transactionn.target}</p></>}
+        <label>Määrä</label> <p>{transactionn.transaction}</p>
+        <label>Tyyppi</label> 
         {transactionn.transactiontype === "shop" && <p>Kauppa</p>}
         {transactionn.transactiontype === "loan" && <p>Tilisiirto</p>}
         {transactionn.transactiontype === "phone" && <p>Puhelin</p>}
         {transactionn.transactiontype === "gov" && <p>Virasto</p>}
         {transactionn.transactiontype === "unknown" && <p>Tuntematon</p>}
-        {transactionn.reference && <><label>Viite:</label> <p>{transactionn.reference}</p></>}
-        {transactionn.message && <><label>Viesti:</label> <p>{transactionn.message}</p></>}
-        <button onClick={closeWindow}>Sulje ikkuna</button>
+        {transactionn.reference && <><label>Viite</label> <p>{transactionn.reference}</p></>}
+        {transactionn.message && <><label>Viesti</label> <p>{transactionn.message}</p></>}
+        <button className="closebutton" onClick={closeWindow}>Sulje ikkuna</button>
       </div>);
 
   }
@@ -674,7 +674,7 @@ const App = (props) => {
       <label>Otsikko</label><h3>{onemessage.title}</h3>
       <label>Päiväys</label><p>{onemessage.date}</p>
       <label>Viesti</label><p>{onemessage.message}</p>
-      <button onClick={closeWindow}>Sulje ikkuna</button>
+      <button className="closebutton" onClick={closeWindow}>Sulje ikkuna</button>
     </div>);
 
   }

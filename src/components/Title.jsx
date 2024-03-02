@@ -1,4 +1,6 @@
 
+import Titleimage from '../images/title.jpg';
+
 const Title = (props) => {
 
     const user = props.user;

@@ -4,7 +4,7 @@
 h1 {
     color: black;
     font-size: 54px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 h2, h3, h4, b, p {
@@ -39,6 +39,9 @@ p {
         font-size: 16px;
     }
     p {
+        font-size: 14px;
+    }
+    .title > div > h3 {
         font-size: 14px;
     }
 
@@ -469,14 +472,16 @@ button:focus {
 
 .infoform > form {
     display: flex;
-    background-color: lightgray;
+    background-color: lightblue;
     padding: 10px;
 }
 
 .box > div > .formfield {
-    background-color: lightgray;
-    border-right: 1px;
-    border-bottom: 1px;
+    background-color: lightblue;
+    border-left: 1px;
+    border-top: 1px;
+    border-bottom: 0px;
+    border-right: 0px;
     border-style: solid;
     border-color: lightslategray;
     padding-top: 10px;
@@ -518,6 +523,10 @@ button:focus {
     font-size: 18px;
 }
 
+.formfield > h3 {
+    margin-top: 5px;
+}
+
 .formfield > textarea {
     height: 100px;
 }
@@ -528,6 +537,11 @@ button:focus {
     margin: 15px;
     border: gray 1px solid;
 }
+
+.closebutton {
+    grid-column: controls; 
+}
+
 
 @media only screen and (max-width: 800px) {
     .formfield > label,
