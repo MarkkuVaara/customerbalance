@@ -22,7 +22,7 @@ import Billpayment from './components/Billpayment';
 import Messagetable from './components/Messagetable';
 import Login from './components/Login';
 
-import Balanceservice from './services/Balances';
+import Userservice from './services/userservice';
 import ChatComponent from './components/ChatComponent';
 import ChatBox from './components/ChatBox';
 
@@ -36,7 +36,7 @@ const App = (props) => {
   );
   const [accounts, setAccounts] = useState(props.accounts);
   const [account, setAccount] = useState(null);
-  const [users, setUsers] = useState(props.users);
+  const [users, setUsers] = useState([]);
 
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState(null);
@@ -53,15 +53,15 @@ const App = (props) => {
   const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
 
 
-  /* useEffect(() => {
+  useEffect(() => {
     console.log('Fetching..');
-    Balanceservice
+    Userservice
       .getAll()
       .then(response => {
-        console.log('Balance fetched..');
-        setBalance(response.data);
+        console.log('Users fetched..');
+        setUsers(response.data);
       });
-  }, []); */
+  }, []);
 
 
   /* Logging in and out */

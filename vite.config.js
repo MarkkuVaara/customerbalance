@@ -11,4 +11,12 @@ export default defineConfig({
     envCompatible({ prefix: 'REACT_APP_' }),
     react(),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    }
+  },
 })
