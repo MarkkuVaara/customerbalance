@@ -23,6 +23,8 @@ import Messagetable from './components/Messagetable';
 import Login from './components/Login';
 
 import Userservice from './services/userservice';
+import Loginservice from './services/loginservice';
+
 import ChatComponent from './components/ChatComponent';
 import ChatBox from './components/ChatBox';
 
@@ -54,13 +56,16 @@ const App = (props) => {
 
 
   useEffect(() => {
+
     console.log('Fetching..');
+
     Userservice
       .getAll()
       .then(response => {
         console.log('Users fetched..');
         setUsers(response.data);
       });
+
   }, []);
 
 
@@ -88,14 +93,22 @@ const App = (props) => {
 
   };
 
-  const loggingin = (event) => {
+  const loggingin = async (event) => {
     event.preventDefault();
 
-    const enteredusername = event.target.user.value;
-    const enteredpassword = event.target.password.value;
+    const usernumber = event.target.user.value;
+    const password = event.target.password.value;
 
-    console.log(enteredusername);
-    console.log(enteredpassword);
+    try {
+      const user = await Loginservice.login({
+        usernumber, password,
+      });
+      const loginuser = users.filter(userb => userb.usernumber == user.usernumber);
+      setUser(loginuser[0]);
+      // imageService.setToken(user.token);
+    } catch (exception) {
+      alert("Wrong credentials!");
+    }
 
     setCircles(true);
     setMessage("Kirjautuminen suoritettu!");
@@ -105,8 +118,6 @@ const App = (props) => {
       setMessage(null);
       setSubmessage(null);
     }, 2000);
-
-    setUser(users[0]);
 
   }
 
