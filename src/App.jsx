@@ -24,6 +24,7 @@ import Login from './components/Login';
 
 import Userservice from './services/userservice';
 import Loginservice from './services/loginservice';
+import Accountservice from './services/accountservice';
 
 import ChatComponent from './components/ChatComponent';
 import ChatBox from './components/ChatBox';
@@ -36,7 +37,7 @@ const App = (props) => {
     return y-x;
     })
   );
-  const [accounts, setAccounts] = useState(props.accounts);
+  const [accounts, setAccounts] = useState([]);
   const [account, setAccount] = useState(null);
   const [users, setUsers] = useState([]);
 
@@ -57,8 +58,6 @@ const App = (props) => {
 
   useEffect(() => {
 
-    console.log('Fetching..');
-
     Userservice
       .getAll()
       .then(response => {
@@ -66,8 +65,19 @@ const App = (props) => {
         setUsers(response.data);
       });
 
+    Accountservice
+      .getAll()
+      .then(response => {
+        console.log('Accounts fetched..');
+        setAccounts(response.data);
+    });
+  
   }, []);
 
+  useEffect(() => {
+    console.log('Accounts updated:', accounts);
+  }, [accounts]);
+  
 
   /* Logging in and out */
 
@@ -106,13 +116,14 @@ const App = (props) => {
       const loginuser = users.filter(userb => userb.usernumber == user.usernumber);
       setUser(loginuser[0]);
       // imageService.setToken(user.token);
+      setCircles(true);
+      setMessage("Kirjautuminen suoritettu!");
+      setSubmessage(null);
     } catch (exception) {
-      alert("Wrong credentials!");
+      setCircles(true);
+      setMessage("Väärä tunnus tai salasana.");
+      setSubmessage(null);
     }
-
-    setCircles(true);
-    setMessage("Kirjautuminen suoritettu!");
-    setSubmessage(null);
 
     setTimeout(() => {
       setMessage(null);
@@ -771,7 +782,7 @@ const App = (props) => {
               <Route path="/accounts" element={<div className="balances">
                 <h3>Tilit</h3>
                 {accounts.map(account =>
-                    account.userid === user.id &&
+                    account.userId === user.id &&
                     <span className="accounts" key={account.id}>
                       <button onClick={() => setAccount(account)}>{account.name}</button>
                     </span>
