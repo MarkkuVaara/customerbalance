@@ -25,18 +25,15 @@ import Login from './components/Login';
 import Userservice from './services/userservice';
 import Loginservice from './services/loginservice';
 import Accountservice from './services/accountservice';
+import Transactionservice from './services/transactionservice';
+import Messageservice from './services/messageservice';
 
 import ChatComponent from './components/ChatComponent';
 import ChatBox from './components/ChatBox';
 
 const App = (props) => {
 
-  const [balance, setBalance] = useState(props.transactions.sort( function(a, b){
-    let x = new Date(a.date);
-    let y = new Date(b.date);
-    return y-x;
-    })
-  );
+  const [balance, setBalance] = useState([]);
   const [accounts, setAccounts] = useState([]);
   const [account, setAccount] = useState(null);
   const [users, setUsers] = useState([]);
@@ -47,12 +44,7 @@ const App = (props) => {
   const [circles, setCircles] = useState(true);
   const [currentloantype, setCurrentloantype] = useState(null);
   const [loanapplications, setLoanapplications] = useState([]);
-  const [messages, setMessages] = useState(props.messages.sort( function(a, b){
-    let x = new Date(a.date);
-    let y = new Date(b.date);
-    return y-x;
-    })
-  );
+  const [messages, setMessages] = useState([]);
   const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
 
 
@@ -71,12 +63,42 @@ const App = (props) => {
         console.log('Accounts fetched..');
         setAccounts(response.data);
     });
+
+    Transactionservice
+      .getAll()
+      .then(response => {
+        console.log('Transactions fetched..');
+        setBalance(response.data.sort( function(a, b){
+          let x = new Date(a.date);
+          let y = new Date(b.date);
+          return y-x;
+          }));
+    });
+
+    Messageservice
+      .getAll()
+      .then(response => {
+        console.log('Messages fetched..');
+        setMessages(response.data.sort( function(a, b){
+          let x = new Date(a.date);
+          let y = new Date(b.date);
+          return y-x;
+          }));
+    });
   
   }, []);
 
   useEffect(() => {
     console.log('Accounts updated:', accounts);
   }, [accounts]);
+
+  useEffect(() => {
+    console.log('Transactions updated:', balance);
+  }, [balance]);
+
+  useEffect(() => {
+    console.log('Messages updated:', messages);
+  }, [messages]);
   
 
   /* Logging in and out */

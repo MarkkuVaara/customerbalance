@@ -11,7 +11,7 @@ const Balancetable = (props) => {
 
     const balance = props.balance;
     const account = props.account;
-    const accounttransactions = balance.filter(transaction => transaction.accountid === account.id);
+    const accounttransactions = balance.filter(transaction => transaction.accountId === account.id);
 
     const onTrigger = (event) => {
         props.showtransaction(
