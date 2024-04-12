@@ -137,7 +137,7 @@ const App = (props) => {
       });
       const loginuser = users.filter(userb => userb.usernumber == user.usernumber);
       setUser(loginuser[0]);
-      // imageService.setToken(user.token);
+      Userservice.setToken(user.token);
       setCircles(true);
       setMessage("Kirjautuminen suoritettu!");
       setSubmessage(null);
@@ -175,26 +175,50 @@ const App = (props) => {
     const newEmail = event.target.email.value;
     const newPhone = event.target.phone.value;
 
-    setCircles(true);
-    setMessage("Muutettu");
-    setSubmessage(<><h3>seuraavat käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>
-        {newFirstname && <p>Etunimi: {newFirstname}</p>}
-        {newMiddlename && <p>Toinen nimi: {newMiddlename}</p>}
-        {newLastname && <p>Sukunimi: {newLastname}</p>}
-        {newAddress && <p>Osoite: {newAddress}</p>}
-        {newPostnumber && <p>Postinumero: {newPostnumber}</p>}
-        {newCity && <p>Postitoimipaikka: {newCity}</p>}
-        {newEmail && <p>Sähköposti: {newEmail}</p>}
-        {newPhone && <p>Puhelinnumero: {newPhone}</p>}</>);
+    const newUser = { };
 
-    if (newFirstname) {user.firstname = newFirstname;}
-    if (newMiddlename) {user.middlename = newMiddlename;}
-    if (newLastname) {user.lastname = newLastname;}
-    if (newAddress) {user.address = newAddress;}
-    if (newPostnumber) {user.postnumber = newPostnumber;}
-    if (newCity) {user.city = newCity;}
-    if (newEmail) {user.email = newEmail;}
-    if (newPhone) {user.phone = newPhone;}
+    if (newFirstname) {newUser.firstname = newFirstname;}
+    if (newMiddlename) {newUser.middlename = newMiddlename;}
+    if (newLastname) {newUser.lastname = newLastname;}
+    if (newAddress) {newUser.address = newAddress;}
+    if (newPostnumber) {newUser.postnumber = newPostnumber;}
+    if (newCity) {newUser.city = newCity;}
+    if (newEmail) {newUser.email = newEmail;}
+    if (newPhone) {newUser.phone = newPhone;}
+
+    try {
+      Userservice
+        .update(user.id, newUser)
+        .then(response => {
+
+          console.log(response.data);
+          if (newFirstname) {user.firstname = newFirstname;}
+          if (newMiddlename) {user.middlename = newMiddlename;}
+          if (newLastname) {user.lastname = newLastname;}
+          if (newAddress) {user.address = newAddress;}
+          if (newPostnumber) {user.postnumber = newPostnumber;}
+          if (newCity) {user.city = newCity;}
+          if (newEmail) {user.email = newEmail;}
+          if (newPhone) {user.phone = newPhone;}
+
+          setCircles(true);
+          setMessage("Muutettu");
+          setSubmessage(<><h3>seuraavat käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>
+              {newFirstname && <p>Etunimi: {newFirstname}</p>}
+              {newMiddlename && <p>Toinen nimi: {newMiddlename}</p>}
+              {newLastname && <p>Sukunimi: {newLastname}</p>}
+              {newAddress && <p>Osoite: {newAddress}</p>}
+              {newPostnumber && <p>Postinumero: {newPostnumber}</p>}
+              {newCity && <p>Postitoimipaikka: {newCity}</p>}
+              {newEmail && <p>Sähköposti: {newEmail}</p>}
+              {newPhone && <p>Puhelinnumero: {newPhone}</p>}</>);
+
+        })
+    } catch {
+      setCircles(true);
+      setMessage("Virhe! Todennäköisesti jokin tieto on väärä muotoa.");
+      setSubmessage(null);
+    }
 
     setTimeout(() => {
       setMessage(null);
