@@ -1,7 +1,14 @@
 
 const Messagetable = (props) => {
 
+    let accountmessages;
     const messages = props.messages;
+    const user = props.user;
+    if (messages.length > 0) {
+        accountmessages = messages.filter(message => message.userId === user.id);
+    } else {
+        accountmessages = [];
+    }
 
     const onTrigger = (event) => {
         props.showmessage(
@@ -14,10 +21,10 @@ const Messagetable = (props) => {
         <div>
             <h3>Viestit</h3>
             <div>
-                {messages.length === 0 &&
+                {accountmessages.length === 0 &&
                     <p>Ei viestejä.</p>
                 }
-                {messages.map(message => 
+                {accountmessages.map(message => 
                     <form key={message.id} onSubmit={onTrigger}>
                         <div className="balance">
                             <input name="id" defaultValue={message.id} style={{display: "none"}} disabled></input>

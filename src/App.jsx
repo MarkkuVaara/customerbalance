@@ -99,7 +99,7 @@ const App = (props) => {
   useEffect(() => {
     console.log('Messages updated:', messages);
   }, [messages]);
-  
+
 
   /* Logging in and out */
 
@@ -818,7 +818,7 @@ const App = (props) => {
                 <Personalinfo user={user} editInfo={editInfo} editPassword={editPassword} />
               </div>} />
               <Route path="/messages" element={<div className="balances">
-                <Messagetable messages={messages} showmessage={showmessage} />
+                <Messagetable messages={messages} user={user} showmessage={showmessage} />
               </div>} />
               </>
             }

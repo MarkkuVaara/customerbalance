@@ -4,7 +4,7 @@ import './index.css';
 
 import App from './App';
 
-const users = [
+/* const users = [
     {
         id: 10,
         firstname: "Markku",
@@ -240,7 +240,7 @@ const messages = [
         title: "Tervetuloa",
         message: "Tervetuloa, uusi asiakas. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Et malesuada fames ac turpis egestas integer eget. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Integer feugiat scelerisque varius morbi enim nunc."
     }
-]
+] */
 
 ReactDOM.createRoot(document.getElementById('root'))
-    .render(<App users={users} accounts={accounts} transactions={transactions} messages={messages} />);
+    .render(<App />);
