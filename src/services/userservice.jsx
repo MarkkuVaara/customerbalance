@@ -1,6 +1,13 @@
 import axios from 'axios';
 const baseUrl = '/api/users';
 
+axios.interceptors.response.use(
+    response => response,
+    error => {
+      return Promise.reject(error);
+    }
+);
+
 let token = null;
 
 const setToken = newToken => {

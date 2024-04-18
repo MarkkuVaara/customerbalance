@@ -186,39 +186,38 @@ const App = (props) => {
     if (newEmail) {newUser.email = newEmail;}
     if (newPhone) {newUser.phone = newPhone;}
 
-    try {
-      Userservice
-        .update(user.id, newUser)
-        .then(response => {
+    Userservice
+      .update(user.id, newUser)
+      .then(response => {
 
-          console.log(response.data);
-          if (newFirstname) {user.firstname = newFirstname;}
-          if (newMiddlename) {user.middlename = newMiddlename;}
-          if (newLastname) {user.lastname = newLastname;}
-          if (newAddress) {user.address = newAddress;}
-          if (newPostnumber) {user.postnumber = newPostnumber;}
-          if (newCity) {user.city = newCity;}
-          if (newEmail) {user.email = newEmail;}
-          if (newPhone) {user.phone = newPhone;}
+        console.log(response.data);
+        if (newFirstname) {user.firstname = newFirstname;}
+        if (newMiddlename) {user.middlename = newMiddlename;}
+        if (newLastname) {user.lastname = newLastname;}
+        if (newAddress) {user.address = newAddress;}
+        if (newPostnumber) {user.postnumber = newPostnumber;}
+        if (newCity) {user.city = newCity;}
+        if (newEmail) {user.email = newEmail;}
+        if (newPhone) {user.phone = newPhone;}
 
-          setCircles(true);
-          setMessage("Muutettu");
-          setSubmessage(<><h3>seuraavat käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>
-              {newFirstname && <p>Etunimi: {newFirstname}</p>}
-              {newMiddlename && <p>Toinen nimi: {newMiddlename}</p>}
-              {newLastname && <p>Sukunimi: {newLastname}</p>}
-              {newAddress && <p>Osoite: {newAddress}</p>}
-              {newPostnumber && <p>Postinumero: {newPostnumber}</p>}
-              {newCity && <p>Postitoimipaikka: {newCity}</p>}
-              {newEmail && <p>Sähköposti: {newEmail}</p>}
-              {newPhone && <p>Puhelinnumero: {newPhone}</p>}</>);
+        setCircles(true);
+        setMessage("Muutettu");
+        setSubmessage(<><h3>seuraavat käyttäjän {user.firstname} {user.middlename} {user.lastname} tiedot.</h3>
+            {newFirstname && <p>Etunimi: {newFirstname}</p>}
+            {newMiddlename && <p>Toinen nimi: {newMiddlename}</p>}
+            {newLastname && <p>Sukunimi: {newLastname}</p>}
+            {newAddress && <p>Osoite: {newAddress}</p>}
+            {newPostnumber && <p>Postinumero: {newPostnumber}</p>}
+            {newCity && <p>Postitoimipaikka: {newCity}</p>}
+            {newEmail && <p>Sähköposti: {newEmail}</p>}
+            {newPhone && <p>Puhelinnumero: {newPhone}</p>}</>);
 
-        })
-    } catch {
-      setCircles(true);
-      setMessage("Virhe! Todennäköisesti jokin tieto on väärä muotoa.");
-      setSubmessage(null);
-    }
+      })
+      .catch(error => {
+        setCircles(true);
+        setMessage("Virhe! Jokin tieto oli väärää muotoa.");
+        setSubmessage(error.message);
+      })
 
     setTimeout(() => {
       setMessage(null);

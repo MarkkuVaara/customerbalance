@@ -1,6 +1,13 @@
 import axios from 'axios';
 const baseUrl = '/api/accounts';
 
+axios.interceptors.response.use(
+    response => response,
+    error => {
+      return Promise.reject(error);
+    }
+);
+
 const getAll = () => {
     return axios.get(baseUrl);
 };
