@@ -138,6 +138,7 @@ const App = (props) => {
       const loginuser = users.filter(userb => userb.usernumber == user.usernumber);
       setUser(loginuser[0]);
       Userservice.setToken(user.token);
+      Accountservice.setToken(user.token);
       setCircles(true);
       setMessage("Kirjautuminen suoritettu!");
       setSubmessage(null);
@@ -379,12 +380,11 @@ const App = (props) => {
     const today = mm + '/' + dd + '/' + yyyy + ' ' + formattedTime;
 
     const newloanaccount = {
-      id: accounts.length + 1000,
       creationdate: today,
       name: "LAINATILI 1008009990",
       balance: 0,
-      limit: 0 - parseInt(limit),
-      userid: user.id
+      balancelimit: 0 - parseInt(limit),
+      userId: user.id
     };
 
     setMessage("Kiitos hakemuksestasi!");
@@ -398,7 +398,20 @@ const App = (props) => {
     setTimeout(() => {
 
       setLoanapplications([]);
-      setAccounts(accounts.concat(newloanaccount));
+
+      Accountservice
+        .create(newloanaccount)
+        .then(response => {
+            console.log(response.data);
+            setAccounts(accounts.concat(response.data));
+        })
+        .catch(error => {
+            console.log(error);
+            setCircles(true);
+            setMessage("Virhe! Jokin tieto oli väärää muotoa.");
+            setSubmessage(error.message);
+        })
+
       setMessages(messages.concat({
         id: messages.length + 100,
         title: "Lainahakemus " + newloanaccount.name,
