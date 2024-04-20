@@ -405,7 +405,6 @@ const App = (props) => {
       Accountservice
         .create(newloanaccount)
         .then(response => {
-            console.log(response.data);
             setAccounts(accounts.concat(response.data));
         })
         .catch(error => {
@@ -426,7 +425,6 @@ const App = (props) => {
       Messageservice
         .create(newMessage)
         .then(response => {
-          console.log(response.data);
           setMessages(messages.concat(response.data)
             .sort( function(a, b){
               let x = new Date(a.date);
@@ -751,12 +749,18 @@ const App = (props) => {
 
     const newmessages = messages.filter(message => message.id !== id);
     onemessage.read = true;
-    setMessages(newmessages.concat(onemessage).sort( function(a, b){
-      let x = new Date(a.date);
-      let y = new Date(b.date);
-      return y-x;
+
+    Messageservice
+      .update(id, onemessage)
+      .then(response => {
+        console.log(response.data);
+        setMessages(newmessages.concat(response.data).sort( function(a, b){
+          let x = new Date(a.date);
+          let y = new Date(b.date);
+          return y-x;
+          })
+        );
       })
-    );
 
     setCircles(null);
 
