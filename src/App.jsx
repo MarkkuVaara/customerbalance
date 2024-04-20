@@ -137,8 +137,11 @@ const App = (props) => {
       });
       const loginuser = users.filter(userb => userb.usernumber == user.usernumber);
       setUser(loginuser[0]);
+
       Userservice.setToken(user.token);
       Accountservice.setToken(user.token);
+      Messageservice.setToken(user.token);
+
       setCircles(true);
       setMessage("Kirjautuminen suoritettu!");
       setSubmessage(null);
@@ -412,19 +415,27 @@ const App = (props) => {
             setSubmessage(error.message);
         })
 
-      setMessages(messages.concat({
-        id: messages.length + 100,
+      const newMessage = {
         title: "Lainahakemus " + newloanaccount.name,
         message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty. Lainasi on käytössä tästä päivästä alkaen. Lainaehdot ovat nähtävillä Monetarumin sivuilla.",
         date: today,
-        read: false
-      }).sort( function(a, b){
-        let x = new Date(a.date);
-        let y = new Date(b.date);
-        return y-x;
-        })
-      );
+        read: false,
+        userId: user.id
+      }
 
+      Messageservice
+        .create(newMessage)
+        .then(response => {
+          console.log(response.data);
+          setMessages(messages.concat(response.data)
+            .sort( function(a, b){
+              let x = new Date(a.date);
+              let y = new Date(b.date);
+              return y-x;
+            })
+          );
+        })
+      
     }, 30000);
 
   };
