@@ -181,9 +181,16 @@ button:focus {
 /* Balancetable */
 
 .accounttitle {
+    display: flex;
+    justify-content: space-between;
     padding-top: 5px;
     padding-left: 10px;
     margin-top: 10px;
+}
+
+.accounttitle > p {
+    padding-top: 5px;
+    padding-right: 10px;
 }
 
 .accountbalance {

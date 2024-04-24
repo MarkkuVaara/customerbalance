@@ -483,7 +483,7 @@ const App = (props) => {
 
     }
 
-    if (account.name.substring(0,5) === "LAINA" && (account.balance - amount) < account.limit) {
+    if (account.name.substring(0,5) === "LAINA" && (account.balance - amount) < account.balancelimit) {
 
       setMessage("Tilisiirto ylittää lainarajasi");
       setSubmessage(<p>Yritä myöhemmin uudelleen.</p>);
@@ -502,7 +502,7 @@ const App = (props) => {
 
     if (date2.getFullYear() < currentDate.getFullYear()
       || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() < currentDate.getMonth())
-      || (date2.getMonth() == currentDate.getMonth() && date2.getDate() < currentDate.getDate())) {
+      || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() == currentDate.getMonth() && date2.getDate() < currentDate.getDate())) {
       setMessage("Et voi antaa päiväystä, joka on nykyistä ajankohtaa aikaisempi");
       setSubmessage(<p>Yritä uudelleen.</p>);
 

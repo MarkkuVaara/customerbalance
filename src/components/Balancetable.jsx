@@ -24,6 +24,9 @@ const Balancetable = (props) => {
         <>
         <div className="accounttitle">
             <h3>{account.name}</h3>
+            {account.balancelimit < 0 &&
+                <p>Lainaraja: {0 - account.balancelimit}</p>
+            }
         </div>
         <div className="accountbalance">
             <h4 className="accountsaldo">Tilin saldo: {account.balance} euroa</h4>
