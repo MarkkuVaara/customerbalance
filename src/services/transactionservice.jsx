@@ -8,16 +8,30 @@ axios.interceptors.response.use(
     }
 );
 
+let token = null;
+
+const setToken = newToken => {
+  token = `Bearer ${newToken}`
+};
+
 const getAll = () => {
     return axios.get(baseUrl);
 };
 
-const create = newObject => {
-    return axios.post(baseUrl, newObject);
+const create = async newObject => {
+    const config = {
+        headers: { Authorization: token },
+    };
+    const response = await axios.post(baseUrl, newObject, config);
+    return response;
 };
 
-const update = (id, newObject) => {
-    return axios.put(`${baseUrl}/${id}`, newObject)
+const update = async (id, newObject) => {
+    const config = {
+        headers: { Authorization: token },
+    };
+    const response = await axios.put(`${baseUrl}/${id}`, newObject, config);
+    return response;
 };
 
-export default { getAll, create, update };
+export default { getAll, create, update, setToken };

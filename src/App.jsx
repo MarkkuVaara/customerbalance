@@ -141,6 +141,7 @@ const App = (props) => {
       Userservice.setToken(user.token);
       Accountservice.setToken(user.token);
       Messageservice.setToken(user.token);
+      Transactionservice.setToken(user.token);
 
       setCircles(true);
       setMessage("Kirjautuminen suoritettu!");
@@ -519,12 +520,12 @@ const App = (props) => {
       pending = true;
     }
 
-    const newsaldo = (account.balance - amount).toFixed(2);
-
     if (!amount || !date) {
       setMessage("Tietoja puuttuu");
       setSubmessage(<p>Yritä uudelleen.</p>);
     } else {
+
+      const newsaldo = (account.balance - amount).toFixed(2);
 
       if (pending !== true) {
 
@@ -543,24 +544,29 @@ const App = (props) => {
         datetime = date + " 06:00:00 AM";
       }
 
-      const newBalance = {
-        id: balance.length + 1000,
+      const newTransaction = {
         date: datetime,
         pending: pending,
         transactiontype: "unknown",
         transactioner: user.firstname + " " + user.lastname,
         target: target,
         transaction: 0 - amount,
-        accountid: account.id,
+        accountidd: account.id,
+        userId: user.id,
         message: messagge
       }
 
-      setBalance(balance.concat(newBalance).sort( function(a, b){
-        let x = new Date(a.date);
-        let y = new Date(b.date);
-        return y-x;
+      Transactionservice
+        .create(newTransaction)
+        .then(response => {
+            console.log(response.data);
+            setBalance(balance.concat(response.data).sort( function(a, b){
+              let x = new Date(a.date);
+              let y = new Date(b.date);
+              return y-x;
+              })
+            );
         })
-      );
 
       setMessage("Tilisiirto suoritettu");
       setSubmessage(<>
