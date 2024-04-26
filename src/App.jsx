@@ -624,9 +624,23 @@ const App = (props) => {
 
     setCircles(true);
 
-    if ((account.balance - amount) < 0) {
+    if ((account.balance - amount) < 0 && source.substring(0,5) !== "LAINA" ) {
       setMessage("Tilin saldo ei riitä");
       setSubmessage(<p>Yritä uudelleen.</p>);
+
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
+      return;
+
+    }
+
+    if (account.name.substring(0,5) === "LAINA" && (account.balance - amount) < account.balancelimit) {
+
+      setMessage("Tilisiirto ylittää lainarajasi");
+      setSubmessage(<p>Yritä myöhemmin uudelleen.</p>);
 
       setTimeout(() => {
         setMessage(null);
@@ -670,11 +684,16 @@ const App = (props) => {
 
       if (pending !== true) {
 
-        accounts.map(account =>
-          account.name === source
-          ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
-          : null
-        )
+        const newAccount = {
+          balance: newsaldo
+        };
+
+        Accountservice
+          .update(account.id, newAccount)
+          .then(response => {
+            console.log(response.data);
+            setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } );
+          })
 
         const currDate = new Date();
         const formatter = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -685,25 +704,30 @@ const App = (props) => {
         datetime = date + " 06:00:00 AM";
       }
 
-      const newBalance = {
-        id: balance.length + 1000,
+      const newTransaction = {
         date: datetime,
         pending: pending,
         transactiontype: "loan",
         transactioner: user.firstname + " " + user.lastname,
         target: target,
         transaction: 0 - amount,
-        accountid: account.id,
+        accountidd: account.id,
+        userId: user.id,
         message: messagge,
         reference: reference
       }
 
-      setBalance(balance.concat(newBalance).sort( function(a, b){
-        let x = new Date(a.date);
-        let y = new Date(b.date);
-        return y-x;
+      Transactionservice
+        .create(newTransaction)
+        .then(response => {
+            console.log(response.data);
+            setBalance(balance.concat(response.data).sort( function(a, b){
+              let x = new Date(a.date);
+              let y = new Date(b.date);
+              return y-x;
+              })
+            );
         })
-      );
 
       setMessage("Lasku maksettu");
       setSubmessage(<>
