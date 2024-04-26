@@ -516,8 +516,10 @@ const App = (props) => {
 
     }
 
-    if (date2 > currentDate) {
-      pending = true;
+    if (date2.getFullYear() > currentDate.getFullYear()
+      || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() > currentDate.getMonth())
+      || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() == currentDate.getMonth() && date2.getDate() > currentDate.getDate())) {
+        pending = true;
     }
 
     if (!amount || !date) {
@@ -526,21 +528,29 @@ const App = (props) => {
     } else {
 
       const newsaldo = (account.balance - amount).toFixed(2);
+      console.log(pending);
 
-      if (pending !== true) {
+      if (pending === false) {
 
-        accounts.map(account =>
-          account.name === source
-          ? setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } )
-          : null
-        )
+        const newAccount = {
+          balance: newsaldo
+        };
+
+        Accountservice
+          .update(account.id, newAccount)
+          .then(response => {
+            console.log(response.data);
+            setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } );
+          })
 
         const currDate = new Date();
         const formatter = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         const formattedTime = formatter.format(currDate);
         datetime = date + " " + formattedTime;
 
-      } else {
+      }
+
+      if (pending === true) {
         datetime = date + " 06:00:00 AM";
       }
 
@@ -632,7 +642,7 @@ const App = (props) => {
 
     if (date2.getFullYear() < currentDate.getFullYear()
       || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() < currentDate.getMonth())
-      || (date2.getMonth() == currentDate.getMonth() && date2.getDate() < currentDate.getDate())) {
+      || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() == currentDate.getMonth() && date2.getDate() < currentDate.getDate())) {
       setMessage("Et voi antaa päiväystä, joka on nykyistä ajankohtaa aikaisempi");
       setSubmessage(<p>Yritä uudelleen.</p>);
 
@@ -645,8 +655,10 @@ const App = (props) => {
 
     }
 
-    if (date2 > currentDate) {
-      pending = true;
+    if (date2.getFullYear() > currentDate.getFullYear()
+      || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() > currentDate.getMonth())
+      || (date2.getFullYear() == currentDate.getFullYear() && date2.getMonth() == currentDate.getMonth() && date2.getDate() > currentDate.getDate())) {
+        pending = true;
     }
 
     const newsaldo = (account.balance - amount).toFixed(2);
