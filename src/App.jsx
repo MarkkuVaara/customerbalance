@@ -36,15 +36,17 @@ const App = (props) => {
   const [balance, setBalance] = useState([]);
   const [accounts, setAccounts] = useState([]);
   const [account, setAccount] = useState(null);
-  const [users, setUsers] = useState([]);
 
+  const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
+
   const [message, setMessage] = useState(null);
   const [submessage, setSubmessage] = useState(null);
   const [circles, setCircles] = useState(true);
-  const [currentloantype, setCurrentloantype] = useState(null);
+
   const [loanapplications, setLoanapplications] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [usermessages, setUsermessages] = useState([]);
   const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
 
 
@@ -137,6 +139,10 @@ const App = (props) => {
       });
       const loginuser = users.filter(userb => userb.usernumber == user.usernumber);
       setUser(loginuser[0]);
+
+      const usermssgs = messages.filter(message => message.userId == loginuser[0].id);
+
+      setUsermessages(usermssgs);
 
       Userservice.setToken(user.token);
       Accountservice.setToken(user.token);
@@ -267,6 +273,7 @@ const App = (props) => {
       setMessage("Virhe syötteessä 'uusi salasana'");
       setSubmessage(<p>Salasanaa ei vaihdettu</p>);
     } else {
+
       setMessage("Salasana vaihdettu");
       setSubmessage(null);
       setUser((prevState) => {
@@ -275,6 +282,7 @@ const App = (props) => {
           password: npword
         })
       });
+
     }
 
     setTimeout(() => {
@@ -728,6 +736,12 @@ const App = (props) => {
               })
             );
         })
+        .catch(error => {
+          console.log(error);
+          setCircles(true);
+          setMessage("Virhe! Jokin tieto oli väärää muotoa.");
+          setSubmessage(error.message);
+        }) 
 
       setMessage("Lasku maksettu");
       setSubmessage(<>
@@ -752,6 +766,8 @@ const App = (props) => {
 
   }
 
+
+  /* Show popups */
 
   const showtransaction = (data) => {
 
@@ -865,7 +881,7 @@ const App = (props) => {
               <Link to="/personalinfo" style={{ textDecoration: 'none' }}><h3>Henkilötiedot</h3></Link>
             </div>
             <div className="link">
-              <Link to="/messages" style={{ textDecoration: 'none' }}><h3>Viestit ({messages.length})</h3></Link>
+              <Link to="/messages" style={{ textDecoration: 'none' }}><h3>Viestit ({usermessages.length})</h3></Link>
             </div>
             </>
           }

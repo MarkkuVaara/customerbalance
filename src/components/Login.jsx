@@ -7,7 +7,7 @@ const Login = (props) => {
                 <label>Käyttäjätunnus:</label>
                 <input name="user"></input>
                 <label>Salasana:</label>
-                <input name="password"></input>
+                <input type="password" name="password"></input>
                 <button type="button" onClick={props.closeWindow}>Peruuta</button>
                 <button type="submit">Kirjaudu</button>
             </div>
