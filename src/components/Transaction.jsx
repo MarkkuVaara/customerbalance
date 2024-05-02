@@ -11,7 +11,7 @@ const Transaction = (props) => {
     const user = props.user;
     const account = props.account;
     const accounts = props.accounts;
-    const filteredaccounts = accounts.filter(account => account.userid === user.id);
+    const filteredaccounts = accounts.filter(account => account.userId === user.id);
     const useronly = props.useronly;
 
     return(

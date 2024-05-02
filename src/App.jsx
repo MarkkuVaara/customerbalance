@@ -367,20 +367,20 @@ const App = (props) => {
           <input defaultValue={signature} disabled></input>
         </div>
         </div>
-        <Loansubmitting loansubmitsubmit={() => loansubmitsubmit(loan)} cancelForm={cancelForm}/>
+        <Loansubmitting loansubmitsubmit={() => loansubmitsubmit({loan, loantype})} cancelForm={cancelForm}/>
       </>);
 
     }
 
   };
 
-  const loansubmitsubmit = (limit) => {
+  const loansubmitsubmit = ({loan, loantype}) => {
 
     setCircles(true);
     setLoanapplications(loanapplications.concat({
       id: loanapplications.length + 1000,
       loannumber: "1008009990",
-      loantype: "Kulutuslaina"}));
+      loantype: loantype}));
 
     const currentDate = new Date();
     const formatter = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -395,7 +395,7 @@ const App = (props) => {
       creationdate: today,
       name: "LAINATILI 1008009990",
       balance: 0,
-      balancelimit: 0 - parseInt(limit),
+      balancelimit: 0 - parseInt(loan),
       userId: user.id
     };
 
@@ -414,6 +414,7 @@ const App = (props) => {
       Accountservice
         .create(newloanaccount)
         .then(response => {
+            console.log(response.data.balancelimit);
             setAccounts(accounts.concat(response.data));
         })
         .catch(error => {
@@ -425,7 +426,7 @@ const App = (props) => {
 
       const newMessage = {
         title: "Lainahakemus " + newloanaccount.name,
-        message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty. Lainasi on käytössä tästä päivästä alkaen. Lainaehdot ovat nähtävillä Monetarumin sivuilla.",
+        message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty. Lainasi on tyyppiä " + loantype  + " ja lainarajasi on " + loan + " euroa. Lainasi on käytössä tästä päivästä alkaen. Lainaehdot ovat nähtävillä Monetarumin sivuilla.",
         date: today,
         read: false,
         userId: user.id
@@ -536,7 +537,6 @@ const App = (props) => {
     } else {
 
       const newsaldo = (account.balance - amount).toFixed(2);
-      console.log(pending);
 
       if (pending === false) {
 
@@ -547,7 +547,7 @@ const App = (props) => {
         Accountservice
           .update(account.id, newAccount)
           .then(response => {
-            console.log(response.data);
+            console.log(response.data.id);
             setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } );
           })
 
@@ -577,7 +577,7 @@ const App = (props) => {
       Transactionservice
         .create(newTransaction)
         .then(response => {
-            console.log(response.data);
+            console.log(response.data.id);
             setBalance(balance.concat(response.data).sort( function(a, b){
               let x = new Date(a.date);
               let y = new Date(b.date);
@@ -699,7 +699,7 @@ const App = (props) => {
         Accountservice
           .update(account.id, newAccount)
           .then(response => {
-            console.log(response.data);
+            console.log(response.data.id);
             setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } );
           })
 
@@ -728,7 +728,7 @@ const App = (props) => {
       Transactionservice
         .create(newTransaction)
         .then(response => {
-            console.log(response.data);
+            console.log(response.data.id);
             setBalance(balance.concat(response.data).sort( function(a, b){
               let x = new Date(a.date);
               let y = new Date(b.date);
