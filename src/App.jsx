@@ -21,6 +21,7 @@ import Password from './components/Password';
 import Billpayment from './components/Billpayment';
 import Messagetable from './components/Messagetable';
 import Login from './components/Login';
+import Logout from './components/Logout';
 
 import Userservice from './services/userservice';
 import Loginservice from './services/loginservice';
@@ -106,17 +107,26 @@ const App = (props) => {
   /* Logging in and out */
 
   const logout = () => {
-    const confirmation = window.confirm("Haluatko kirjautua ulos?");
-    if (confirmation) {
-        setMessage("Kirjaudun ulos...");
-        setSubmessage(<p>Muista sulkea selain uloskirjautumisen jälkeen.</p>)
-        setTimeout(() => {
-          setMessage(null);
-          setSubmessage(null);
-        }, 2000);
-        setUser(null);
-        setAccount(null);
-    }
+
+    setCircles(false);
+    setMessage("Haluatko kirjautua ulos?");
+    setSubmessage(<Logout loggingout={loggingout} closeWindow={closeWindow} />);
+
+  };
+
+  const loggingout = async (event) => {
+    event.preventDefault();
+
+    setCircles(true);
+    setMessage("Kirjaudun ulos...");
+    setSubmessage(<p>Muista sulkea selain uloskirjautumisen jälkeen.</p>)
+    setTimeout(() => {
+      setMessage(null);
+      setSubmessage(null);
+    }, 2000);
+    setUser(null);
+    setAccount(null);
+
   };
 
   const login = () => {
@@ -436,6 +446,13 @@ const App = (props) => {
         .create(newMessage)
         .then(response => {
           setMessages(messages.concat(response.data)
+            .sort( function(a, b){
+              let x = new Date(a.date);
+              let y = new Date(b.date);
+              return y-x;
+            })
+          );
+          setUsermessages(usermessages.concat(response.data)
             .sort( function(a, b){
               let x = new Date(a.date);
               let y = new Date(b.date);
