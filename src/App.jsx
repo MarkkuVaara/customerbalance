@@ -631,6 +631,50 @@ const App = (props) => {
       const targetAccounts = accounts.filter(account => account.id === parseInt(target));
       const targetAccount = targetAccounts[0];
 
+      const newTargetsaldo = (targetAccount.balance - (0 - amount)).toFixed(2);
+
+      const newTargetaccount = {
+        balance: newTargetsaldo
+      };
+
+      Accountservice
+        .update(targetAccount.id, newTargetaccount)
+        .then(response => {
+          console.log(response.data);
+        })
+
+      const newTargetTransaction = {
+        date: datetime,
+        pending: pending,
+        transactiontype: "loan",
+        transactioner: user.firstname + " " + user.lastname,
+        target: target,
+        transaction: amount,
+        accountidd: targetAccount.id,
+        userId: targetAccount.userId,
+        message: messagge
+      }
+
+      console.log(newTargetTransaction);
+
+      Transactionservice
+        .create(newTargetTransaction)
+        .then(response => {
+          console.log(response.data.id);
+          setBalance(balance.concat(response.data).sort( function(a, b){
+            let x = new Date(a.date);
+            let y = new Date(b.date);
+            return y-x;
+            })
+          );
+        })
+        .catch(error => {
+          console.log(error);
+          setCircles(true);
+          setMessage("Virhe! Jokin tieto oli väärää muotoa.");
+          setSubmessage(error.message);
+        }) 
+
       setMessage("Tilisiirto suoritettu");
       setSubmessage(<>
         <p><b>Tililtä</b> {source}</p>
@@ -790,6 +834,51 @@ const App = (props) => {
 
       const targetAccounts = accounts.filter(account => account.id === parseInt(target));
       const targetAccount = targetAccounts[0];
+
+      const newTargetsaldo = (targetAccount.balance - (0 - amount)).toFixed(2);
+
+      const newTargetaccount = {
+        balance: newTargetsaldo
+      };
+
+      Accountservice
+        .update(targetAccount.id, newTargetaccount)
+        .then(response => {
+          console.log(response.data);
+        })
+
+      const newTargetTransaction = {
+        date: datetime,
+        pending: pending,
+        transactiontype: "loan",
+        transactioner: user.firstname + " " + user.lastname,
+        target: target,
+        transaction: amount,
+        accountidd: targetAccount.id,
+        userId: targetAccount.userId,
+        message: messagge,
+        reference: reference
+      }
+
+      console.log(newTargetTransaction);
+
+      Transactionservice
+        .create(newTargetTransaction)
+        .then(response => {
+          console.log(response.data.id);
+          setBalance(balance.concat(response.data).sort( function(a, b){
+            let x = new Date(a.date);
+            let y = new Date(b.date);
+            return y-x;
+            })
+          );
+        })
+        .catch(error => {
+          console.log(error);
+          setCircles(true);
+          setMessage("Virhe! Jokin tieto oli väärää muotoa.");
+          setSubmessage(error.message);
+        }) 
 
       setMessage("Lasku maksettu");
       setSubmessage(<>
