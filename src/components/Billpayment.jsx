@@ -23,7 +23,7 @@ const Billpayment = (props) => {
                     <label>*Tilille</label>
                     <select name="target">
                         {accounts.map(account =>
-                            <option key={account.id}>{account.name}</option>
+                            <option key={account.id} value={account.id}>{account.name}</option>
                         )}
                     </select>
                     <label>*Rahasumma</label>

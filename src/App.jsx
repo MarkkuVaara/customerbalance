@@ -305,13 +305,7 @@ const App = (props) => {
                   .update(user.id, newUser)
                   .then(response => {
                     console.log(response.data);
-                    setUser((prevState) => {
-                      return ({
-                        ...prevState,
-                        password: hashedPassword
-                      })
-                    });
-
+                    setUser((prevState) => { return ({ ...prevState, password: hashedPassword }) });
                   })
 
               }
@@ -634,10 +628,13 @@ const App = (props) => {
             );
         })
 
+      const targetAccounts = accounts.filter(account => account.id === parseInt(target));
+      const targetAccount = targetAccounts[0];
+
       setMessage("Tilisiirto suoritettu");
       setSubmessage(<>
         <p><b>Tililtä</b> {source}</p>
-        <p><b>Tilille</b> {target}</p>
+        <p><b>Tilille</b> {targetAccount.name}</p>
         <p><b>Rahasumma</b> {amount}</p>
         <p><b>Päivämäärä</b> {date}</p>
         {messagge &&
@@ -791,10 +788,13 @@ const App = (props) => {
           setSubmessage(error.message);
         }) 
 
+      const targetAccounts = accounts.filter(account => account.id === parseInt(target));
+      const targetAccount = targetAccounts[0];
+
       setMessage("Lasku maksettu");
       setSubmessage(<>
         <p><b>Tililtä</b> {source}</p>
-        <p><b>Tilille</b> {target}</p>
+        <p><b>Tilille</b> {targetAccount.name}</p>
         <p><b>Rahasumma</b> {amount}</p>
         {reference &&
           <p><b>Viite</b> {reference}</p>
@@ -824,13 +824,16 @@ const App = (props) => {
     const traction = balance.filter(transaction => transaction.id === id);
     const transactionn = traction[0];
 
+    const targetAccounts = accounts.filter(account => account.id === parseInt(transactionn.target));
+    const targetAccount = targetAccounts[0];
+
     setCircles(null);
 
     setMessage("Valitsemasi tilitapahtuman tiedot");
     setSubmessage(<div className="formfield">
         <label>Päiväys</label> <p>{transactionn.date}</p>
         <label>Toimija</label> <p>{transactionn.transactioner}</p>
-        {transactionn.target && <><label>Kohdetili</label> <p>{transactionn.target}</p></>}
+        {transactionn.target && <><label>Kohdetili</label> <p>{targetAccount.name}</p></>}
         <label>Määrä</label> <p>{transactionn.transaction}</p>
         <label>Tyyppi</label> 
         {transactionn.transactiontype === "shop" && <p>Kauppa</p>}
