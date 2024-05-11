@@ -590,7 +590,10 @@ const App = (props) => {
           .update(account.id, newAccount)
           .then(response => {
             console.log(response.data.id);
-            setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } );
+            const newSaldoaccount = account;
+            newSaldoaccount.balance = newsaldo;
+            const newAccounts = accounts.filter(faccount => faccount.id !== account.id);
+            setAccounts(newAccounts.concat(newSaldoaccount));
           })
 
         const currDate = new Date();
@@ -641,6 +644,9 @@ const App = (props) => {
         .update(targetAccount.id, newTargetaccount)
         .then(response => {
           console.log(response.data);
+          targetAccount.balance = newTargetsaldo;
+          const newAccounts = accounts.filter(faccount => faccount.id !== targetAccount.id);
+          setAccounts(newAccounts.concat(targetAccount));
         })
 
       const newTargetTransaction = {
@@ -789,7 +795,10 @@ const App = (props) => {
           .update(account.id, newAccount)
           .then(response => {
             console.log(response.data.id);
-            setAccount((prevState) => { return ({...prevState, balance: newsaldo}) } );
+            const newSaldoaccount = account;
+            newSaldoaccount.balance = newsaldo;
+            const newAccounts = accounts.filter(faccount => faccount.id !== account.id);
+            setAccounts(newAccounts.concat(newSaldoaccount));
           })
 
         const currDate = new Date();
@@ -845,6 +854,9 @@ const App = (props) => {
         .update(targetAccount.id, newTargetaccount)
         .then(response => {
           console.log(response.data);
+          targetAccount.balance = newTargetsaldo;
+          const newAccounts = accounts.filter(faccount => faccount.id !== targetAccount.id);
+          setAccounts(newAccounts.concat(targetAccount));
         })
 
       const newTargetTransaction = {
