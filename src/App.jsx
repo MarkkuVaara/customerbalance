@@ -412,10 +412,6 @@ const App = (props) => {
   const loansubmitsubmit = ({loan, loantype}) => {
 
     setCircles(true);
-    setLoanapplications(loanapplications.concat({
-      id: loanapplications.length + 1000,
-      loannumber: "1008009990",
-      loantype: loantype}));
 
     const currentDate = new Date();
     const formatter = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -426,9 +422,14 @@ const App = (props) => {
   
     const today = mm + '/' + dd + '/' + yyyy + ' ' + formattedTime;
 
+    setLoanapplications(loanapplications.concat({
+      id: loanapplications.length + 1000,
+      loannumber: "1008" + dd + mm + yyyy,
+      loantype: loantype}));
+
     const newloanaccount = {
       creationdate: today,
-      name: "LAINATILI 1008009990",
+      name: "LAINATILI 1008" + dd + mm + yyyy,
       balance: 0,
       balancelimit: 0 - parseInt(loan),
       userId: user.id
@@ -461,7 +462,7 @@ const App = (props) => {
 
       const newMessage = {
         title: "Lainahakemus " + newloanaccount.name,
-        message: "Lainahakemuksesi " + newloanaccount.name + " on hyväksytty. Lainasi on tyyppiä " + loantype  + " ja lainarajasi on " + loan + " euroa. Lainasi on käytössä tästä päivästä alkaen. Lainaehdot ovat nähtävillä Monetarumin sivuilla.",
+        message: "Lainahakemuksesi on hyväksytty. Lainatilisi numero on " + newloanaccount.name + ", laina on tyyppiä " + loantype + " ja lainaraja on " + loan + " euroa. Lainasi on käytössä tästä päivästä alkaen. Lainaehdot ovat nähtävillä Monetarumin sivuilla.",
         date: today,
         read: false,
         userId: user.id
@@ -589,7 +590,7 @@ const App = (props) => {
         Accountservice
           .update(account.id, newAccount)
           .then(response => {
-            console.log(response.data.id);
+            console.log("Changed account: " + response.data.id);
             const newSaldoaccount = account;
             newSaldoaccount.balance = newsaldo;
             const newAccounts = accounts.filter(faccount => faccount.id !== account.id);
@@ -622,7 +623,7 @@ const App = (props) => {
       Transactionservice
         .create(newTransaction)
         .then(response => {
-            console.log(response.data.id);
+            console.log("New transaction:" + response.data.id);
             setBalance(balance.concat(response.data).sort( function(a, b){
               let x = new Date(a.date);
               let y = new Date(b.date);
@@ -643,7 +644,7 @@ const App = (props) => {
       Accountservice
         .update(targetAccount.id, newTargetaccount)
         .then(response => {
-          console.log(response.data);
+          console.log("Changed target account: " + response.data.id);
           targetAccount.balance = newTargetsaldo;
           const newAccounts = accounts.filter(faccount => faccount.id !== targetAccount.id);
           setAccounts(newAccounts.concat(targetAccount));
@@ -666,7 +667,7 @@ const App = (props) => {
       Transactionservice
         .create(newTargetTransaction)
         .then(response => {
-          console.log(response.data.id);
+          console.log("New targetTransaction: " + response.data.id);
           setBalance(balance.concat(response.data).sort( function(a, b){
             let x = new Date(a.date);
             let y = new Date(b.date);
