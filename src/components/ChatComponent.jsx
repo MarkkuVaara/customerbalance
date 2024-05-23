@@ -15,13 +15,14 @@ const ChatComponent = () => {
 
     const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
-    const subject = 'banking';
+    const subject = 'pankki';
 
     const response = await axios.post(
         'https://api.openai.com/v1/completions', {
         model: 'gpt-3.5-turbo-instruct',
-        prompt: `Please provide information about ${subject}: ${userInput}`,
-        max_tokens: 50
+        prompt: `Kerro tietoja aiheesta ${subject}: ${userInput}`,
+        max_tokens: 150,
+        stop: ".\n"
      }, {
         headers: {
           'Authorization': API_KEY,
@@ -39,17 +40,17 @@ const ChatComponent = () => {
   return (
     <div className="chatcomponent">
       <div className="chatbox">
-        <p>Hello, I am <strong>Kalevi</strong>, your bankbot. How may I help you?</p>
+        <p>Hei, olen <strong>Kalevi</strong>, pankkibottisi. Kuinka voin auttaa?</p>
         {chatHistory.map((message, index) => (
           <div className="chat" key={index}>
-            <strong>You:</strong> {message.user}
+            <strong>Sinä:</strong> {message.user}
             <br />
             <strong>Kalevi:</strong> {message.bot}
           </div>
         ))}
       </div>
       <textarea type="text" value={userInput} onChange={handleInputChange} />
-      <button onClick={handleSendMessage}>Send a question</button>
+      <button onClick={handleSendMessage}>Lähetä kysymys</button>
     </div>
   );
 };

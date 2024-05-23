@@ -7,7 +7,7 @@ const ChatBox = ({ isOpen, onClose, children }) => {
 
   return (
     <div className={chatboxClassName}>
-        <button className="close-btn" onClick={onClose}>Close</button>
+        <button className="close-btn" onClick={onClose}>Sulje</button>
         <div className="chatbox-content">
             {children}
         </div>
