@@ -1,4 +1,6 @@
 
+import unreadmessage from '../images/unreadmessage.jpg';
+
 const Messagetable = (props) => {
 
     let accountmessages;
@@ -19,8 +21,10 @@ const Messagetable = (props) => {
 
     return (
         <div>
-            <h3>Viestit</h3>
-            <div>
+            <div className="accounttitle">
+                <h3>Viestit</h3>
+            </div>
+            <div className="accountbalance">
                 {accountmessages.length === 0 &&
                     <p>Ei viestejä.</p>
                 }
@@ -29,7 +33,7 @@ const Messagetable = (props) => {
                         <div className="balance">
                             <input name="id" defaultValue={message.id} style={{display: "none"}} disabled></input>
                             {message.read == false &&
-                                <p className="unread">Uusi</p>
+                                <p className="unread"><img src={unreadmessage}></img></p>
                             }
                             <button type="submit" className="balancedate">{message.date.substring(0, 10)}</button>
                             <p className="balancemessagetitle">{message.title}</p>

@@ -269,6 +269,19 @@ button:focus {
     font-size: 12px;
 }
 
+.unread > img {
+    padding: 10px;
+    max-height: 50px;
+    max-width: 50px;
+}
+
+@media only screen and (max-width: 800px) {
+    .unread > img {
+        max-height: 30px;
+        max-width: 30px;
+    }
+}
+
 
 /* Transaction handling */
 
@@ -308,7 +321,7 @@ button:focus {
         width: 20px;
     }
     .balance > button {
-        font-size: 12px;
+        font-size: 14px;
     }
 }
 
