@@ -36,7 +36,7 @@ const Messagetable = (props) => {
                                 <p className="unread"><img src={unreadmessage}></img></p>
                             }
                             <button type="submit" className="balancedate">{message.date.substring(0, 10)}</button>
-                            <p className="balancemessagetitle">{message.title}</p>
+                            <p className="balancemessagetitle"><strong>{message.title}</strong></p>
                             <p className="balanceactioner">{message.message.substring(0, 50)}...</p>
                         </div>
                     </form>

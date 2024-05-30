@@ -933,18 +933,18 @@ const App = (props) => {
 
     setMessage("Valitsemasi tilitapahtuman tiedot");
     setSubmessage(<div className="formfield">
-        <label>Päiväys</label> <p>{transactionn.date}</p>
-        <label>Toimija</label> <p>{transactionn.transactioner}</p>
-        {transactionn.target && <><label>Kohdetili</label> <p>{targetAccount.name}</p></>}
-        <label>Määrä</label> <p>{transactionn.transaction}</p>
-        <label>Tyyppi</label> 
+        <label><strong>Päiväys</strong></label> <p>{transactionn.date}</p>
+        <label><strong>Toimija</strong></label> <p>{transactionn.transactioner}</p>
+        {transactionn.target && <><label><strong>Kohdetili</strong></label> <p>{targetAccount.name}</p></>}
+        <label><strong>Määrä</strong></label> <p>{transactionn.transaction}</p>
+        <label><strong>Tyyppi</strong></label> 
         {transactionn.transactiontype === "shop" && <p>Kauppa</p>}
         {transactionn.transactiontype === "loan" && <p>Tilisiirto</p>}
         {transactionn.transactiontype === "phone" && <p>Puhelin</p>}
         {transactionn.transactiontype === "gov" && <p>Virasto</p>}
         {transactionn.transactiontype === "unknown" && <p>Tuntematon</p>}
-        {transactionn.reference && <><label>Viite</label> <p>{transactionn.reference}</p></>}
-        {transactionn.message && <><label>Viesti</label> <p>{transactionn.message}</p></>}
+        {transactionn.reference && <><label><strong>Viite</strong></label> <p>{transactionn.reference}</p></>}
+        {transactionn.message && <><label><strong>Viesti</strong></label> <p>{transactionn.message}</p></>}
         <button className="closebutton" onClick={closeWindow}>Sulje ikkuna</button>
       </div>);
 
@@ -977,9 +977,9 @@ const App = (props) => {
 
     setMessage("Valitsemasi viestin tiedot");
     setSubmessage(<div className="formfield">
-      <label>Otsikko</label><h3>{onemessage.title}</h3>
-      <label>Päiväys</label><p>{onemessage.date}</p>
-      <label>Viesti</label><p>{onemessage.message}</p>
+      <label><strong>Otsikko</strong></label><h3>{onemessage.title}</h3>
+      <label><strong>Päiväys</strong></label><p>{onemessage.date}</p>
+      <label><strong>Viesti</strong></label><p>{onemessage.message}</p>
       <button className="closebutton" onClick={closeWindow}>Sulje ikkuna</button>
     </div>);
 
