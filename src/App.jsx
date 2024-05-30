@@ -277,48 +277,23 @@ const App = (props) => {
 
     setCircles(true);
 
-    bcrypt.compare(pword, user.password, (err, isMatch) => {
-      if (err) {
-        setMessage("Virhe vanhan salasanan vertailussa");
-        setSubmessage(<p>Salasanaa ei vaihdettu</p>);
-      } else if (isMatch) {
+    const newUser = {
+      password: pword,
+      npassword: npword,
+      npassword2: npword2
+    }
 
-        if (npword !== npword2) {
-          setMessage("Virhe syötteessä 'uusi salasana'");
-          setSubmessage(<p>Salasanaa ei vaihdettu</p>);
-        } else {
-
-          bcrypt.genSalt(10, (saltErr, salt) => {
-            bcrypt.hash(npword, salt, (hashErr, hashedPassword) => {
-              if (hashErr) {
-                setMessage('Error hashing new password:', hashErr);
-              } else {
-
-                setMessage("Salasana vaihdettu");
-                setSubmessage(null);
-
-                const newUser = {
-                  password: hashedPassword
-                }
-
-                Userservice
-                  .update(user.id, newUser)
-                  .then(response => {
-                    console.log(response.data);
-                    setUser((prevState) => { return ({ ...prevState, password: hashedPassword }) });
-                  })
-
-              }
-            });
-          });
-
-        }
-
-      } else {
-        setMessage("Vanha salasana ei täsmää");
-        setSubmessage(<p>Salasanaa ei vaihdettu</p>);
-      }
-    });
+    Userservice
+      .update(user.id, newUser)
+      .then(response => {
+          console.log(response.data);
+          setUser((prevState) => { return ({ ...prevState, password: response.data.password }) });
+      })
+      .catch(error => {
+        setCircles(true);
+        setMessage("Virhe! Jokin tieto oli väärää muotoa.");
+        setSubmessage(error.message);
+      })
 
     setTimeout(() => {
       setMessage(null);
