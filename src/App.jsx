@@ -286,13 +286,15 @@ const App = (props) => {
     Userservice
       .update(user.id, newUser)
       .then(response => {
-          console.log(response.data);
           setUser((prevState) => { return ({ ...prevState, password: response.data.password }) });
+          setCircles(true);
+          setMessage("Salasana vaihdettu.");
+          setSubmessage(null);
       })
       .catch(error => {
         setCircles(true);
-        setMessage("Virhe! Jokin tieto oli väärää muotoa.");
-        setSubmessage(error.message);
+        setMessage("Virhe!");
+        setSubmessage(<p>{error.response.data.error}</p>);
       })
 
     setTimeout(() => {
