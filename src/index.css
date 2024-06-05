@@ -275,10 +275,19 @@ button:focus {
     max-width: 50px;
 }
 
+.deletemessage {
+    padding-top: 5px;
+}
+
+
 @media only screen and (max-width: 800px) {
     .unread > img {
         max-height: 30px;
         max-width: 30px;
+    }
+
+    .deletemessage > button {
+        font-size: 14px;
     }
 }
 

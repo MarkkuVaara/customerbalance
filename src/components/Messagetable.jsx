@@ -19,6 +19,10 @@ const Messagetable = (props) => {
         event.preventDefault();
     }
 
+    const onDelete = (id) => {
+        props.deletemessage(id);
+    }
+
     return (
         <div>
             <div className="accounttitle">
@@ -38,6 +42,9 @@ const Messagetable = (props) => {
                             <button type="submit" className="balancedate">{message.date.substring(0, 10)}</button>
                             <p className="balancemessagetitle"><strong>{message.title}</strong></p>
                             <p className="balanceactioner">{message.message.substring(0, 50)}...</p>
+                            <div className="deletemessage">
+                                <button type="button" onClick={() => onDelete(message.id)}>Poista viesti</button>
+                            </div>
                         </div>
                     </form>
                 )}

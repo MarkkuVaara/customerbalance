@@ -237,8 +237,8 @@ const App = (props) => {
       })
       .catch(error => {
         setCircles(true);
-        setMessage("Virhe! Jokin tieto oli väärää muotoa.");
-        setSubmessage(error.message);
+        setMessage("Virhe muutettaessa käyttäjätietoja");
+        setSubmessage(<p>{error.message}</p>);
       })
 
     setTimeout(() => {
@@ -894,7 +894,7 @@ const App = (props) => {
   }
 
 
-  /* Show popups */
+  /* Show and delete ppopups */
 
   const showtransaction = (data) => {
 
@@ -959,6 +959,18 @@ const App = (props) => {
       <label><strong>Viesti</strong></label><p>{onemessage.message}</p>
       <button className="closebutton" onClick={closeWindow}>Sulje ikkuna</button>
     </div>);
+
+  }
+
+  const deletemessage = (id) => {
+
+    setMessage("Viesti poistettu");
+    setSubmessage(<p>Viestin numero: {id}</p>);
+
+    setTimeout(() => {
+      setMessage(null);
+      setSubmessage(null);
+    }, 3000);
 
   }
 
@@ -1057,7 +1069,7 @@ const App = (props) => {
                 <Personalinfo user={user} editInfo={editInfo} editPassword={editPassword} />
               </div>} />
               <Route path="/messages" element={<div className="balances">
-                <Messagetable messages={messages} user={user} showmessage={showmessage} />
+                <Messagetable messages={messages} user={user} showmessage={showmessage} deletemessage={deletemessage} />
               </div>} />
               </>
             }
