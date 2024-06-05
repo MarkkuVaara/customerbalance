@@ -894,7 +894,7 @@ const App = (props) => {
   }
 
 
-  /* Show and delete ppopups */
+  /* Show and delete popups */
 
   const showtransaction = (data) => {
 
@@ -964,8 +964,28 @@ const App = (props) => {
 
   const deletemessage = (id) => {
 
+    setCircles(null);
+    setMessage("Haluatko poistaa tämän viestin?");
+    setSubmessage(<div>
+      <button type="button" onClick={() => deletedelete(id)}>Kyllä</button>
+      <button type="button" onClick={closeWindow}>Peruuta</button>
+    </div>);
+
+  }
+
+  const deletedelete = (id) => {
+
+    setCircles(true);
     setMessage("Viesti poistettu");
-    setSubmessage(<p>Viestin numero: {id}</p>);
+    setSubmessage(null);
+
+    Messageservice
+      .erase(id)
+      .then(response => {
+        console.log(response.data);
+        const newmessages = messages.filter(message => message.id !== id);
+        setMessages(newmessages);
+      })
 
     setTimeout(() => {
       setMessage(null);
