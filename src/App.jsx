@@ -326,8 +326,18 @@ const App = (props) => {
     const signature = event.target.signature.value;
 
     let denied = null;
+    let deniedtwo = null;
+
     if (loan > 200000) {
       denied = true;
+    }
+
+    console.log(loan / 20);
+    console.log(income);
+    console.log(loan / 20 - income);
+
+    if (loan / 20 > income) {
+      deniedtwo = true;
     }
 
     if (!loan || !guarantee || !signature || !income) {
@@ -345,6 +355,16 @@ const App = (props) => {
       setCircles(true);
       setMessage("Hakemasi lainamäärä on liian suuri.");
       setSubmessage(<p>Yritä uudelleen.</p>);
+      setTimeout(() => {
+        setMessage(null);
+        setSubmessage(null);
+      }, 3000);
+
+    } else if (deniedtwo) {
+
+      setCircles(true);
+      setMessage("Et voi saada pyytämääsi lainaa tämänhetkisillä luottotiedoilla.");
+      setSubmessage(<p>Yritä uudelleen pienempää lainaa.</p>);
       setTimeout(() => {
         setMessage(null);
         setSubmessage(null);
@@ -413,7 +433,7 @@ const App = (props) => {
     };
 
     setMessage("Kiitos hakemuksestasi!");
-    setSubmessage(<p>Otamme sinuun yhteyttä, kun lainahakemuksesi on hyväksytty.</p>);
+    setSubmessage(<p>Otamme sinuun yhteyttä, kun lainahakemuksesi on käsitelty.</p>);
 
     setTimeout(() => {
       setMessage(null);
