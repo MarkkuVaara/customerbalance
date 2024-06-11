@@ -332,13 +332,14 @@ const App = (props) => {
       denied = true;
     }
 
-    console.log(loan / 20);
-    console.log(income);
-    console.log(loan / 20 - income);
-
     if (loan / 20 > income) {
       deniedtwo = true;
     }
+
+    const allloans = accounts.filter(account => account.balancelimit < 0);
+    const allownloans = allloans.filter(account => account.userId == user.id);
+    const alllimits = allownloans.map(account => account.balancelimit);
+    console.log(alllimits);
 
     if (!loan || !guarantee || !signature || !income) {
 
@@ -363,12 +364,22 @@ const App = (props) => {
     } else if (deniedtwo) {
 
       setCircles(true);
-      setMessage("Et voi saada pyytämääsi lainaa tämänhetkisillä luottotiedoilla.");
-      setSubmessage(<p>Yritä uudelleen pienempää lainaa.</p>);
-      setTimeout(() => {
-        setMessage(null);
-        setSubmessage(null);
-      }, 3000);
+      setMessage("Et voi saada pyytämääsi lainaa tämänhetkisillä kuukausituloilla ja/tai luottotiedoilla.");
+      setSubmessage(<>
+          <p><strong>Hakemasi lainamäärä:</strong> {loan} euroa</p>
+          <p><strong>Kuukausitulosi:</strong> {income} euroa/kk</p>
+          <div>
+            <strong>Aikaisemmat lainasi ja lainarajat:</strong>
+            {allownloans.map(account => 
+              <div className="formfield" key={account.id}>
+                <label>{account.name}</label> <p> {account.balancelimit} </p>
+                <label> ----------------- </label>
+              </div>
+            )}
+          </div>
+          <p>Yritä uudelleen pienempää lainaa.</p>
+          <button type="button" onClick={closeWindow}>Sulje ikkuna</button>
+        </>);
 
     } else if (loanapplications.length != 0) {
 
