@@ -339,7 +339,11 @@ const App = (props) => {
     const allloans = accounts.filter(account => account.balancelimit < 0);
     const allownloans = allloans.filter(account => account.userId == user.id);
     const alllimits = allownloans.map(account => account.balancelimit);
-    console.log(alllimits);
+    let alllimit = 0;
+
+    for (let i = 0; i < allownloans.length; i++) {
+      alllimit = alllimit - allownloans[i].balancelimit;
+    }
 
     if (!loan || !guarantee || !signature || !income) {
 
@@ -363,21 +367,18 @@ const App = (props) => {
 
     } else if (deniedtwo) {
 
-      setCircles(true);
       setMessage("Et voi saada pyytämääsi lainaa tämänhetkisillä kuukausituloilla ja/tai luottotiedoilla.");
       setSubmessage(<>
           <p><strong>Hakemasi lainamäärä:</strong> {loan} euroa</p>
-          <p><strong>Kuukausitulosi:</strong> {income} euroa/kk</p>
-          <div>
-            <strong>Aikaisemmat lainasi ja lainarajat:</strong>
-            {allownloans.map(account => 
-              <div className="formfield" key={account.id}>
-                <label>{account.name}</label> <p> {account.balancelimit} </p>
-                <label> ----------------- </label>
-              </div>
-            )}
-          </div>
-          <p>Yritä uudelleen pienempää lainaa.</p>
+          <p><strong>Kuukausitulosi:</strong> {income} euroa/kk </p>
+          <p><strong>Aikaisemmat lainasi, lainarajat ja myöntöpäivät:</strong> </p>
+          {allownloans.map(account => 
+            <div className="accounttitle" key={account.id}>
+              <p><strong>{account.name.substring(10)}</strong></p> <p> {0 - account.balance} e </p> <p> {account.creationdate.substring(0,10)}</p>
+            </div>
+          )}
+          <p><strong>Tämänhetkiset lainasi yhteensä: </strong> {alllimit} euroa</p>
+          <p>Yritä uudelleen pienempää lainaa tai ota yhteyttä pankkivirkailijaan.</p>
           <button type="button" onClick={closeWindow}>Sulje ikkuna</button>
         </>);
 
