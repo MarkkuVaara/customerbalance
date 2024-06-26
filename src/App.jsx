@@ -29,6 +29,7 @@ import Loginservice from './services/loginservice';
 import Accountservice from './services/accountservice';
 import Transactionservice from './services/transactionservice';
 import Messageservice from './services/messageservice';
+import Predictservice from './services/predictservice';
 
 import ChatComponent from './components/ChatComponent';
 import ChatBox from './components/ChatBox';
@@ -332,10 +333,6 @@ const App = (props) => {
       denied = true;
     }
 
-    if (loan / 20 > income) {
-      deniedtwo = true;
-    }
-
     const allloans = accounts.filter(account => account.balancelimit < 0);
     const allownloans = allloans.filter(account => account.userId == user.id);
     const alllimits = allownloans.map(account => account.balancelimit);
@@ -343,6 +340,33 @@ const App = (props) => {
 
     for (let i = 0; i < allownloans.length; i++) {
       alllimit = alllimit - allownloans[i].balancelimit;
+    }
+
+    const predictiondata = {
+      income: Number(income),
+      loan_amount: Number(loan),
+      existing_debts: alllimit,
+      repayment_history: "good"
+    }
+
+    Predictservice
+      .predict(predictiondata)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+        setCircles(true);
+        setMessage("Virhe! Jokin tieto oli väärää muotoa.");
+        setSubmessage(error.message);
+        setTimeout(() => {
+          setMessage(null);
+          setSubmessage(null);
+        }, 3000);
+      })
+
+    if (loan / 20 > income) {
+      deniedtwo = true;
     }
 
     if (!loan || !guarantee || !signature || !income) {
