@@ -328,6 +328,7 @@ const App = (props) => {
 
     let denied = null;
     let deniedtwo = null;
+    let approvement = false;
 
     if (loan > 200000) {
       denied = true;
@@ -353,6 +354,8 @@ const App = (props) => {
       .predict(predictiondata)
       .then(response => {
         console.log(response.data);
+        approvement = response.data.approved;
+        handleResponse({ approvement, loan, income, allownloans, alllimit });
       })
       .catch(error => {
         console.log(error);
@@ -364,10 +367,6 @@ const App = (props) => {
           setSubmessage(null);
         }, 3000);
       })
-
-    if (loan / 20 > income) {
-      deniedtwo = true;
-    }
 
     if (!loan || !guarantee || !signature || !income) {
 
@@ -388,31 +387,6 @@ const App = (props) => {
         setMessage(null);
         setSubmessage(null);
       }, 3000);
-
-    } else if (deniedtwo) {
-
-      setMessage("Et voi saada pyytämääsi lainaa tämänhetkisillä kuukausituloilla ja/tai luottotiedoilla.");
-      setSubmessage(<div className="loanwindow">
-          <p>Yritä uudelleen pienempää lainaa tai ota yhteyttä pankkivirkailijaan.</p>
-          <h3>Lainapäätökseen vaikuttavat tiedot:</h3>
-          <div className="loandenial"></div>
-          <p><strong>Hakemasi lainamäärä:</strong> {loan} euroa</p>
-          <div className="loandenial"></div>
-          <p><strong>Kuukausitulosi:</strong> {income} euroa/kk </p>
-          <div className="loandenial"></div>
-          <p><strong>Aikaisemmat lainasi, lainarajat ja myöntöpäivät:</strong> </p>
-          {allownloans.map(account => 
-            <>
-            <div className="accounttitle" key={account.id}>
-              <p><strong>{account.name.substring(10)}</strong></p> <p> {0 - account.balancelimit} e </p> <p> {account.creationdate.substring(0,10)}</p>
-            </div>
-            <div className="loandenial"></div>
-            </>
-          )}
-          <p><strong>Tämänhetkiset lainasi yhteensä: </strong> {alllimit} euroa</p>
-          <div className="loandenial"></div>
-          <button type="button" onClick={closeWindow}>Sulje ikkuna</button>
-        </div>);
 
     } else if (loanapplications.length != 0) {
 
@@ -449,6 +423,39 @@ const App = (props) => {
     }
 
   };
+
+
+  const handleResponse = ({ approvement, loan, income, allownloans, alllimit }) => {
+
+    if (approvement === false) {
+
+      setMessage("Et voi saada pyytämääsi lainaa tämänhetkisillä kuukausituloilla ja/tai luottotiedoilla.");
+      setSubmessage(<div className="loanwindow">
+          <p>Yritä uudelleen pienempää lainaa tai ota yhteyttä pankkivirkailijaan.</p>
+          <h3>Lainapäätökseen vaikuttavat tiedot:</h3>
+          <div className="loandenial"></div>
+          <p><strong>Hakemasi lainamäärä:</strong> {loan} euroa</p>
+          <div className="loandenial"></div>
+          <p><strong>Kuukausitulosi:</strong> {income} euroa/kk </p>
+          <div className="loandenial"></div>
+          <p><strong>Aikaisemmat lainasi, lainarajat ja myöntöpäivät:</strong> </p>
+          {allownloans.map(account => 
+            <>
+            <div className="accounttitle" key={account.id}>
+              <p><strong>{account.name.substring(10)}</strong></p> <p> {0 - account.balancelimit} e </p> <p> {account.creationdate.substring(0,10)}</p>
+            </div>
+            <div className="loandenial"></div>
+            </>
+          )}
+          <p><strong>Tämänhetkiset lainasi yhteensä: </strong> {alllimit} euroa</p>
+          <div className="loandenial"></div>
+          <button type="button" onClick={closeWindow}>Sulje ikkuna</button>
+        </div>);
+
+    }
+
+  };
+  
 
   const loansubmitsubmit = ({loan, loantype}) => {
 
