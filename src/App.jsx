@@ -327,7 +327,6 @@ const App = (props) => {
     const signature = event.target.signature.value;
 
     let denied = null;
-    let deniedtwo = null;
     let approvement = false;
 
     if (loan > 200000) {
@@ -336,7 +335,6 @@ const App = (props) => {
 
     const allloans = accounts.filter(account => account.balancelimit < 0);
     const allownloans = allloans.filter(account => account.userId == user.id);
-    const alllimits = allownloans.map(account => account.balancelimit);
     let alllimit = 0;
 
     for (let i = 0; i < allownloans.length; i++) {
@@ -349,24 +347,6 @@ const App = (props) => {
       existing_debts: alllimit,
       repayment_history: "good"
     }
-
-    Predictservice
-      .predict(predictiondata)
-      .then(response => {
-        console.log(response.data);
-        approvement = response.data.approved;
-        handleResponse({ approvement, loan, income, allownloans, alllimit });
-      })
-      .catch(error => {
-        console.log(error);
-        setCircles(true);
-        setMessage("Virhe! Jokin tieto oli väärää muotoa.");
-        setSubmessage(error.message);
-        setTimeout(() => {
-          setMessage(null);
-          setSubmessage(null);
-        }, 3000);
-      })
 
     if (!loan || !guarantee || !signature || !income) {
 
@@ -400,32 +380,30 @@ const App = (props) => {
 
     } else {
 
-      setMessage("Lainahakemuksesi tiedot:");
-      setSubmessage(<>
-        <p>Tarkista ovatko kaikki tiedot hakemuksessasi oikein.</p>
-        <div>
-        <div className="formfield">
-          <label>Lainamuoto:</label>
-          <input defaultValue={loantype} disabled></input>
-          <label>Lainamäärä:</label>
-          <input defaultValue={loan} disabled></input>
-          <label>Vakuutesi:</label>
-          <input defaultValue={guarantee} disabled></input>
-          <label>Kuukausitulosi:</label>
-          <input defaultValue={income} disabled></input>
-          <label>Allekirjoituksesi:</label>
-          <input defaultValue={signature} disabled></input>
-        </div>
-        </div>
-        <Loansubmitting loansubmitsubmit={() => loansubmitsubmit({loan, loantype})} cancelForm={cancelForm}/>
-      </>);
+      Predictservice
+      .predict(predictiondata)
+      .then(response => {
+        console.log(response.data);
+        approvement = response.data.approved;
+        handleResponse({ approvement, loan, income, allownloans, alllimit, guarantee, signature, loantype });
+      })
+      .catch(error => {
+        console.log(error);
+        setCircles(true);
+        setMessage("Virhe! Jokin tieto oli väärää muotoa.");
+        setSubmessage(error.message);
+        setTimeout(() => {
+          setMessage(null);
+          setSubmessage(null);
+        }, 3000);
+      })
 
     }
 
   };
 
 
-  const handleResponse = ({ approvement, loan, income, allownloans, alllimit }) => {
+  const handleResponse = ({ approvement, loan, income, allownloans, alllimit, guarantee, signature, loantype }) => {
 
     if (approvement === false) {
 
@@ -451,6 +429,28 @@ const App = (props) => {
           <div className="loandenial"></div>
           <button type="button" onClick={closeWindow}>Sulje ikkuna</button>
         </div>);
+
+    } else {
+
+      setMessage("Lainahakemuksesi tiedot:");
+      setSubmessage(<>
+        <p>Tarkista ovatko kaikki tiedot hakemuksessasi oikein.</p>
+        <div>
+        <div className="formfield">
+          <label>Lainamuoto:</label>
+          <input defaultValue={loantype} disabled></input>
+          <label>Lainamäärä:</label>
+          <input defaultValue={loan} disabled></input>
+          <label>Vakuutesi:</label>
+          <input defaultValue={guarantee} disabled></input>
+          <label>Kuukausitulosi:</label>
+          <input defaultValue={income} disabled></input>
+          <label>Allekirjoituksesi:</label>
+          <input defaultValue={signature} disabled></input>
+        </div>
+        </div>
+        <Loansubmitting loansubmitsubmit={() => loansubmitsubmit({loan, loantype})} cancelForm={cancelForm}/>
+      </>);
 
     }
 
