@@ -284,19 +284,28 @@ const App = (props) => {
       npassword2: npword2
     }
 
-    Userservice
-      .update(user.id, newUser)
-      .then(response => {
-          setUser((prevState) => { return ({ ...prevState, password: response.data.password }) });
+    if (!pword || !npword || !npword2) {
+
+      setMessage("Joitain tietoja puuttuu.");
+      setSubmessage("Yritä uudelleen.");
+
+    } else {
+
+      Userservice
+        .update(user.id, newUser)
+        .then(response => {
+            setUser((prevState) => { return ({ ...prevState, password: response.data.password }) });
+            setCircles(true);
+            setMessage("Salasana vaihdettu.");
+            setSubmessage(null);
+        })
+        .catch(error => {
           setCircles(true);
-          setMessage("Salasana vaihdettu.");
-          setSubmessage(null);
-      })
-      .catch(error => {
-        setCircles(true);
-        setMessage("Virhe!");
-        setSubmessage(<p>{error.response.data.error}</p>);
-      })
+          setMessage("Virhe!");
+          setSubmessage(<p>{error.response.data.error}</p>);
+        })
+
+    }
 
     setTimeout(() => {
       setMessage(null);
@@ -830,8 +839,15 @@ const App = (props) => {
     const newsaldo = (account.balance - amount).toFixed(2);
 
     if (!source || !target || !amount || (!reference && !messagge) || !date ) {
+
       setMessage("Tärkeitä tietoja puuttuu");
       setSubmessage(<p>Yritä uudelleen.</p>)
+
+    } else if (Number(reference) > 100000) {
+
+      setMessage("Viite on väärää muotoa.");
+      setSubmessage(<p>Yritä uudelleen.</p>)
+      
     } else {
 
       if (pending !== true) {
