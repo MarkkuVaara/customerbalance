@@ -52,7 +52,7 @@ p {
 
 .mainapp {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-image: url("./src/images/main.jpg");
+    background-image: url("./images/main.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -163,14 +163,15 @@ button:focus {
 }
 
 .fronttext > img {
+    margin-top: 20px;
     height: 100%;
-    width: 100%;
+    width: 90%;
     border-style: solid;
     border-width: 3px;
     border-color: darkslategray;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1250px) {
     .fronttext {
         display: block;
     }
@@ -431,6 +432,7 @@ button:focus {
 
 .subinfo > div > button {
     width: 200px;
+    margin-top: 5px;
     margin-right: 10px;
     border-style: solid;
     border-width: 3px;
@@ -634,7 +636,7 @@ button:focus {
 
 .chatcomponent {
     margin: 3px;
-    margin-top: 25px;
+    margin-top: 22px;
     padding: 10px;
     border: 1px solid gray;
     border-radius: 8px;
@@ -662,9 +664,10 @@ button:focus {
 .chatboxbutton,
 .chatboxbutton:hover {
     position: fixed;
-    top: 25;
+    top: 150px;
     right: 0;
     border: 2px solid gray;
+    border-right: 0px;
 }
 
 @media only screen and (max-width: 800px) {
