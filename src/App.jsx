@@ -845,9 +845,9 @@ const App = (props) => {
 
     } else if (Number(reference) > 100000) {
 
-      setMessage("Viite on väärää muotoa.");
+      setMessage("Viite voi sisältää korkentaan viisi numeroa.");
       setSubmessage(<p>Yritä uudelleen.</p>)
-      
+
     } else {
 
       if (pending !== true) {
@@ -1080,6 +1080,35 @@ const App = (props) => {
     }, 3000);
 
   }
+
+
+  /* Token handlers */
+
+  const isTokenExpired = (token) => {
+
+    if (!token) return true;
+
+    const decodedToken = parseJwt(token);
+    const currentTime = Date.now() / 1000;
+
+    return decodedToken.exp < currentTime;
+
+  }
+
+  const parseJwt = (token) => {
+
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+
+}
+
+
+  /* Others */
 
   const closeWindow = () => {
 
