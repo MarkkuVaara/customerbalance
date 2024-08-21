@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   BrowserRouter as Router,
   Routes, Route, Link
@@ -41,7 +41,7 @@ const App = (props) => {
   const [account, setAccount] = useState(null);
 
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const [message, setMessage] = useState(null);
   const [submessage, setSubmessage] = useState(null);
@@ -51,7 +51,7 @@ const App = (props) => {
   const [messages, setMessages] = useState([]);
   const [usermessages, setUsermessages] = useState([]);
   const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
 
   useEffect(() => {
@@ -107,13 +107,31 @@ const App = (props) => {
   }, [messages]);
 
   useEffect(() => {
+    console.log('Token updated');
+  }, [token]);
+
+  const isTokenExpired = useCallback((token) => {
+
+    if (!token) return true;
+
+    const decodedToken = parseJwt(token);
+    const currentTime = Date.now() / 1000;
+
+    return decodedToken.exp < currentTime;
+
+  }, []);
+
+  useEffect(() => {
+    console.log("check");
     if (token && isTokenExpired(token)) {
         alert('Session expired. Please log in again.');
         setUser(null);
+        localStorage.removeItem('user');
         setToken(null);
+        localStorage.removeItem('token');
         window.location.href = '/frontpage';
     }
-  }, [token]);
+  }, [token, isTokenExpired]);
 
 
   /* Logging in and out */
@@ -137,7 +155,9 @@ const App = (props) => {
       setSubmessage(null);
     }, 2000);
     setUser(null);
+    localStorage.removeItem('user');
     setToken(null);
+    localStorage.removeItem('token');
     setAccount(null);
 
   };
@@ -162,6 +182,7 @@ const App = (props) => {
       });
       const loginuser = users.filter(userb => userb.usernumber == user.usernumber);
       setUser(loginuser[0]);
+      localStorage.setItem('user', JSON.stringify(loginuser[0]));
 
       const usermssgs = messages.filter(message => message.userId == loginuser[0].id);
 
@@ -172,6 +193,7 @@ const App = (props) => {
       Messageservice.setToken(user.token);
       Transactionservice.setToken(user.token);
       setToken(user.token);
+      localStorage.setItem('token', user.token);
 
       setCircles(true);
       setMessage("Kirjautuminen suoritettu!");
@@ -1095,17 +1117,6 @@ const App = (props) => {
 
 
   /* Token handlers */
-
-  const isTokenExpired = (token) => {
-
-    if (!token) return true;
-
-    const decodedToken = parseJwt(token);
-    const currentTime = Date.now() / 1000;
-
-    return decodedToken.exp < currentTime;
-
-  }
 
   const parseJwt = (token) => {
 
