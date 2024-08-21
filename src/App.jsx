@@ -51,6 +51,7 @@ const App = (props) => {
   const [messages, setMessages] = useState([]);
   const [usermessages, setUsermessages] = useState([]);
   const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
+  const [token, setToken] = useState(null);
 
 
   useEffect(() => {
@@ -105,6 +106,15 @@ const App = (props) => {
     console.log('Messages updated:', messages);
   }, [messages]);
 
+  useEffect(() => {
+    if (token && isTokenExpired(token)) {
+        alert('Session expired. Please log in again.');
+        setUser(null);
+        setToken(null);
+        window.location.href = '/frontpage';
+    }
+  }, [token]);
+
 
   /* Logging in and out */
 
@@ -127,6 +137,7 @@ const App = (props) => {
       setSubmessage(null);
     }, 2000);
     setUser(null);
+    setToken(null);
     setAccount(null);
 
   };
@@ -160,6 +171,7 @@ const App = (props) => {
       Accountservice.setToken(user.token);
       Messageservice.setToken(user.token);
       Transactionservice.setToken(user.token);
+      setToken(user.token);
 
       setCircles(true);
       setMessage("Kirjautuminen suoritettu!");
@@ -1105,7 +1117,7 @@ const App = (props) => {
 
     return JSON.parse(jsonPayload);
 
-}
+  }
 
 
   /* Others */
