@@ -52,6 +52,7 @@ const App = (props) => {
   const [usermessages, setUsermessages] = useState([]);
   const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [isTokenExpired, setIsTokenExpired] = useState(false);
 
 
   useEffect(() => {
@@ -110,20 +111,9 @@ const App = (props) => {
     console.log('Token updated');
   }, [token]);
 
-  const isTokenExpired = useCallback((token) => {
-
-    if (!token) return true;
-
-    const decodedToken = parseJwt(token);
-    const currentTime = Date.now() / 1000;
-
-    return decodedToken.exp < currentTime;
-
-  }, []);
-
   useEffect(() => {
     console.log("check");
-    if (token && isTokenExpired(token)) {
+    if (isTokenExpired) {
         alert('Session expired. Please log in again.');
         setUser(null);
         localStorage.removeItem('user');
@@ -131,7 +121,7 @@ const App = (props) => {
         localStorage.removeItem('token');
         window.location.href = '/frontpage';
     }
-  }, [token, isTokenExpired]);
+  }, [isTokenExpired]);
 
 
   /* Logging in and out */
@@ -148,7 +138,7 @@ const App = (props) => {
     event.preventDefault();
 
     setCircles(true);
-    setMessage("Kirjaudun ulos...");
+    setMessage("Kirjaudun ulos.");
     setSubmessage(<p>Muista sulkea selain uloskirjautumisen jälkeen.</p>)
     setTimeout(() => {
       setMessage(null);
@@ -159,6 +149,7 @@ const App = (props) => {
     setToken(null);
     localStorage.removeItem('token');
     setAccount(null);
+    setIsTokenExpired(false);
 
   };
 
@@ -177,6 +168,7 @@ const App = (props) => {
     const password = event.target.password.value;
 
     try {
+
       const user = await Loginservice.login({
         usernumber, password,
       });
@@ -198,6 +190,16 @@ const App = (props) => {
       setCircles(true);
       setMessage("Kirjautuminen suoritettu!");
       setSubmessage(null);
+
+      setInterval(() => {
+        const decodedToken = parseJwt(user.token);
+        console.log(user.token);
+        const currentTime = Date.now() / 1000;
+        if (decodedToken.exp < currentTime) {
+          setIsTokenExpired(true);
+        }
+      }, 1000);
+
     } catch (exception) {
       setCircles(true);
       setMessage("Väärä tunnus tai salasana.");
